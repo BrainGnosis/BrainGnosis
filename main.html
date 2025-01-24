@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BrainGnosis</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap">
+    <style>
+        :root {
+            --bg-light: #f7f9fc;
+            --text-light: #2E3440;
+            --card-light: #ffffff;
+            --shadow-light: rgba(0, 0, 0, 0.1);
+            --accent-color: #4A90E2;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-light);
+            margin: 0;
+            padding: 0;
+        }
+
+        .main-header {
+            font-size: 3rem;
+            font-weight: bold;
+            text-align: center;
+            margin: 20px 0;
+            color: var(--accent-color);
+        }
+
+        .sub-header {
+            font-size: 1.5rem;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .content-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .card {
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px var(--shadow-light);
+            background-color: var(--card-light);
+            color: var(--text-light);
+            margin-bottom: 20px;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px var(--shadow-light);
+        }
+
+        .btn-primary {
+            background-color: var(--accent-color);
+            color: white;
+            border-radius: 8px;
+            padding: 10px 20px;
+            font-size: 1rem;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary:hover {
+            background-color: #357ABD;
+        }
+
+        .services {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .service {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .team {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .team-member {
+            text-align: center;
+            max-width: 250px;
+        }
+
+        .footer {
+            font-size: 0.9rem;
+            text-align: center;
+            padding: 20px;
+            background-color: var(--card-light);
+            margin-top: 40px;
+        }
+
+        .carousel {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .carousel img {
+            max-width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px var(--shadow-light);
+        }
+
+        .industries {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .industry {
+            text-align: center;
+            max-width: 150px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="main-header">BrainGnosis</div>
+        <div class="sub-header">Making AI smarter for humans</div>
+    </header>
+
+    <main class="content-section">
+        <section class="carousel">
+            <img src="demo_images/demo1.jpg" alt="Empowering AI for a Better Future">
+        </section>
+
+        <section>
+            <h2>Our Vision</h2>
+            <p>
+                <strong>BrainGnosis</strong> is dedicated to creating smarter, more reliable, and human-centric AI solutions.
+                We believe in advancing technology to enhance the lives of individuals and businesses alike.
+            </p>
+        </section>
+
+        <section>
+            <h2>Our Services</h2>
+            <div class="services">
+                <div class="service card">
+                    <h3>🤖 AI Development</h3>
+                    <p>Custom AI models tailored to your business needs.</p>
+                </div>
+                <div class="service card">
+                    <h3>💡 AI Consulting</h3>
+                    <p>Strategic guidance on adopting AI technologies.</p>
+                </div>
+                <div class="service card">
+                    <h3>🚀 AI Automation</h3>
+                    <p>Automate your existing workflows rapidly using AI.</p>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>Our Products</h2>
+            <div class="card">
+                <h3>📦 SciBorg</h3>
+                <p>Your intelligent assistant for scientific research and automation.</p>
+            </div>
+        </section>
+
+        <section>
+            <h2>Our Clients</h2>
+            <div class="industries">
+                <div class="industry">
+                    <img src="client_logos/pharma.png" alt="Pharma Sector">
+                    <p>Pharma Sector</p>
+                </div>
+                <div class="industry">
+                    <img src="client_logos/healthcare.png" alt="Healthcare">
+                    <p>Healthcare</p>
+                </div>
+                <div class="industry">
+                    <img src="client_logos/Instrumentation.png" alt="Instrumentation">
+                    <p>Instrumentation</p>
+                </div>
+                <div class="industry">
+                    <img src="client_logos/academia.png" alt="Academia">
+                    <p>Academia</p>
+                </div>
+                <div class="industry">
+                    <img src="client_logos/commercial.png" alt="Commercial Industries">
+                    <p>Commercial Industries</p>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>Our Team</h2>
+            <div class="team">
+                <div class="team-member card">
+                    <h3>👤 Gaurav Chopra</h3>
+                    <p><strong>Role:</strong> CEO</p>
+                    <p>Visionary leader with a decade of experience in AI and machine learning.</p>
+                </div>
+                <div class="team-member card">
+                    <h3>👤 Matt</h3>
+                    <p><strong>Role:</strong> Technology and Innovation</p>
+                    <p>Ensures our AI solutions are robust and ahead of the curve.</p>
+                </div>
+                <div class="team-member card">
+                    <h3>👤 Connor</h3>
+                    <p><strong>Role:</strong> Marketing and Strategy</p>
+                    <p>Crafts strategies that connect with global audiences.</p>
+                </div>
+                <div class="team-member card">
+                    <h3>👤 Atharva</h3>
+                    <p><strong>Role:</strong> Product and Development</p>
+                    <p>Brings creativity and technical expertise to craft user-centric AI solutions.</p>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>Contact Us</h2>
+            <div class="card">
+                <p><strong>Name:</strong> Gaurav Chopra</p>
+                <p><strong>Title:</strong> CEO of BrainGnosis</p>
+                <p><strong>Email:</strong> <a href="mailto:gaurav@braingnosis.ai">gaurav@braingnosis.ai</a></p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        &copy; 2024 BrainGnosis. All rights reserved.
+    </footer>
+</body>
+
+</html>
