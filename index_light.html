@@ -10,13 +10,11 @@
         :root {
             --primary-color: #4A90E2;
             --secondary-color: #2E3440;
-            --background-color: #1C1C1E;
-            --card-background: #2C2C2E;
-            --text-color: #E5E5E7;
-            --link-color: #4A90E2;
-            --link-hover-color: #357ABD;
-            --shadow-light: rgba(0, 0, 0, 0.6);
-            --hover-shadow: rgba(0, 0, 0, 0.8);
+            --background-color: #f7f9fc;
+            --card-background: #ffffff;
+            --text-color: #333333;
+            --shadow-light: rgba(0, 0, 0, 0.1);
+            --hover-shadow: rgba(0, 0, 0, 0.2);
         }
 
         body {
@@ -29,17 +27,14 @@
         }
 
         header {
-            background: var(--secondary-color);
+            background: var(--primary-color);
             color: white;
             padding: 20px 0;
             text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
             box-shadow: 0 4px 8px var(--shadow-light);
-        }
-
-        header img {
-            max-width: 150px;
-            display: block;
-            margin: 0 auto 10px;
         }
 
         header .main-header {
@@ -67,7 +62,7 @@
         }
 
         nav a:hover {
-            color: var(--primary-color);
+            color: #FFD700;
         }
 
         main {
@@ -91,17 +86,6 @@
         p {
             font-size: 1rem;
             margin-bottom: 10px;
-        }
-
-        a {
-            color: var(--link-color);
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        a:hover {
-            color: var(--link-hover-color);
-            text-decoration: underline;
         }
 
         .card {
@@ -176,7 +160,7 @@
             font-size: 1rem;
             text-align: center;
             margin-top: 15px;
-            transition: background-color 0.3s ease, transform 0.3s ease;
+            transition: background-color 0.3s ease; transform: 0.3s ease;
         }
 
         .btn-primary:hover {
@@ -185,7 +169,7 @@
         }
 
         footer {
-            background: var(--secondary-color);
+            background: var(--primary-color);
             color: white;
             text-align: center;
             padding: 20px 0;
@@ -194,42 +178,43 @@
         }
 
         footer a {
-            color: var(--link-color);
+            color: #FFD700;
             text-decoration: none;
         }
 
         footer a:hover {
-            color: var(--link-hover-color);
             text-decoration: underline;
+        }
+
+        footer p {
+            margin: 0;
         }
     </style>
 </head>
 
 <body>
     <header>
-        <!-- <img src="Braingnosis Full Scale.png" alt="BrainGnosis Logo"> -->
         <div class="main-header">BrainGnosis</div>
-        <!-- <div class="sub-header">Making AI Smarter For Humans</div> -->
-        <nav>
-            <a href="#vision">Vision</a>
-            <a href="#services">Services</a>
-            <a href="#products">Products</a>
-            <a href="#clients">Clients</a>
-            <a href="#team">Team</a>
-            <a href="#contact">Contact</a>
-        </nav>
+        <div class="sub-header">Integrating Smarter and Scalable AI within your Organization</div>
     </header>
+
+    <nav>
+        <a href="#vision">Vision</a>
+        <a href="#services">Services</a>
+        <a href="#products">Products</a>
+        <a href="#clients">Clients</a>
+        <a href="#team">Team</a>
+        <a href="#contact">Contact</a>
+    </nav>
 
     <main>
         <section class="carousel">
-            <img src="company_logos/Braingnosis Full Scale.png" alt="BrainGnosis Logo">
+            <img src="demo_images/image19.png" alt="Empowering AI for a Better Future">
         </section>
 
         <section id="vision">
             <h2>Our Vision</h2>
-            <p><strong>BrainGnosis</strong> is dedicated to creating smarter, more reliable, and human-centric AI solutions.
-                We believe in advancing technology to enhance the lives of individuals and businesses alike.
-            </p>
+            <p><strong>BrainGnosis</strong> is dedicated to creating smarter, more reliable, and human-centric AI solutions...</p>
         </section>
 
         <section id="services">
@@ -250,7 +235,7 @@
             </div>
         </section>
 
-        <section id="products">
+        <section>
             <h2>Our Products</h2>
             <div class="card">
                 <h3>📦 SciBorg</h3>
@@ -258,7 +243,7 @@
             </div>
         </section>
 
-        <section id="clients">
+        <section>
             <h2>Our Clients</h2>
             <div class="industries">
                 <div class="industry">
@@ -284,7 +269,7 @@
             </div>
         </section>
 
-        <section id="team">
+        <section>
             <h2>Our Team</h2>
             <div class="team">
                 <div class="card">
@@ -310,7 +295,7 @@
             </div>
         </section>
 
-        <section id="contact">
+        <section>
             <h2>Contact Us</h2>
             <div class="card">
                 <p><strong>Name:</strong> Gaurav Chopra</p>
