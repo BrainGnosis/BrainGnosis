@@ -34,6 +34,10 @@
             padding: 20px 0;
             text-align: center;
             box-shadow: 0 4px 8px var(--shadow-light);
+            position: sticky;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
         }
 
         header img {
@@ -56,7 +60,8 @@
             display: flex;
             justify-content: center;
             gap: 30px;
-            margin-top: 10px;
+            flex-wrap: wrap;
+            padding: 10px 20px;
         }
 
         nav a {
@@ -64,10 +69,44 @@
             text-decoration: none;
             font-weight: 500;
             transition: color 0.3s ease;
+            padding: 10px 15px;
         }
 
         nav a:hover {
             color: var(--primary-color);
+        }
+
+        .menu-toggle {
+            display: none;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 10px;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                display: none;
+                flex-direction: column;
+                gap: 10px;
+                background-color: var(--secondary-color);
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                box-shadow: 0 4px 8px var(--shadow-light);
+            }
+
+            nav.active {
+                display: flex;
+            }
+
+            .menu-toggle {
+                display: block;
+                margin: 0 auto;
+            }
         }
 
         main {
@@ -210,19 +249,20 @@
         <!-- <img src="Braingnosis Full Scale.png" alt="BrainGnosis Logo"> -->
         <div class="main-header">BrainGnosis</div>
         <!-- <div class="sub-header">Making AI Smarter For Humans</div> -->
-        <!-- <nav>
-            <a href="#vision">Vision</a>
-            <a href="#services">Services</a>
-            <a href="#products">Products</a>
-            <a href="#clients">Clients</a>
-            <a href="#team">Team</a>
-            <a href="#contact">Contact</a>
-        </nav> -->
+        <button class="menu-toggle" onclick="toggleMenu()">&#9776;</button>
+        <nav>
+            <a href="#vision" onclick="collapseMenu()">Vision</a>
+            <a href="#services" onclick="collapseMenu()">Services</a>
+            <a href="#products" onclick="collapseMenu()">Products</a>
+            <a href="#clients" onclick="collapseMenu()">Clients</a>
+            <a href="#team" onclick="collapseMenu()">Team</a>
+            <a href="#contact" onclick="collapseMenu()">Contact</a>
+        </nav>
     </header>
 
     <main>
         <section class="carousel">
-            <img src="company_logos/Braingnosis Full Scale.png" alt="BrainGnosis Logo">
+            <img src="company_logos/Braingnosis Full Scale.png" alt="Empowering AI for a Better Future">
         </section>
 
         <section id="vision">
@@ -324,6 +364,20 @@
         <p>&copy; 2024 BrainGnosis. All rights reserved.</p>
         <p><a href="#contact">Contact Us</a> | <a href="#services">Our Services</a></p>
     </footer>
+
+    <script>
+        function toggleMenu() {
+            const nav = document.querySelector('nav');
+            nav.classList.toggle('active');
+        }
+
+        function collapseMenu() {
+            const nav = document.querySelector('nav');
+            if (nav.classList.contains('active')) {
+                nav.classList.remove('active');
+            }
+        }
+    </script>
 </body>
 
 </html>

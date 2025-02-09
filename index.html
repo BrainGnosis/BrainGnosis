@@ -251,12 +251,12 @@
         <!-- <div class="sub-header">Making AI Smarter For Humans</div> -->
         <button class="menu-toggle" onclick="toggleMenu()">&#9776;</button>
         <nav>
-            <a href="#vision">Vision</a>
-            <a href="#services">Services</a>
-            <a href="#products">Products</a>
-            <a href="#clients">Clients</a>
-            <a href="#team">Team</a>
-            <a href="#contact">Contact</a>
+            <a href="#vision" onclick="collapseMenu()">Vision</a>
+            <a href="#services" onclick="collapseMenu()">Services</a>
+            <a href="#products" onclick="collapseMenu()">Products</a>
+            <a href="#clients" onclick="collapseMenu()">Clients</a>
+            <a href="#team" onclick="collapseMenu()">Team</a>
+            <a href="#contact" onclick="collapseMenu()">Contact</a>
         </nav>
     </header>
 
@@ -369,6 +369,13 @@
         function toggleMenu() {
             const nav = document.querySelector('nav');
             nav.classList.toggle('active');
+        }
+
+        function collapseMenu() {
+            const nav = document.querySelector('nav');
+            if (nav.classList.contains('active')) {
+                nav.classList.remove('active');
+            }
         }
     </script>
 </body>
