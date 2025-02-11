@@ -8,15 +8,15 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap">
     <style>
         :root {
-            --primary-color: #4A90E2;
-            --secondary-color: #2E3440;
-            --background-color: #1C1C1E;
-            --card-background: #2C2C2E;
-            --text-color: #E5E5E7;
-            --link-color: #4A90E2;
-            --link-hover-color: #357ABD;
-            --shadow-light: rgba(0, 0, 0, 0.6);
-            --hover-shadow: rgba(0, 0, 0, 0.8);
+            --primary-color: #252525;
+            --secondary-color: #F8F9FA;
+            --background-color: #FFFFFF;
+            --card-background: #FFFFFF;
+            --text-color: #343A40;
+            --link-color: #007BFF;
+            --link-hover-color: #0056b3;
+            --shadow-light: rgba(0, 0, 0, 0.1);
+            --hover-shadow: rgba(0, 0, 0, 0.2);
         }
 
         body {
@@ -30,7 +30,7 @@
 
         header {
             background: var(--secondary-color);
-            color: white;
+            color: var(--text-color);
             padding: 20px 0;
             text-align: center;
             box-shadow: 0 4px 8px var(--shadow-light);
@@ -65,7 +65,7 @@
         }
 
         nav a {
-            color: white;
+            color: var(--text-color);
             text-decoration: none;
             font-weight: 500;
             transition: color 0.3s ease;
@@ -141,6 +141,11 @@
         a:hover {
             color: var(--link-hover-color);
             text-decoration: underline;
+        }
+
+        .highlight {
+            font-weight: 700;
+            color: var(--primary-color);
         }
 
         .card {
@@ -219,13 +224,13 @@
         }
 
         .btn-primary:hover {
-            background-color: #357ABD;
+            background-color: var(--link-hover-color);
             transform: scale(1.05);
         }
 
         footer {
             background: var(--secondary-color);
-            color: white;
+            color: var(--text-color);
             text-align: center;
             padding: 20px 0;
             margin-top: 40px;
@@ -246,9 +251,7 @@
 
 <body>
     <header>
-        <!-- <img src="Braingnosis Full Scale.png" alt="BrainGnosis Logo"> -->
         <div class="main-header">BrainGnosis</div>
-        <!-- <div class="sub-header">Making AI Smarter For Humans</div> -->
         <button class="menu-toggle" onclick="toggleMenu()">&#9776;</button>
         <nav>
             <a href="#vision" onclick="collapseMenu()">Vision</a>
@@ -267,9 +270,10 @@
 
         <section id="vision">
             <h2>Our Vision</h2>
-            <p><strong>BrainGnosis</strong> is dedicated to creating smarter, more reliable, and human-centric AI solutions.
-                We believe in advancing technology to enhance the lives of individuals and businesses alike.
-            </p>
+            <p><span class="highlight">BrainGnosis Inc.</span> is on a mission to create <span class="highlight">smarter</span>, <span class="highlight">more reliable</span>, and <span class="highlight">human-centric AI solutions</span> tailored for organizations. We believe that <span class="highlight">AI should serve humanity</span>, enhancing productivity and making everyday tasks seamless.</p>
+            <p>Our bespoke <span class="highlight">AI Agents</span> are designed to <span class="highlight">automate scientific, regulatory, and business processes</span>. We help organizations <span class="highlight">integrate robust and scalable AI frameworks</span> to streamline operations and boost efficiency.</p>
+            <p>With our advanced <span class="highlight">Software Development Kit</span>, likened to an <span class="highlight">operating system for AI agents</span>, we craft solutions that cater to your specific needs. Our AI agents leverage <span class="highlight">multimodal large language models</span> to plan and execute tasks within your organization, ensuring optimal performance.</p>
+            <p>We incorporate <span class="highlight">memory, state, and context-specific domains</span> to deliver <span class="highlight">robust and verifiable benchmarks</span> for our customers. Our ultimate goal is to make <span class="highlight">scalable, consistent, and reliable AI agents</span> the backbone of your organization.</p>
         </section>
 
         <section id="services">

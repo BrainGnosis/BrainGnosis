@@ -8,11 +8,13 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap">
     <style>
         :root {
-            --primary-color: #4A90E2;
-            --secondary-color: #2E3440;
-            --background-color: #f7f9fc;
-            --card-background: #ffffff;
-            --text-color: #333333;
+            --primary-color: #252525;
+            --secondary-color: #F8F9FA;
+            --background-color: #FFFFFF;
+            --card-background: #FFFFFF;
+            --text-color: #343A40;
+            --link-color: #007BFF;
+            --link-hover-color: #0056b3;
             --shadow-light: rgba(0, 0, 0, 0.1);
             --hover-shadow: rgba(0, 0, 0, 0.2);
         }
@@ -27,14 +29,21 @@
         }
 
         header {
-            background: var(--primary-color);
-            color: white;
+            background: var(--secondary-color);
+            color: var(--text-color);
             padding: 20px 0;
             text-align: center;
+            box-shadow: 0 4px 8px var(--shadow-light);
             position: sticky;
             top: 0;
+            width: 100%;
             z-index: 1000;
-            box-shadow: 0 4px 8px var(--shadow-light);
+        }
+
+        header img {
+            max-width: 150px;
+            display: block;
+            margin: 0 auto 10px;
         }
 
         header .main-header {
@@ -51,18 +60,53 @@
             display: flex;
             justify-content: center;
             gap: 30px;
-            margin-top: 10px;
+            flex-wrap: wrap;
+            padding: 10px 20px;
         }
 
         nav a {
-            color: white;
+            color: var(--text-color);
             text-decoration: none;
             font-weight: 500;
             transition: color 0.3s ease;
+            padding: 10px 15px;
         }
 
         nav a:hover {
-            color: #FFD700;
+            color: var(--primary-color);
+        }
+
+        .menu-toggle {
+            display: none;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 10px;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                display: none;
+                flex-direction: column;
+                gap: 10px;
+                background-color: var(--secondary-color);
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                box-shadow: 0 4px 8px var(--shadow-light);
+            }
+
+            nav.active {
+                display: flex;
+            }
+
+            .menu-toggle {
+                display: block;
+                margin: 0 auto;
+            }
         }
 
         main {
@@ -86,6 +130,22 @@
         p {
             font-size: 1rem;
             margin-bottom: 10px;
+        }
+
+        a {
+            color: var(--link-color);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: var(--link-hover-color);
+            text-decoration: underline;
+        }
+
+        .highlight {
+            font-weight: 700;
+            color: var(--primary-color);
         }
 
         .card {
@@ -160,17 +220,17 @@
             font-size: 1rem;
             text-align: center;
             margin-top: 15px;
-            transition: background-color 0.3s ease; transform: 0.3s ease;
+            transition: background-color 0.3s ease, transform 0.3s ease;
         }
 
         .btn-primary:hover {
-            background-color: #357ABD;
+            background-color: var(--link-hover-color);
             transform: scale(1.05);
         }
 
         footer {
-            background: var(--primary-color);
-            color: white;
+            background: var(--secondary-color);
+            color: var(--text-color);
             text-align: center;
             padding: 20px 0;
             margin-top: 40px;
@@ -178,16 +238,13 @@
         }
 
         footer a {
-            color: #FFD700;
+            color: var(--link-color);
             text-decoration: none;
         }
 
         footer a:hover {
+            color: var(--link-hover-color);
             text-decoration: underline;
-        }
-
-        footer p {
-            margin: 0;
         }
     </style>
 </head>
@@ -195,26 +252,28 @@
 <body>
     <header>
         <div class="main-header">BrainGnosis</div>
-        <div class="sub-header">Integrating Smarter and Scalable AI within your Organization</div>
+        <button class="menu-toggle" onclick="toggleMenu()">&#9776;</button>
+        <nav>
+            <a href="#vision" onclick="collapseMenu()">Vision</a>
+            <a href="#services" onclick="collapseMenu()">Services</a>
+            <a href="#products" onclick="collapseMenu()">Products</a>
+            <a href="#clients" onclick="collapseMenu()">Clients</a>
+            <a href="#team" onclick="collapseMenu()">Team</a>
+            <a href="#contact" onclick="collapseMenu()">Contact</a>
+        </nav>
     </header>
-
-    <nav>
-        <a href="#vision">Vision</a>
-        <a href="#services">Services</a>
-        <a href="#products">Products</a>
-        <a href="#clients">Clients</a>
-        <a href="#team">Team</a>
-        <a href="#contact">Contact</a>
-    </nav>
 
     <main>
         <section class="carousel">
-            <img src="demo_images/image19.png" alt="Empowering AI for a Better Future">
+            <img src="company_logos/Braingnosis Full Scale.png" alt="Empowering AI for a Better Future">
         </section>
 
         <section id="vision">
             <h2>Our Vision</h2>
-            <p><strong>BrainGnosis</strong> is dedicated to creating smarter, more reliable, and human-centric AI solutions...</p>
+            <p><span class="highlight">BrainGnosis Inc.</span> is on a mission to create <span class="highlight">smarter</span>, <span class="highlight">more reliable</span>, and <span class="highlight">human-centric AI solutions</span> tailored for organizations. We believe that <span class="highlight">AI should serve humanity</span>, enhancing productivity and making everyday tasks seamless.</p>
+            <p>Our bespoke <span class="highlight">AI Agents</span> are designed to <span class="highlight">automate scientific, regulatory, and business processes</span>. We help organizations <span class="highlight">integrate robust and scalable AI frameworks</span> to streamline operations and boost efficiency.</p>
+            <p>With our advanced <span class="highlight">Software Development Kit</span>, likened to an <span class="highlight">operating system for AI agents</span>, we craft solutions that cater to your specific needs. Our AI agents leverage <span class="highlight">multimodal large language models</span> to plan and execute tasks within your organization, ensuring optimal performance.</p>
+            <p>We incorporate <span class="highlight">memory, state, and context-specific domains</span> to deliver <span class="highlight">robust and verifiable benchmarks</span> for our customers. Our ultimate goal is to make <span class="highlight">scalable, consistent, and reliable AI agents</span> the backbone of your organization.</p>
         </section>
 
         <section id="services">
@@ -235,7 +294,7 @@
             </div>
         </section>
 
-        <section>
+        <section id="products">
             <h2>Our Products</h2>
             <div class="card">
                 <h3>📦 SciBorg</h3>
@@ -243,7 +302,7 @@
             </div>
         </section>
 
-        <section>
+        <section id="clients">
             <h2>Our Clients</h2>
             <div class="industries">
                 <div class="industry">
@@ -269,7 +328,7 @@
             </div>
         </section>
 
-        <section>
+        <section id="team">
             <h2>Our Team</h2>
             <div class="team">
                 <div class="card">
@@ -295,7 +354,7 @@
             </div>
         </section>
 
-        <section>
+        <section id="contact">
             <h2>Contact Us</h2>
             <div class="card">
                 <p><strong>Name:</strong> Gaurav Chopra</p>
@@ -309,6 +368,20 @@
         <p>&copy; 2024 BrainGnosis. All rights reserved.</p>
         <p><a href="#contact">Contact Us</a> | <a href="#services">Our Services</a></p>
     </footer>
+
+    <script>
+        function toggleMenu() {
+            const nav = document.querySelector('nav');
+            nav.classList.toggle('active');
+        }
+
+        function collapseMenu() {
+            const nav = document.querySelector('nav');
+            if (nav.classList.contains('active')) {
+                nav.classList.remove('active');
+            }
+        }
+    </script>
 </body>
 
 </html>
