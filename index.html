@@ -18,6 +18,12 @@
     body {
       font-family: 'Roboto', sans-serif;
     }
+    .modal {
+      display: none;
+    }
+    .modal.active {
+      display: flex;
+    }
   </style>
 </head>
 <body class="bg-gray-50 text-gray-800">
@@ -34,7 +40,7 @@
         <a href="#services" class="hover:text-indigo-600 transition">Services</a>
         <a href="#products" class="hover:text-indigo-600 transition">Products</a>
         <a href="#team" class="hover:text-indigo-600 transition">Team</a>
-        <!-- <a href="#testimonials" class="hover:text-indigo-600 transition">Testimonials</a> -->
+        <a href="#research" class="hover:text-indigo-600 transition">Research</a>
         <a href="#contact" class="hover:text-indigo-600 transition">Contact</a>
       </nav>
       <button class="md:hidden focus:outline-none" id="mobile-menu-button">
@@ -51,7 +57,7 @@
         <a href="#services" class="block px-3 py-2 rounded-md hover:bg-gray-200">Services</a>
         <a href="#products" class="block px-3 py-2 rounded-md hover:bg-gray-200">Products</a>
         <a href="#team" class="block px-3 py-2 rounded-md hover:bg-gray-200">Team</a>
-        <a href="#testimonials" class="block px-3 py-2 rounded-md hover:bg-gray-200">Testimonials</a>
+        <a href="#research" class="block px-3 py-2 rounded-md hover:bg-gray-200">Research</a>
         <a href="#contact" class="block px-3 py-2 rounded-md hover:bg-gray-200">Contact</a>
       </nav>
     </div>
@@ -77,17 +83,17 @@
         <!-- Brand Essence -->
         <h3 class="text-lg font-semibold text-gray-800 mb-2">Who We Are</h3>
         <p class="mb-4 text-gray-700">
-          <strong>BrainGnosis Inc.</strong> is on a mission to build <strong>reliable, adaptable, and deeply human-aligned AI agents</strong> that transform how organizations work. Our name—<em>“BrainGnosis”</em>—is a portmanteau of <strong>“brain”</strong> and the Greek word <em>gnōsis</em> (γνῶσις), meaning <strong>“knowledge”</strong> or <strong>“insight.”</strong>
+          <strong>BrainGnosis Inc.</strong> is on a mission to build <strong>reliable, adaptable, and deeply human-aligned AI agents</strong> that transform how organizations work. Our name—<em>"BrainGnosis"—is a portmanteau of "brain" and the Greek word gnōsis (γνῶσις), meaning "knowledge" or "insight."</em>
         </p>
         <p class="mb-4 text-gray-700">
-          This name reflects our vision of AI that goes beyond data processing—AI that gains <strong>gnostic-level understanding</strong>, operating with <strong>intuition, memory, and context</strong>, just like the human brain. We aspire to develop agents that don’t just analyze—they understand, reason, and evolve with purpose.
+          This name reflects our vision of AI that goes beyond data processing—AI that gains gnostic-level understanding, operating with intuition, memory, and context, just like the human brain. We aspire to develop agents that don't just analyze—they understand, reason, and evolve with purpose.
         </p>
   
         <!-- Platform Overview -->
         <div class="bg-indigo-50 border-l-4 border-indigo-400 p-4 rounded-lg mb-4 shadow-sm">
           <h4 class="text-md font-semibold text-indigo-700 mb-1">🚀 Introducing AgentOS</h4>
           <p class="text-gray-700">
-            <strong>AgentOS</strong> is our flagship platform—a full-stack <strong>operating system for AI agents</strong> that enables the creation, management, and collaboration of intelligent agents. It supports <strong>modularity, scalability, agent-to-agent communication</strong>, and even the ability for <strong>agents to create other agents</strong>.
+            <strong>AgentOS</strong> is our flagship platform—a full-stack operating system for AI agents that enables the creation, management, and collaboration of intelligent agents. It supports <strong>modularity, scalability, agent-to-agent communication</strong>, and even the ability for <strong>agents to create other agents</strong>.
           </p>
         </div>
   
@@ -255,6 +261,93 @@
     </div>
   </section>
 
+  <!-- Research Section -->
+  <section id="research" class="py-16 bg-gray-50">
+    <div class="container mx-auto px-6">
+      <div class="text-center mb-10">
+        <h2 class="text-3xl font-bold text-indigo-600 mb-2">Research & Publications</h2>
+        <p class="text-xl text-gray-600">Redefining the path to Artificial General Intelligence</p>
+      </div>
+      
+      <div class="max-w-4xl mx-auto">
+        <!-- Featured Paper -->
+        <div class="bg-white rounded-xl shadow-lg overflow-hidden">
+          <div class="p-8">
+            <div class="flex flex-col md:flex-row gap-6">
+              <div class="md:w-2/3">
+                <h3 class="text-2xl font-bold text-gray-800 mb-4">Rethinking AGI: Emergence through Multi-Agent Systems and Statistical Mechanics</h3>
+                <p class="text-gray-600 mb-6">A comprehensive framework that shifts the definition of AGI from scale to structure, from model to system, and from static prediction to dynamic emergence, rooted in statistical mechanics and neuroscience.</p>
+                
+                <div class="space-y-4 mb-6">
+                  <div class="flex items-start">
+                    <span class="text-indigo-600 mr-3">🔬</span>
+                    <div>
+                      <h4 class="font-semibold mb-1">Multi-Agent Intelligence</h4>
+                      <p class="text-gray-700">Intelligence emerges from networks of dense, redundant, interacting systems constrained by principles of entropy, feedback, and cooperation.</p>
+                    </div>
+                  </div>
+                  <div class="flex items-start">
+                    <span class="text-indigo-600 mr-3">🧠</span>
+                    <div>
+                      <h4 class="font-semibold mb-1">Statistical Mechanics Framework</h4>
+                      <p class="text-gray-700">Defines AGI as a critical point in the agent interaction landscape, beyond which collective behavior becomes qualitatively intelligent.</p>
+                    </div>
+                  </div>
+                  <div class="flex items-start">
+                    <span class="text-indigo-600 mr-3">🔄</span>
+                    <div>
+                      <h4 class="font-semibold mb-1">Essential Properties</h4>
+                      <p class="text-gray-700">Demonstrates four key capabilities: adaptivity to changing goals, context-awareness through persistent state, conflict resolution, and long-term planning.</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="flex flex-wrap gap-4">
+                  <button onclick="toggleAbstract()" class="bg-indigo-600 text-white px-6 py-2 rounded-lg hover:bg-indigo-700 transition">
+                    <i class="fas fa-book-open mr-2"></i>Read Abstract
+                  </button>
+                  <a href="#" class="border border-indigo-600 text-indigo-600 px-6 py-2 rounded-lg hover:bg-indigo-50 transition">
+                    <i class="fas fa-file-pdf mr-2"></i>View on arXiv
+                  </a>
+                </div>
+              </div>
+              
+              <div class="md:w-1/3 flex items-center justify-center">
+                <div class="bg-gradient-to-br from-indigo-100 to-purple-100 p-6 rounded-lg text-center">
+                  <i class="fas fa-network-wired text-6xl text-indigo-600 mb-4"></i>
+                  <p class="text-sm text-gray-600">From Scale to Structure: A New AGI Paradigm</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Abstract Modal -->
+  <div id="abstractModal" class="modal fixed inset-0 bg-black bg-opacity-50 items-center justify-center z-50">
+    <div class="bg-white rounded-lg max-w-3xl w-full mx-4 p-8 max-h-[90vh] overflow-y-auto">
+      <div class="flex justify-between items-center mb-6">
+        <h3 class="text-2xl font-bold text-gray-800">Abstract</h3>
+        <button onclick="toggleAbstract()" class="text-gray-500 hover:text-gray-700">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <div class="prose max-w-none">
+        <p class="text-gray-700 leading-relaxed mb-4">
+          The prevailing conception of artificial general intelligence (AGI) often centers on single-agent multimodal large language models (LLMs) and physical models that mimic human linguistic and physical intelligence. However, this perspective overlooks the importance of decentralized, interacting systems in producing generalizable, adaptive behavior.
+        </p>
+        <p class="text-gray-700 leading-relaxed mb-4">
+          Drawing inspiration from statistical mechanics, neuroscience, and agent-based modeling, we argue that AGI is more appropriately conceptualized as an emergent property of interacting intelligent agents. These multi-agent systems, analogous to particles in thermodynamic ensembles or neuronal assemblies in the brain, possess the capacity for robust coordination, planning, adaptability, and resilience - properties absent in standalone models.
+        </p>
+        <p class="text-gray-700 leading-relaxed">
+          We propose a theoretical framework rooted in entropy and emergent dynamics and argue that AGI will not emerge from scale alone but from structured interactions among specialized systems.
+        </p>
+      </div>
+    </div>
+  </div>
+
   <!-- Testimonials Section -->
    
   <!-- <section id="testimonials" class="py-16 bg-white">
@@ -280,16 +373,16 @@
    
 
   <!-- Contact Section -->
-  <section id="contact" class="py-16 bg-white">
+  <section id="contact" class="py-16 bg-gradient-to-br from-indigo-600 to-purple-600">
     <div class="container mx-auto px-6">
       <div class="text-center mb-10">
-        <h2 class="text-3xl font-bold text-indigo-600 mb-2">Contact Us</h2>
-        <p class="text-xl text-gray-600">Discover how we innovate</p>
+        <h2 class="text-4xl font-bold text-white mb-4">Contact Us</h2>
+        <p class="text-xl text-white mb-8">Let's discuss how we can help transform your business</p>
       </div>
-      <div class="max-w-lg mx-auto bg-white p-8 rounded-xl shadow-md">
-        <p class="mb-4"><strong>Name:</strong> Gaurav Chopra</p>
-        <p class="mb-4"><strong>Title:</strong> CEO of BrainGnosis</p>
-        <p class="mb-4"><strong>Email:</strong> <a href="mailto:gaurav@braingnosis.ai" class="text-indigo-600 hover:underline">gaurav@braingnosis.ai</a></p>
+      <div class="max-w-lg mx-auto bg-white p-8 rounded-xl shadow-lg">
+        <p class="mb-4 text-gray-800"><strong class="text-gray-900">Name:</strong> Gaurav Chopra</p>
+        <p class="mb-4 text-gray-800"><strong class="text-gray-900">Title:</strong> CEO of BrainGnosis</p>
+        <p class="mb-4 text-gray-800"><strong class="text-gray-900">Email:</strong> <a href="mailto:gaurav@braingnosis.ai" class="text-indigo-600 hover:underline">gaurav@braingnosis.ai</a></p>
       </div>
     </div>
   </section>
@@ -311,6 +404,19 @@
     const mobileMenu = document.getElementById('mobile-menu');
     mobileMenuButton.addEventListener('click', () => {
       mobileMenu.style.display = mobileMenu.style.display === 'none' || mobileMenu.style.display === '' ? 'block' : 'none';
+    });
+
+    // Abstract modal toggle
+    function toggleAbstract() {
+      const modal = document.getElementById('abstractModal');
+      modal.classList.toggle('active');
+    }
+
+    // Close modal when clicking outside
+    document.getElementById('abstractModal').addEventListener('click', function(e) {
+      if (e.target === this) {
+        toggleAbstract();
+      }
     });
   </script>
 </body>
