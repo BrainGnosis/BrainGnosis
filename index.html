@@ -269,8 +269,60 @@
         <p class="text-xl text-gray-600">Redefining the path to Artificial General Intelligence</p>
       </div>
       
-      <div class="max-w-4xl mx-auto">
-        <!-- Featured Paper -->
+      <div class="max-w-6xl mx-auto space-y-8">
+        <!-- Paper 1: State and Memory -->
+        <div class="bg-white rounded-xl shadow-lg overflow-hidden">
+          <div class="p-8">
+            <div class="flex flex-col md:flex-row gap-6">
+              <div class="md:w-2/3">
+                <h3 class="text-2xl font-bold text-gray-800 mb-4">State and Memory is All You Need for Robust and Reliable AI Agents</h3>
+                <p class="text-gray-600 mb-6">Introducing SciBORG (Scientific Bespoke Artificial Intelligence Agents Optimized for Research Goals), a modular agentic framework that enables LLM-based agents to autonomously plan, reason, and achieve robust domain-specific task execution through stateful memory systems.</p>
+                
+                <div class="space-y-4 mb-6">
+                  <div class="flex items-start">
+                    <span class="text-indigo-600 mr-3">🧬</span>
+                    <div>
+                      <h4 class="font-semibold mb-1">SciBORG Framework</h4>
+                      <p class="text-gray-700">A modular agentic framework that allows LLM-based agents to autonomously plan, reason, and achieve robust and reliable domain-specific task execution.</p>
+                    </div>
+                  </div>
+                  <div class="flex items-start">
+                    <span class="text-indigo-600 mr-3">🧠</span>
+                    <div>
+                      <h4 class="font-semibold mb-1">Finite-State Automata Memory</h4>
+                      <p class="text-gray-700">Agents are constructed with FSA memory, enabling persistent state tracking and context-aware decision-making across extended workflows.</p>
+                    </div>
+                  </div>
+                  <div class="flex items-start">
+                    <span class="text-indigo-600 mr-3">🔬</span>
+                    <div>
+                      <h4 class="font-semibold mb-1">Scientific Applications</h4>
+                      <p class="text-gray-700">Validated through integration with physical hardware (microwave synthesizers) and virtual systems (PubChem database) for autonomous multi-step scientific workflows.</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="flex flex-wrap gap-4">
+                  <button onclick="toggleAbstract2()" class="bg-indigo-600 text-white px-6 py-2 rounded-lg hover:bg-indigo-700 transition">
+                    <i class="fas fa-book-open mr-2"></i>Read Abstract
+                  </button>
+                  <a href="https://arxiv.org/abs/2507.00081" class="border border-indigo-600 text-indigo-600 px-6 py-2 rounded-lg hover:bg-indigo-50 transition">
+                    <i class="fas fa-file-alt mr-2"></i>View on arXiv
+                  </a>
+                </div>
+              </div>
+              
+              <div class="md:w-1/3 flex items-center justify-center">
+                <div class="bg-gradient-to-br from-indigo-100 to-purple-100 p-6 rounded-lg text-center">
+                  <i class="fas fa-memory text-6xl text-indigo-600 mb-4"></i>
+                  <p class="text-sm text-gray-600">Stateful Memory for Reliable AI</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Paper 2: Rethinking AGI -->
         <div class="bg-white rounded-xl shadow-lg overflow-hidden">
           <div class="p-8">
             <div class="flex flex-col md:flex-row gap-6">
@@ -325,11 +377,11 @@
     </div>
   </section>
 
-  <!-- Abstract Modal -->
+  <!-- Abstract Modal 1: Rethinking AGI -->
   <div id="abstractModal" class="modal fixed inset-0 bg-black bg-opacity-50 items-center justify-center z-50">
     <div class="bg-white rounded-lg max-w-3xl w-full mx-4 p-8 max-h-[90vh] overflow-y-auto">
       <div class="flex justify-between items-center mb-6">
-        <h3 class="text-2xl font-bold text-gray-800">Abstract</h3>
+        <h3 class="text-2xl font-bold text-gray-800">Abstract: Rethinking AGI</h3>
         <button onclick="toggleAbstract()" class="text-gray-500 hover:text-gray-700">
           <i class="fas fa-times"></i>
         </button>
@@ -343,6 +395,32 @@
         </p>
         <p class="text-gray-700 leading-relaxed">
           We propose a theoretical framework rooted in entropy and emergent dynamics and argue that AGI will not emerge from scale alone but from structured interactions among specialized systems.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Abstract Modal 2: State and Memory -->
+  <div id="abstractModal2" class="modal fixed inset-0 bg-black bg-opacity-50 items-center justify-center z-50">
+    <div class="bg-white rounded-lg max-w-3xl w-full mx-4 p-8 max-h-[90vh] overflow-y-auto">
+      <div class="flex justify-between items-center mb-6">
+        <h3 class="text-2xl font-bold text-gray-800">Abstract: State and Memory</h3>
+        <button onclick="toggleAbstract2()" class="text-gray-500 hover:text-gray-700">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <div class="prose max-w-none">
+        <p class="text-gray-700 leading-relaxed mb-4">
+          Large language models (LLMs) have enabled powerful advances in natural language understanding and generation. Yet their application to complex, real-world scientific workflows remain limited by challenges in memory, planning, and tool integration.
+        </p>
+        <p class="text-gray-700 leading-relaxed mb-4">
+          Here, we introduce SciBORG (Scientific Bespoke Artificial Intelligence Agents Optimized for Research Goals), a modular agentic framework that allows LLM-based agents to autonomously plan, reason, and achieve robust and reliable domain-specific task execution. Agents are constructed dynamically from source code documentation and augmented with finite-state automata (FSA) memory, enabling persistent state tracking and context-aware decision-making.
+        </p>
+        <p class="text-gray-700 leading-relaxed mb-4">
+          This approach eliminates the need for manual prompt engineering and allows for robust, scalable deployment across diverse applications via maintaining context across extended workflows and to recover from tool or execution failures. We validate SciBORG through integration with both physical and virtual hardware, such as microwave synthesizers for executing user-specified reactions, with context-aware decision making and demonstrate its use in autonomous multi-step bioassay retrieval from the PubChem database utilizing multi-step planning, reasoning, agent-to-agent communication and coordination for execution of exploratory tasks.
+        </p>
+        <p class="text-gray-700 leading-relaxed">
+          Systematic benchmarking shows that SciBORG agents achieve reliable execution, adaptive planning, and interpretable state transitions. Our results show that memory and state awareness are critical enablers of agentic planning and reliability, offering a generalizable foundation for deploying AI agents in complex environments.
         </p>
       </div>
     </div>
@@ -406,16 +484,27 @@
       mobileMenu.style.display = mobileMenu.style.display === 'none' || mobileMenu.style.display === '' ? 'block' : 'none';
     });
 
-    // Abstract modal toggle
+    // Abstract modal toggles
     function toggleAbstract() {
       const modal = document.getElementById('abstractModal');
       modal.classList.toggle('active');
     }
 
-    // Close modal when clicking outside
+    function toggleAbstract2() {
+      const modal = document.getElementById('abstractModal2');
+      modal.classList.toggle('active');
+    }
+
+    // Close modals when clicking outside
     document.getElementById('abstractModal').addEventListener('click', function(e) {
       if (e.target === this) {
         toggleAbstract();
+      }
+    });
+
+    document.getElementById('abstractModal2').addEventListener('click', function(e) {
+      if (e.target === this) {
+        toggleAbstract2();
       }
     });
   </script>
