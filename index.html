@@ -7,254 +7,784 @@
   <title>BrainGnosis</title>
   <!-- Tailwind CSS via CDN -->
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <!-- Google Fonts - Modern Inter font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <!-- Font Awesome for Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
+    :root {
+      --primary-50: #fef7f0;
+      --primary-100: #fdecd8;
+      --primary-200: #fbd5b0;
+      --primary-300: #f8b87d;
+      --primary-400: #f5944a;
+      --primary-500: #f2752a;
+      --primary-600: #e35a1f;
+      --primary-700: #bc441c;
+      --primary-800: #96371e;
+      --primary-900: #7a2f1c;
+      
+      --neutral-50: #fafafa;
+      --neutral-100: #f5f5f5;
+      --neutral-200: #e5e5e5;
+      --neutral-300: #d4d4d4;
+      --neutral-400: #a3a3a3;
+      --neutral-500: #737373;
+      --neutral-600: #525252;
+      --neutral-700: #404040;
+      --neutral-800: #262626;
+      --neutral-900: #171717;
+      
+      --accent-blue: #3b82f6;
+      --accent-purple: #8b5cf6;
+      --accent-emerald: #10b981;
+      
+      --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+      --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+      --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+      --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+      --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
     html {
       scroll-behavior: smooth;
+      font-size: 16px;
     }
+
     body {
-      font-family: 'Roboto', sans-serif;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background-color: var(--neutral-50);
+      color: var(--neutral-800);
+      line-height: 1.6;
+      font-weight: 400;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
+
+    /* Typography System */
+    .text-display-1 {
+      font-size: clamp(2.5rem, 5vw, 4.5rem);
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+    }
+
+    .text-display-2 {
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      font-weight: 700;
+      line-height: 1.2;
+      letter-spacing: -0.01em;
+    }
+
+    .text-heading-1 {
+      font-size: clamp(1.75rem, 3vw, 2.5rem);
+      font-weight: 700;
+      line-height: 1.3;
+      letter-spacing: -0.01em;
+    }
+
+    .text-heading-2 {
+      font-size: clamp(1.5rem, 2.5vw, 2rem);
+      font-weight: 600;
+      line-height: 1.4;
+      letter-spacing: -0.005em;
+    }
+
+    .text-heading-3 {
+      font-size: clamp(1.25rem, 2vw, 1.5rem);
+      font-weight: 600;
+      line-height: 1.4;
+    }
+
+    .text-body-large {
+      font-size: 1.125rem;
+      line-height: 1.7;
+      font-weight: 400;
+    }
+
+    .text-body {
+      font-size: 1rem;
+      line-height: 1.6;
+      font-weight: 400;
+    }
+
+    .text-body-small {
+      font-size: 0.875rem;
+      line-height: 1.5;
+      font-weight: 400;
+    }
+
+    .text-caption {
+      font-size: 0.75rem;
+      line-height: 1.4;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    /* Neural Background System */
+    .neural-bg {
+      background: 
+        radial-gradient(circle at 20% 20%, rgba(242, 117, 42, 0.03) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(139, 92, 246, 0.02) 0%, transparent 50%),
+        radial-gradient(circle at 40% 60%, rgba(16, 185, 129, 0.02) 0%, transparent 50%);
+      background-size: 120px 120px, 80px 80px, 100px 100px;
+      background-position: 0 0, 40px 40px, 20px 20px;
+    }
+
+    .neural-bg-alt {
+      background: 
+        radial-gradient(circle at 10% 10%, rgba(242, 117, 42, 0.02) 0%, transparent 40%),
+        radial-gradient(circle at 90% 90%, rgba(139, 92, 246, 0.015) 0%, transparent 40%);
+      background-size: 100px 100px, 60px 60px;
+    }
+
+    /* Component System */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    .section {
+      padding: 6rem 0;
+    }
+
+    .section-sm {
+      padding: 4rem 0;
+    }
+
+    .section-lg {
+      padding: 8rem 0;
+    }
+
+    /* Card System */
+    .card {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(0, 0, 0, 0.04);
+      border-radius: 1.5rem;
+      box-shadow: var(--shadow-sm);
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      overflow: hidden;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-xl);
+      border-color: rgba(242, 117, 42, 0.1);
+    }
+
+    .card-elevated {
+      box-shadow: var(--shadow-lg);
+    }
+
+    .card-elevated:hover {
+      box-shadow: var(--shadow-2xl);
+    }
+
+    /* Button System */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.875rem 2rem;
+      border-radius: 1rem;
+      font-weight: 600;
+      font-size: 0.875rem;
+      line-height: 1;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: left 0.5s;
+    }
+
+    .btn:hover::before {
+      left: 100%;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary-600) 0%, var(--primary-700) 100%);
+      color: white;
+      box-shadow: var(--shadow-md);
+    }
+
+    .btn-primary:hover {
+      background: linear-gradient(135deg, var(--primary-700) 0%, var(--primary-800) 100%);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .btn-secondary {
+      background: white;
+      color: var(--neutral-700);
+      border: 1px solid var(--neutral-200);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .btn-secondary:hover {
+      background: var(--neutral-50);
+      border-color: var(--neutral-300);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--neutral-600);
+      border: 1px solid transparent;
+    }
+
+    .btn-ghost:hover {
+      background: var(--neutral-100);
+      color: var(--neutral-800);
+    }
+
+    /* Header System */
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+      transition: all 0.3s ease;
+    }
+
+    .header.scrolled {
+      background: rgba(255, 255, 255, 0.98);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .nav-link {
+      position: relative;
+      color: var(--neutral-600);
+      font-weight: 500;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--primary-500), var(--primary-600));
+      transition: width 0.3s ease;
+    }
+
+    .nav-link:hover {
+      color: var(--neutral-900);
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    /* Logo System */
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-weight: 700;
+      font-size: 1.25rem;
+      color: var(--neutral-900);
+      text-decoration: none;
+    }
+
+    .logo-gradient {
+      background: linear-gradient(135deg, var(--primary-600) 0%, var(--primary-700) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* Grid System */
+    .grid-auto-fit {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+      gap: 3rem;
+      align-items: center;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+    }
+
+    /* Feature List System */
+    .feature-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .feature-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      padding: 1rem;
+      border-radius: 1rem;
+      background: rgba(255, 255, 255, 0.5);
+      border: 1px solid rgba(0, 0, 0, 0.02);
+      transition: all 0.3s ease;
+    }
+
+    .feature-item:hover {
+      background: rgba(255, 255, 255, 0.8);
+      transform: translateX(4px);
+    }
+
+    .feature-icon {
+      flex-shrink: 0;
+      width: 3rem;
+      height: 3rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, var(--primary-100), var(--primary-200));
+      border-radius: 0.75rem;
+      font-size: 1.25rem;
+    }
+
+    /* Modal System */
     .modal {
       display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(4px);
+      z-index: 2000;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
     }
+
     .modal.active {
       display: flex;
+      animation: modalFadeIn 0.3s ease;
+    }
+
+    .modal-content {
+      background: white;
+      border-radius: 1.5rem;
+      max-width: 600px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: var(--shadow-2xl);
+      animation: modalSlideIn 0.3s ease;
+    }
+
+    /* Animation System */
+    @keyframes modalFadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes modalSlideIn {
+      from { 
+        opacity: 0;
+        transform: translateY(20px) scale(0.95);
+      }
+      to { 
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    /* Utility Classes */
+    .text-gradient {
+      background: linear-gradient(135deg, var(--primary-600) 0%, var(--primary-700) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .text-center { text-align: center; }
+    .text-left { text-align: left; }
+    .text-right { text-align: right; }
+
+    .mb-0 { margin-bottom: 0; }
+    .mb-1 { margin-bottom: 0.25rem; }
+    .mb-2 { margin-bottom: 0.5rem; }
+    .mb-3 { margin-bottom: 0.75rem; }
+    .mb-4 { margin-bottom: 1rem; }
+    .mb-6 { margin-bottom: 1.5rem; }
+    .mb-8 { margin-bottom: 2rem; }
+    .mb-12 { margin-bottom: 3rem; }
+    .mb-16 { margin-bottom: 4rem; }
+
+    .mt-0 { margin-top: 0; }
+    .mt-1 { margin-top: 0.25rem; }
+    .mt-2 { margin-top: 0.5rem; }
+    .mt-3 { margin-top: 0.75rem; }
+    .mt-4 { margin-top: 1rem; }
+    .mt-6 { margin-top: 1.5rem; }
+    .mt-8 { margin-top: 2rem; }
+    .mt-12 { margin-top: 3rem; }
+    .mt-16 { margin-top: 4rem; }
+
+    .p-4 { padding: 1rem; }
+    .p-6 { padding: 1.5rem; }
+    .p-8 { padding: 2rem; }
+    .p-12 { padding: 3rem; }
+
+    .rounded-lg { border-radius: 0.5rem; }
+    .rounded-xl { border-radius: 0.75rem; }
+    .rounded-2xl { border-radius: 1rem; }
+    .rounded-3xl { border-radius: 1.5rem; }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .container {
+        padding: 0 1rem;
+      }
+      
+      .section {
+        padding: 4rem 0;
+      }
+      
+      .section-lg {
+        padding: 6rem 0;
+      }
+      
+      .grid-2,
+      .grid-3,
+      .grid-4 {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
-<body class="bg-gray-50 text-gray-800">
+<body>
   <!-- Header -->
-  <header class="bg-white shadow fixed w-full z-50">
-    <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-      <div class="flex items-center space-x-2 text-2xl font-bold text-indigo-600">
-        <img src="company_logos/BrainGnosis Logo without background black.png" alt="Logo" class="w-8 h-8">
-        <span>BrainGnosis</span>
+  <header class="header" id="header">
+    <div class="container">
+      <div class="flex justify-between items-center py-4">
+        <a href="#hero" class="logo">
+          <img src="company_logos/BrainGnosis Logo without background black.png" alt="Logo" class="w-8 h-8">
+          <span class="logo-gradient">BrainGnosis</span>
+        </a>
+        
+        <nav class="hidden md:flex items-center gap-8">
+          <a href="#hero" class="nav-link">Home</a>
+          <a href="#about" class="nav-link">About</a>
+          <a href="#services" class="nav-link">Services</a>
+          <a href="#products" class="nav-link">Products</a>
+          <a href="#team" class="nav-link">Team</a>
+          <a href="#research" class="nav-link">Research</a>
+          <a href="#contact" class="nav-link">Contact</a>
+        </nav>
+        
+        <button class="lg:hidden btn btn-ghost" id="mobile-menu-button">
+          <i class="fas fa-bars text-lg"></i>
+        </button>
       </div>
-      <nav class="hidden md:flex space-x-8">
-        <a href="#hero" class="hover:text-indigo-600 transition">Home</a>
-        <a href="#about" class="hover:text-indigo-600 transition">About</a>
-        <a href="#services" class="hover:text-indigo-600 transition">Services</a>
-        <a href="#products" class="hover:text-indigo-600 transition">Products</a>
-        <a href="#team" class="hover:text-indigo-600 transition">Team</a>
-        <a href="#research" class="hover:text-indigo-600 transition">Research</a>
-        <a href="#contact" class="hover:text-indigo-600 transition">Contact</a>
-      </nav>
-      <button class="md:hidden focus:outline-none" id="mobile-menu-button">
-        <svg class="w-6 h-6 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
-        </svg>
-      </button>
-    </div>
-    <!-- Mobile Menu -->
-    <div class="md:hidden" id="mobile-menu" style="display: none;">
-      <nav class="px-4 pt-2 pb-4 space-y-1 bg-white">
-        <a href="#hero" class="block px-3 py-2 rounded-md hover:bg-gray-200">Home</a>
-        <a href="#about" class="block px-3 py-2 rounded-md hover:bg-gray-200">About</a>
-        <a href="#services" class="block px-3 py-2 rounded-md hover:bg-gray-200">Services</a>
-        <a href="#products" class="block px-3 py-2 rounded-md hover:bg-gray-200">Products</a>
-        <a href="#team" class="block px-3 py-2 rounded-md hover:bg-gray-200">Team</a>
-        <a href="#research" class="block px-3 py-2 rounded-md hover:bg-gray-200">Research</a>
-        <a href="#contact" class="block px-3 py-2 rounded-md hover:bg-gray-200">Contact</a>
-      </nav>
+      
+      <!-- Mobile Menu -->
+      <div class="lg:hidden hidden" id="mobile-menu">
+        <nav class="py-4 space-y-2 border-t border-neutral-200">
+          <a href="#hero" class="block py-2 nav-link">Home</a>
+          <a href="#about" class="block py-2 nav-link">About</a>
+          <a href="#services" class="block py-2 nav-link">Services</a>
+          <a href="#products" class="block py-2 nav-link">Products</a>
+          <a href="#team" class="block py-2 nav-link">Team</a>
+          <a href="#research" class="block py-2 nav-link">Research</a>
+          <a href="#contact" class="block py-2 nav-link">Contact</a>
+        </nav>
+      </div>
     </div>
   </header>
 
   <!-- Hero Section -->
-  <section id="hero" class="pt-24 pb-16 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-white">
-    <div class="container mx-auto px-6 text-center">
-      <h1 class="text-4xl md:text-6xl font-bold mb-4">Making AI Smarter for Humans</h1>
-      <p class="text-lg md:text-2xl mb-8">At BrainGnosis, we harness deep insight to create smarter, human-centric AI solutions.</p>
-      <a href="#contact" class="bg-gradient-to-r from-teal-400 to-teal-600 text-white font-semibold py-3 px-6 rounded-full shadow-lg hover:shadow-xl transition transform hover:scale-105">Get In Touch</a>
+  <section id="hero" class="section-lg neural-bg relative overflow-hidden">
+    <div class="container">
+      <div class="text-center max-w-5xl mx-auto">
+        <h1 class="text-display-1 mb-6 text-neutral-900">
+          Making AI Smarter for 
+          <span class="text-gradient">Humans</span>
+        </h1>
+        <p class="text-body-large mb-12 text-neutral-600 max-w-3xl mx-auto">
+          At BrainGnosis, we harness deep insight to create smarter, human-centric AI solutions that think, adapt, and collaborate like never before.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="#contact" class="btn btn-primary">
+            <i class="fas fa-rocket mr-2"></i>
+            Get In Touch
+          </a>
+          <a href="#products" class="btn btn-secondary">
+            <i class="fas fa-play mr-2"></i>
+            Explore AgentOS
+          </a>
+        </div>
+      </div>
     </div>
   </section>
 
   <!-- About Section -->
-  <section id="about" class="py-16 bg-white">
-    <div class="container mx-auto px-6 flex flex-col md:flex-row items-center gap-8">
-      <!-- Text Content -->
-      <div class="md:w-1/2">
-        <h2 class="text-3xl font-bold text-indigo-600 mb-2">About BrainGnosis</h2>
-        <p class="text-xl text-gray-600 mb-6">Empowering the future with smarter, human-centric AI solutions.</p>
-  
-        <!-- Brand Essence -->
-        <h3 class="text-lg font-semibold text-gray-800 mb-2">Who We Are</h3>
-        <p class="mb-4 text-gray-700">
-          <strong>BrainGnosis Inc.</strong> is on a mission to build <strong>reliable, adaptable, and deeply human-aligned AI agents</strong> that transform how organizations work. Our name—<em>"BrainGnosis"—is a portmanteau of "brain" and the Greek word gnōsis (γνῶσις), meaning "knowledge" or "insight."</em>
-        </p>
-        <p class="mb-4 text-gray-700">
-          This name reflects our vision of AI that goes beyond data processing—AI that gains gnostic-level understanding, operating with intuition, memory, and context, just like the human brain. We aspire to develop agents that don't just analyze—they understand, reason, and evolve with purpose.
-        </p>
-  
-        <!-- Platform Overview -->
-        <div class="bg-indigo-50 border-l-4 border-indigo-400 p-4 rounded-lg mb-4 shadow-sm">
-          <h4 class="text-md font-semibold text-indigo-700 mb-1">🚀 Introducing AgentOS</h4>
-          <p class="text-gray-700">
-            <strong>AgentOS</strong> is our flagship platform—a full-stack operating system for AI agents that enables the creation, management, and collaboration of intelligent agents. It supports <strong>modularity, scalability, agent-to-agent communication</strong>, and even the ability for <strong>agents to create other agents</strong>.
+  <section id="about" class="section bg-white">
+    <div class="container">
+      <div class="grid-2">
+        <div>
+          <h2 class="text-heading-1 mb-4 text-neutral-900">About BrainGnosis</h2>
+          <p class="text-body-large mb-8 text-neutral-600">
+            Empowering the future with smarter, human-centric AI solutions that understand, reason, and evolve.
           </p>
+          
+          <div class="space-y-6">
+            <div>
+              <h3 class="text-heading-3 mb-3 text-neutral-900">Who We Are</h3>
+              <p class="text-body mb-4 text-neutral-700">
+                <strong>BrainGnosis Inc.</strong> is on a mission to build <strong>reliable, adaptable, and deeply human-aligned AI agents</strong> that transform how organizations work. Our name—<em>"BrainGnosis"—is a portmanteau of "brain" and the Greek word gnōsis (γνῶσις), meaning "knowledge" or "insight."</em>
+              </p>
+              <p class="text-body text-neutral-700">
+                This name reflects our vision of AI that goes beyond data processing—AI that gains gnostic-level understanding, operating with intuition, memory, and context, just like the human brain.
+              </p>
+            </div>
+            
+            <div class="card p-6">
+              <h4 class="text-heading-3 mb-3 text-neutral-900">
+                <i class="fas fa-rocket text-primary-600 mr-2"></i>
+                Introducing AgentOS
+              </h4>
+              <p class="text-body text-neutral-700">
+                <strong>AgentOS</strong> is our flagship platform—a full-stack operating system for AI agents that enables the creation, management, and collaboration of intelligent agents. It supports <strong>modularity, scalability, agent-to-agent communication</strong>, and even the ability for <strong>agents to create other agents</strong>.
+              </p>
+            </div>
+            
+            <p class="text-body text-neutral-700">
+              Join us in reshaping the enterprise landscape with <strong>AI agents that think, adapt, and collaborate</strong>. With BrainGnosis, the future of work is intelligent, efficient, and deeply human.
+            </p>
+          </div>
         </div>
-  
-       <!-- Closing Note -->
-      <p class="text-gray-700">
-        Join us in reshaping the enterprise landscape with <strong>AI agents that think, adapt, and collaborate</strong>. With BrainGnosis, the future of work is intelligent, efficient, and deeply human.
-      </p>
-      </div>
-  
-      <!-- Image -->
-      <div class="md:w-1/2">
-        <img src="./web_icons/Braingnosis Theme.png" alt="BrainGnosis Illustration" class="w-full rounded-lg">
+        
+        <div>
+          <div class="card p-8">
+            <img src="./web_icons/Braingnosis Theme.png" alt="BrainGnosis Illustration" class="w-full rounded-xl">
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- Services Section -->
-  <section id="services" class="py-16 bg-gray-100">
-    <div class="container mx-auto px-6">
-      <div class="text-center mb-10">
-        <h2 class="text-3xl font-bold text-indigo-600 mb-2">Our Services</h2>
-        <p class="text-xl text-gray-600">Discover how we innovate</p>
+  <section id="services" class="section neural-bg-alt">
+    <div class="container">
+      <div class="text-center mb-16">
+        <h2 class="text-heading-1 mb-4 text-neutral-900">Our Services</h2>
+        <p class="text-body-large text-neutral-600 max-w-2xl mx-auto">
+          Discover how we innovate and transform businesses with cutting-edge AI solutions
+        </p>
       </div>
-      <div class="grid md:grid-cols-3 gap-8">
-        <!-- Service Card: AI Development -->
-        <div class="bg-white p-8 rounded-xl shadow-md hover:shadow-xl transition transform hover:scale-105">
-            <div class="flex justify-center mb-4">
-               <img src="./web_icons/AI Icon.png" alt="Custom Logo" class="w-12 h-12">
-            </div>
-            <h3 class="text-xl font-semibold mb-2">AI Development</h3>
-            <p>Custom AI models tailored to your business needs, built with cutting-edge technology.</p>
+      
+      <div class="grid-3">
+        <div class="card p-8 text-center">
+          <div class="w-16 h-16 bg-gradient-to-br from-primary-100 to-primary-200 rounded-2xl flex items-center justify-center mx-auto mb-6">
+            <img src="./web_icons/AI Icon.png" alt="AI Development" class="w-8 h-8">
           </div>
-        <!-- Service Card: AI Consulting -->
-        <div class="bg-white p-8 rounded-xl shadow-md hover:shadow-xl transition transform hover:scale-105">
-          <div class="flex justify-center mb-4">
-            <img src="./web_icons/Consulting Icon.png" alt="Custom Logo" class="w-12 h-12">
-          </div>
-          <h3 class="text-xl font-semibold mb-2">AI Consulting</h3>
-          <p>Expert guidance to integrate AI into your business for enhanced efficiency and innovation.</p>
+          <h3 class="text-heading-3 mb-4 text-neutral-900">AI Development</h3>
+          <p class="text-body text-neutral-600">
+            Custom AI models tailored to your business needs, built with cutting-edge technology and neural-inspired architectures.
+          </p>
         </div>
-        <!-- Service Card: AI Automation -->
-        <div class="bg-white p-8 rounded-xl shadow-md hover:shadow-xl transition transform hover:scale-105">
-          <div class="flex justify-center mb-4">
-            <img src="./web_icons/Automation Icon.png" alt="Custom Logo" class="w-12 h-12">
+        
+        <div class="card p-8 text-center">
+          <div class="w-16 h-16 bg-gradient-to-br from-primary-100 to-primary-200 rounded-2xl flex items-center justify-center mx-auto mb-6">
+            <img src="./web_icons/Consulting Icon.png" alt="AI Consulting" class="w-8 h-8">
           </div>
-          <h3 class="text-xl font-semibold mb-2">AI Automation</h3>
-          <p>Automate your workflows with AI-powered solutions that boost productivity.</p>
+          <h3 class="text-heading-3 mb-4 text-neutral-900">AI Consulting</h3>
+          <p class="text-body text-neutral-600">
+            Expert guidance to integrate AI into your business for enhanced efficiency and innovation, backed by deep technical expertise.
+          </p>
+        </div>
+        
+        <div class="card p-8 text-center">
+          <div class="w-16 h-16 bg-gradient-to-br from-primary-100 to-primary-200 rounded-2xl flex items-center justify-center mx-auto mb-6">
+            <img src="./web_icons/Automation Icon.png" alt="AI Automation" class="w-8 h-8">
+          </div>
+          <h3 class="text-heading-3 mb-4 text-neutral-900">AI Automation</h3>
+          <p class="text-body text-neutral-600">
+            Automate your workflows with AI-powered solutions that boost productivity and enable intelligent decision-making.
+          </p>
         </div>
       </div>
     </div>
   </section>
 
-    <section id="products" class="py-16 bg-white">
-      <div class="container mx-auto px-6">
-        <div class="text-center mb-10">
-          <h2 class="text-3xl font-bold text-indigo-600 mb-2">Our Products</h2>
-          <p class="text-xl text-gray-600">Discover how we innovate</p>
+  <!-- Products Section -->
+  <section id="products" class="section bg-white">
+    <div class="container">
+      <div class="text-center mb-16">
+        <h2 class="text-heading-1 mb-4 text-neutral-900">Our Products</h2>
+        <p class="text-body-large text-neutral-600 max-w-2xl mx-auto">
+          Discover our flagship platform that's revolutionizing AI agent development
+        </p>
+      </div>
+      
+      <div class="grid-2">
+        <div>
+          <div class="card p-8">
+            <img src="web_icons/AgentOS Features.png" alt="AgentOS Visualization" class="w-full rounded-xl">
+          </div>
         </div>
-        <div class="flex flex-col md:flex-row items-center gap-8">
-          <!-- Product Image -->
-          <div class="md:w-1/2">
-            <img src="web_icons/AgentOS Features.png" alt="AgentOS Visualization" class="w-full max-w-md rounded-lg shadow-md">
+        
+        <div>
+          <h3 class="text-heading-2 mb-6 text-neutral-900">AgentOS: Operating System for AI Agents</h3>
+          <p class="text-body-large mb-8 text-neutral-600">
+            AgentOS powers intelligent workflows with smart, modular, and autonomous agents—built for enterprise-scale operations with neural-inspired architectures.
+          </p>
+          
+          <div class="feature-list mb-8">
+            <div class="feature-item">
+              <div class="feature-icon">📦</div>
+              <div>
+                <h4 class="text-heading-3 mb-1 text-neutral-900">Modular & Scalable</h4>
+                <p class="text-body text-neutral-600">Add or scale agents instantly across teams and tasks.</p>
+              </div>
+            </div>
+            
+            <div class="feature-item">
+              <div class="feature-icon">🧠</div>
+              <div>
+                <h4 class="text-heading-3 mb-1 text-neutral-900">Stateful Intelligence</h4>
+                <p class="text-body text-neutral-600">Agents remember, adapt, and learn in real time.</p>
+              </div>
+            </div>
+            
+            <div class="feature-item">
+              <div class="feature-icon">🔌</div>
+              <div>
+                <h4 class="text-heading-3 mb-1 text-neutral-900">Plug & Play SDK</h4>
+                <p class="text-body text-neutral-600">Easy integration with your existing tools and systems.</p>
+              </div>
+            </div>
+            
+            <div class="feature-item">
+              <div class="feature-icon">📊</div>
+              <div>
+                <h4 class="text-heading-3 mb-1 text-neutral-900">Reliable & Measurable</h4>
+                <p class="text-body text-neutral-600">Benchmark-ready with built-in fault tolerance.</p>
+              </div>
+            </div>
+            
+            <div class="feature-item">
+              <div class="feature-icon">🤝</div>
+              <div>
+                <h4 class="text-heading-3 mb-1 text-neutral-900">Agent Collaboration</h4>
+                <p class="text-body text-neutral-600">Agents communicate to complete complex tasks together.</p>
+              </div>
+            </div>
           </div>
-    
-          <!-- Product Details -->
-          <div class="md:w-1/2">
-            <h3 class="text-2xl font-semibold mb-3">AgentOS: Operating System for AI Agents</h3>
-            <p class="mb-4 text-gray-700">
-              AgentOS powers intelligent workflows with smart, modular, and autonomous agents—built for enterprise-scale operations.
-            </p>
-            <ul class="mb-4 space-y-3 text-gray-700">
-              <li class="flex items-start">
-                <span class="mr-2 mt-1">📦</span>
-                <span><strong>Modular & Scalable:</strong> Add or scale agents instantly across teams and tasks.</span>
-              </li>
-              <li class="flex items-start">
-                <span class="mr-2 mt-1">🧠</span>
-                <span><strong>Stateful Intelligence:</strong> Agents remember, adapt, and learn in real time.</span>
-              </li>
-              <li class="flex items-start">
-                <span class="mr-2 mt-1">🔌</span>
-                <span><strong>Plug & Play SDK:</strong> Easy integration with your existing tools and systems.</span>
-              </li>
-              <li class="flex items-start">
-                <span class="mr-2 mt-1">📊</span>
-                <span><strong>Reliable & Measurable:</strong> Benchmark-ready with built-in fault tolerance.</span>
-              </li>
-              <li class="flex items-start">
-                <span class="mr-2 mt-1">🤝</span>
-                <span><strong>Agent Collaboration:</strong> Agents communicate to complete complex tasks together.</span>
-              </li>
-            </ul>
-            <a href="#contact" class="bg-black text-white border border-black font-semibold py-3 px-6 rounded-full shadow-lg hover:bg-white hover:text-black hover:shadow-xl transition transform hover:scale-105">
-              Learn More
-            </a>
-          </div>
+          
+          <a href="#contact" class="btn btn-primary">
+            <i class="fas fa-arrow-right mr-2"></i>
+            Learn More
+          </a>
         </div>
       </div>
-    </section>
-    
+    </div>
+  </section>
 
   <!-- Team Section -->
-  <section id="team" class="py-16 bg-gray-100">
-    <div class="container mx-auto px-6">
-      <div class="text-center mb-10">
-        <h2 class="text-3xl font-bold text-indigo-600 mb-2">Our Team</h2>
-        <p class="text-xl text-gray-600">Discover how we innovate</p>
+  <section id="team" class="section neural-bg-alt">
+    <div class="container">
+      <div class="text-center mb-16">
+        <h2 class="text-heading-1 mb-4 text-neutral-900">Our Team</h2>
+        <p class="text-body-large text-neutral-600 max-w-2xl mx-auto">
+          Meet the minds behind our innovative solutions
+        </p>
       </div>
-      <div class="grid md:grid-cols-4 gap-8">
-        <!-- Team Member 1 -->
-        <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition transform hover:scale-105 text-center">
-          <img src="web_icons/chopra.jpeg" alt="Gaurav Chopra" class="w-32 h-38 rounded-full mx-auto mb-4 object-cover">
-          <h3 class="text-xl font-semibold mb-1">Gaurav Chopra</h3>
-          <p class="mb-2 font-medium">Chief Executive Officer</p>
-          <p class="text-sm text-gray-600 mb-4">Visionary leader with deep expertise in AI and machine learning.</p>
-          <div class="flex justify-center space-x-4">
-            <a href="https://www.linkedin.com/in/choprag/" class="text-indigo-600 hover:text-indigo-800">
-                <i class="fab fa-linkedin fa-lg"></i>
-            </a>
-            <!-- <a href="#" class="text-indigo-600 hover:text-indigo-800">
-                <i class="fab fa-x-twitter fa-lg"></i> 
-              </a> -->
+      
+      <div class="grid-4">
+        <div class="card p-8 text-center">
+          <div class="w-32 h-32 rounded-full mx-auto mb-6 overflow-hidden">
+            <img src="web_icons/chopra.jpeg" alt="Gaurav Chopra" class="w-full h-full object-cover">
           </div>
-        </div>
-        <!-- Team Member 2 -->
-        <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition transform hover:scale-105 text-center">
-          <img src="web_icons/matt.jpeg" alt="Matthew Muhoberac" class="w-32 h-38 rounded-full mx-auto mb-4 object-cover">
-          <h3 class="text-xl font-semibold mb-1">Matthew Muhoberac</h3>
-          <p class="mb-2 font-medium">Technology & Innovation</p>
-          <p class="text-sm text-gray-600 mb-4">Ensures our AI solutions are ahead of the curve.</p>
-          <div class="flex justify-center space-x-4">
-            <a href="https://www.linkedin.com/in/matthew-muhoberac-01523a1a3/" class="text-indigo-600 hover:text-indigo-800">
-                <i class="fab fa-linkedin fa-lg"></i>
+          <h3 class="text-heading-3 mb-2 text-neutral-900">Gaurav Chopra</h3>
+          <p class="text-caption text-primary-600 mb-3">Chief Executive Officer</p>
+          <p class="text-body-small text-neutral-600 mb-6">Visionary leader with deep expertise in AI and machine learning.</p>
+          <div class="flex justify-center">
+            <a href="https://www.linkedin.com/in/choprag/" class="btn btn-ghost p-2">
+              <i class="fab fa-linkedin text-lg"></i>
             </a>
           </div>
         </div>
-        <!-- Team Member 3 -->
-        <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition transform hover:scale-105 text-center">
-            <img src="web_icons/connor.jpeg" alt="Connor Beveridge" class="w-32 h-38 rounded-full mx-auto mb-4 object-cover">
-          <h3 class="text-xl font-semibold mb-1">Connor Beveridge</h3>
-          <p class="mb-2 font-medium">Marketing & Strategy</p>
-          <p class="text-sm text-gray-600 mb-4">Crafts compelling strategies to connect with global audiences.</p>
-          <div class="flex justify-center space-x-4">
-            <a href="https://www.linkedin.com/in/connor-beveridge-b194b8134/" class="text-indigo-600 hover:text-indigo-800">
-                <i class="fab fa-linkedin fa-lg"></i>
+        
+        <div class="card p-8 text-center">
+          <div class="w-32 h-32 rounded-full mx-auto mb-6 overflow-hidden">
+            <img src="web_icons/matt.jpeg" alt="Matthew Muhoberac" class="w-full h-full object-cover">
+          </div>
+          <h3 class="text-heading-3 mb-2 text-neutral-900">Matthew Muhoberac</h3>
+          <p class="text-caption text-primary-600 mb-3">Technology & Innovation</p>
+          <p class="text-body-small text-neutral-600 mb-6">Ensures our AI solutions are ahead of the curve.</p>
+          <div class="flex justify-center">
+            <a href="https://www.linkedin.com/in/matthew-muhoberac-01523a1a3/" class="btn btn-ghost p-2">
+              <i class="fab fa-linkedin text-lg"></i>
             </a>
           </div>
         </div>
-        <!-- Team Member 4 -->
-        <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition transform hover:scale-105 text-center">
-            <img src="web_icons/atharva.jpeg" alt="Atharva Parikh" class="w-32 h-38 rounded-full mx-auto mb-4 object-cover">
-          <h3 class="text-xl font-semibold mb-1">Atharva Parikh</h3>
-          <p class="mb-2 font-medium">Product & Development</p>
-          <p class="text-sm text-gray-600 mb-4">Drives innovation with creative and technical expertise in AI solutions.</p>
-          <div class="flex justify-center space-x-4">
-            <a href="https://www.linkedin.com/in/aaparikh/" class="text-indigo-600 hover:text-indigo-800">
-                <i class="fab fa-linkedin fa-lg"></i>
+        
+        <div class="card p-8 text-center">
+          <div class="w-32 h-32 rounded-full mx-auto mb-6 overflow-hidden">
+            <img src="web_icons/connor.jpeg" alt="Connor Beveridge" class="w-full h-full object-cover">
+          </div>
+          <h3 class="text-heading-3 mb-2 text-neutral-900">Connor Beveridge</h3>
+          <p class="text-caption text-primary-600 mb-3">Marketing & Strategy</p>
+          <p class="text-body-small text-neutral-600 mb-6">Crafts compelling strategies to connect with global audiences.</p>
+          <div class="flex justify-center">
+            <a href="https://www.linkedin.com/in/connor-beveridge-b194b8134/" class="btn btn-ghost p-2">
+              <i class="fab fa-linkedin text-lg"></i>
             </a>
-            <!-- <a href="https://x.com/home" class="text-indigo-600 hover:text-indigo-800">
-                <i class="fab fa-x-twitter fa-lg"></i> 
-              </a> -->
+          </div>
+        </div>
+        
+        <div class="card p-8 text-center">
+          <div class="w-32 h-32 rounded-full mx-auto mb-6 overflow-hidden">
+            <img src="web_icons/atharva.jpeg" alt="Atharva Parikh" class="w-full h-full object-cover">
+          </div>
+          <h3 class="text-heading-3 mb-2 text-neutral-900">Atharva Parikh</h3>
+          <p class="text-caption text-primary-600 mb-3">Product & Development</p>
+          <p class="text-body-small text-neutral-600 mb-6">Drives innovation with creative and technical expertise in AI solutions.</p>
+          <div class="flex justify-center">
+            <a href="https://www.linkedin.com/in/aaparikh/" class="btn btn-ghost p-2">
+              <i class="fab fa-linkedin text-lg"></i>
+            </a>
           </div>
         </div>
       </div>
@@ -262,60 +792,62 @@
   </section>
 
   <!-- Research Section -->
-  <section id="research" class="py-16 bg-gray-50">
-    <div class="container mx-auto px-6">
-      <div class="text-center mb-10">
-        <h2 class="text-3xl font-bold text-indigo-600 mb-2">Research & Publications</h2>
-        <p class="text-xl text-gray-600">Redefining the path to Artificial General Intelligence</p>
+  <section id="research" class="section bg-white">
+    <div class="container">
+      <div class="text-center mb-16">
+        <h2 class="text-heading-1 mb-4 text-neutral-900">Research & Publications</h2>
+        <p class="text-body-large text-neutral-600 max-w-2xl mx-auto">
+          Redefining the path to Artificial General Intelligence
+        </p>
       </div>
       
-      <div class="max-w-6xl mx-auto space-y-8">
+      <div class="space-y-8">
         <!-- Paper 1: State and Memory -->
-        <div class="bg-white rounded-xl shadow-lg overflow-hidden">
+        <div class="card">
           <div class="p-8">
-            <div class="flex flex-col md:flex-row gap-6">
-              <div class="md:w-2/3">
-                <h3 class="text-2xl font-bold text-gray-800 mb-4">State and Memory is All You Need for Robust and Reliable AI Agents</h3>
-                <p class="text-gray-600 mb-6">Introducing SciBORG (Scientific Bespoke Artificial Intelligence Agents Optimized for Research Goals), a modular agentic framework that enables LLM-based agents to autonomously plan, reason, and achieve robust domain-specific task execution through stateful memory systems.</p>
+            <div class="grid-2">
+              <div>
+                <h3 class="text-heading-2 mb-4 text-neutral-900">State and Memory is All You Need for Robust and Reliable AI Agents</h3>
+                <p class="text-body text-neutral-600 mb-6">Introducing SciBORG (Scientific Bespoke Artificial Intelligence Agents Optimized for Research Goals), a modular agentic framework that enables LLM-based agents to autonomously plan, reason, and achieve robust domain-specific task execution through stateful memory systems.</p>
                 
                 <div class="space-y-4 mb-6">
-                  <div class="flex items-start">
-                    <span class="text-indigo-600 mr-3">🧬</span>
+                  <div class="feature-item">
+                    <div class="feature-icon">🧬</div>
                     <div>
-                      <h4 class="font-semibold mb-1">SciBORG Framework</h4>
-                      <p class="text-gray-700">A modular agentic framework that allows LLM-based agents to autonomously plan, reason, and achieve robust and reliable domain-specific task execution.</p>
+                      <h4 class="text-heading-3 mb-1 text-neutral-900">SciBORG Framework</h4>
+                      <p class="text-body text-neutral-600">A modular agentic framework that allows LLM-based agents to autonomously plan, reason, and achieve robust and reliable domain-specific task execution.</p>
                     </div>
                   </div>
-                  <div class="flex items-start">
-                    <span class="text-indigo-600 mr-3">🧠</span>
+                  <div class="feature-item">
+                    <div class="feature-icon">🧠</div>
                     <div>
-                      <h4 class="font-semibold mb-1">Finite-State Automata Memory</h4>
-                      <p class="text-gray-700">Agents are constructed with FSA memory, enabling persistent state tracking and context-aware decision-making across extended workflows.</p>
+                      <h4 class="text-heading-3 mb-1 text-neutral-900">Finite-State Automata Memory</h4>
+                      <p class="text-body text-neutral-600">Agents are constructed with FSA memory, enabling persistent state tracking and context-aware decision-making across extended workflows.</p>
                     </div>
                   </div>
-                  <div class="flex items-start">
-                    <span class="text-indigo-600 mr-3">🔬</span>
+                  <div class="feature-item">
+                    <div class="feature-icon">🔬</div>
                     <div>
-                      <h4 class="font-semibold mb-1">Scientific Applications</h4>
-                      <p class="text-gray-700">Validated through integration with physical hardware (microwave synthesizers) and virtual systems (PubChem database) for autonomous multi-step scientific workflows.</p>
+                      <h4 class="text-heading-3 mb-1 text-neutral-900">Scientific Applications</h4>
+                      <p class="text-body text-neutral-600">Validated through integration with physical hardware (microwave synthesizers) and virtual systems (PubChem database) for autonomous multi-step scientific workflows.</p>
                     </div>
                   </div>
                 </div>
 
                 <div class="flex flex-wrap gap-4">
-                  <button onclick="toggleAbstract2()" class="bg-indigo-600 text-white px-6 py-2 rounded-lg hover:bg-indigo-700 transition">
+                  <button onclick="toggleAbstract2()" class="btn btn-primary">
                     <i class="fas fa-book-open mr-2"></i>Read Abstract
                   </button>
-                  <a href="https://arxiv.org/abs/2507.00081" class="border border-indigo-600 text-indigo-600 px-6 py-2 rounded-lg hover:bg-indigo-50 transition">
+                  <a href="https://arxiv.org/abs/2507.00081" class="btn btn-secondary">
                     <i class="fas fa-file-alt mr-2"></i>View on arXiv
                   </a>
                 </div>
               </div>
               
-              <div class="md:w-1/3 flex items-center justify-center">
-                <div class="bg-gradient-to-br from-indigo-100 to-purple-100 p-6 rounded-lg text-center">
-                  <i class="fas fa-memory text-6xl text-indigo-600 mb-4"></i>
-                  <p class="text-sm text-gray-600">Stateful Memory for Reliable AI</p>
+              <div class="flex items-center justify-center">
+                <div class="card p-8 text-center">
+                  <i class="fas fa-memory text-6xl text-primary-600 mb-4"></i>
+                  <p class="text-body-small text-neutral-600">Stateful Memory for Reliable AI</p>
                 </div>
               </div>
             </div>
@@ -323,51 +855,51 @@
         </div>
 
         <!-- Paper 2: Rethinking AGI -->
-        <div class="bg-white rounded-xl shadow-lg overflow-hidden">
+        <div class="card">
           <div class="p-8">
-            <div class="flex flex-col md:flex-row gap-6">
-              <div class="md:w-2/3">
-                <h3 class="text-2xl font-bold text-gray-800 mb-4">Rethinking AGI: Emergence through Multi-Agent Systems and Statistical Mechanics</h3>
-                <p class="text-gray-600 mb-6">A comprehensive framework that shifts the definition of AGI from scale to structure, from model to system, and from static prediction to dynamic emergence, rooted in statistical mechanics and neuroscience.</p>
+            <div class="grid-2">
+              <div>
+                <h3 class="text-heading-2 mb-4 text-neutral-900">Rethinking AGI: Emergence through Multi-Agent Systems and Statistical Mechanics</h3>
+                <p class="text-body text-neutral-600 mb-6">A comprehensive framework that shifts the definition of AGI from scale to structure, from model to system, and from static prediction to dynamic emergence, rooted in statistical mechanics and neuroscience.</p>
                 
                 <div class="space-y-4 mb-6">
-                  <div class="flex items-start">
-                    <span class="text-indigo-600 mr-3">🔬</span>
+                  <div class="feature-item">
+                    <div class="feature-icon">🔬</div>
                     <div>
-                      <h4 class="font-semibold mb-1">Multi-Agent Intelligence</h4>
-                      <p class="text-gray-700">Intelligence emerges from networks of dense, redundant, interacting systems constrained by principles of entropy, feedback, and cooperation.</p>
+                      <h4 class="text-heading-3 mb-1 text-neutral-900">Multi-Agent Intelligence</h4>
+                      <p class="text-body text-neutral-600">Intelligence emerges from networks of dense, redundant, interacting systems constrained by principles of entropy, feedback, and cooperation.</p>
                     </div>
                   </div>
-                  <div class="flex items-start">
-                    <span class="text-indigo-600 mr-3">🧠</span>
+                  <div class="feature-item">
+                    <div class="feature-icon">🧠</div>
                     <div>
-                      <h4 class="font-semibold mb-1">Statistical Mechanics Framework</h4>
-                      <p class="text-gray-700">Defines AGI as a critical point in the agent interaction landscape, beyond which collective behavior becomes qualitatively intelligent.</p>
+                      <h4 class="text-heading-3 mb-1 text-neutral-900">Statistical Mechanics Framework</h4>
+                      <p class="text-body text-neutral-600">Defines AGI as a critical point in the agent interaction landscape, beyond which collective behavior becomes qualitatively intelligent.</p>
                     </div>
                   </div>
-                  <div class="flex items-start">
-                    <span class="text-indigo-600 mr-3">🔄</span>
+                  <div class="feature-item">
+                    <div class="feature-icon">🔄</div>
                     <div>
-                      <h4 class="font-semibold mb-1">Essential Properties</h4>
-                      <p class="text-gray-700">Demonstrates four key capabilities: adaptivity to changing goals, context-awareness through persistent state, conflict resolution, and long-term planning.</p>
+                      <h4 class="text-heading-3 mb-1 text-neutral-900">Essential Properties</h4>
+                      <p class="text-body text-neutral-600">Demonstrates four key capabilities: adaptivity to changing goals, context-awareness through persistent state, conflict resolution, and long-term planning.</p>
                     </div>
                   </div>
                 </div>
 
                 <div class="flex flex-wrap gap-4">
-                  <button onclick="toggleAbstract()" class="bg-indigo-600 text-white px-6 py-2 rounded-lg hover:bg-indigo-700 transition">
+                  <button onclick="toggleAbstract()" class="btn btn-primary">
                     <i class="fas fa-book-open mr-2"></i>Read Abstract
                   </button>
-                  <a href="https://doi.org/10.22541/au.174612619.90687134/v1" class="border border-indigo-600 text-indigo-600 px-6 py-2 rounded-lg hover:bg-indigo-50 transition">
+                  <a href="https://doi.org/10.22541/au.174612619.90687134/v1" class="btn btn-secondary">
                     <i class="fas fa-file-alt mr-2"></i>View on Authorea
                   </a>
                 </div>
               </div>
               
-              <div class="md:w-1/3 flex items-center justify-center">
-                <div class="bg-gradient-to-br from-indigo-100 to-purple-100 p-6 rounded-lg text-center">
-                  <i class="fas fa-network-wired text-6xl text-indigo-600 mb-4"></i>
-                  <p class="text-sm text-gray-600">From Scale to Structure: A New AGI Paradigm</p>
+              <div class="flex items-center justify-center">
+                <div class="card p-8 text-center">
+                  <i class="fas fa-network-wired text-6xl text-primary-600 mb-4"></i>
+                  <p class="text-body-small text-neutral-600">From Scale to Structure: A New AGI Paradigm</p>
                 </div>
               </div>
             </div>
@@ -378,50 +910,54 @@
   </section>
 
   <!-- Abstract Modal 1: Rethinking AGI -->
-  <div id="abstractModal" class="modal fixed inset-0 bg-black bg-opacity-50 items-center justify-center z-50">
-    <div class="bg-white rounded-lg max-w-3xl w-full mx-4 p-8 max-h-[90vh] overflow-y-auto">
-      <div class="flex justify-between items-center mb-6">
-        <h3 class="text-2xl font-bold text-gray-800">Abstract: Rethinking AGI</h3>
-        <button onclick="toggleAbstract()" class="text-gray-500 hover:text-gray-700">
-          <i class="fas fa-times"></i>
-        </button>
-      </div>
-      <div class="prose max-w-none">
-        <p class="text-gray-700 leading-relaxed mb-4">
-          The prevailing conception of artificial general intelligence (AGI) often centers on single-agent multimodal large language models (LLMs) and physical models that mimic human linguistic and physical intelligence. However, this perspective overlooks the importance of decentralized, interacting systems in producing generalizable, adaptive behavior.
-        </p>
-        <p class="text-gray-700 leading-relaxed mb-4">
-          Drawing inspiration from statistical mechanics, neuroscience, and agent-based modeling, we argue that AGI is more appropriately conceptualized as an emergent property of interacting intelligent agents. These multi-agent systems, analogous to particles in thermodynamic ensembles or neuronal assemblies in the brain, possess the capacity for robust coordination, planning, adaptability, and resilience - properties absent in standalone models.
-        </p>
-        <p class="text-gray-700 leading-relaxed">
-          We propose a theoretical framework rooted in entropy and emergent dynamics and argue that AGI will not emerge from scale alone but from structured interactions among specialized systems.
-        </p>
+  <div id="abstractModal" class="modal">
+    <div class="modal-content">
+      <div class="p-8">
+        <div class="flex justify-between items-center mb-6">
+          <h3 class="text-heading-2 text-neutral-900">Abstract: Rethinking AGI</h3>
+          <button onclick="toggleAbstract()" class="btn btn-ghost p-2">
+            <i class="fas fa-times text-xl"></i>
+          </button>
+        </div>
+        <div class="prose max-w-none">
+          <p class="text-body text-neutral-700 mb-6">
+            The prevailing conception of artificial general intelligence (AGI) often centers on single-agent multimodal large language models (LLMs) and physical models that mimic human linguistic and physical intelligence. However, this perspective overlooks the importance of decentralized, interacting systems in producing generalizable, adaptive behavior.
+          </p>
+          <p class="text-body text-neutral-700 mb-6">
+            Drawing inspiration from statistical mechanics, neuroscience, and agent-based modeling, we argue that AGI is more appropriately conceptualized as an emergent property of interacting intelligent agents. These multi-agent systems, analogous to particles in thermodynamic ensembles or neuronal assemblies in the brain, possess the capacity for robust coordination, planning, adaptability, and resilience - properties absent in standalone models.
+          </p>
+          <p class="text-body text-neutral-700">
+            We propose a theoretical framework rooted in entropy and emergent dynamics and argue that AGI will not emerge from scale alone but from structured interactions among specialized systems.
+          </p>
+        </div>
       </div>
     </div>
   </div>
 
   <!-- Abstract Modal 2: State and Memory -->
-  <div id="abstractModal2" class="modal fixed inset-0 bg-black bg-opacity-50 items-center justify-center z-50">
-    <div class="bg-white rounded-lg max-w-3xl w-full mx-4 p-8 max-h-[90vh] overflow-y-auto">
-      <div class="flex justify-between items-center mb-6">
-        <h3 class="text-2xl font-bold text-gray-800">Abstract: State and Memory</h3>
-        <button onclick="toggleAbstract2()" class="text-gray-500 hover:text-gray-700">
-          <i class="fas fa-times"></i>
-        </button>
-      </div>
-      <div class="prose max-w-none">
-        <p class="text-gray-700 leading-relaxed mb-4">
-          Large language models (LLMs) have enabled powerful advances in natural language understanding and generation. Yet their application to complex, real-world scientific workflows remain limited by challenges in memory, planning, and tool integration.
-        </p>
-        <p class="text-gray-700 leading-relaxed mb-4">
-          Here, we introduce SciBORG (Scientific Bespoke Artificial Intelligence Agents Optimized for Research Goals), a modular agentic framework that allows LLM-based agents to autonomously plan, reason, and achieve robust and reliable domain-specific task execution. Agents are constructed dynamically from source code documentation and augmented with finite-state automata (FSA) memory, enabling persistent state tracking and context-aware decision-making.
-        </p>
-        <p class="text-gray-700 leading-relaxed mb-4">
-          This approach eliminates the need for manual prompt engineering and allows for robust, scalable deployment across diverse applications via maintaining context across extended workflows and to recover from tool or execution failures. We validate SciBORG through integration with both physical and virtual hardware, such as microwave synthesizers for executing user-specified reactions, with context-aware decision making and demonstrate its use in autonomous multi-step bioassay retrieval from the PubChem database utilizing multi-step planning, reasoning, agent-to-agent communication and coordination for execution of exploratory tasks.
-        </p>
-        <p class="text-gray-700 leading-relaxed">
-          Systematic benchmarking shows that SciBORG agents achieve reliable execution, adaptive planning, and interpretable state transitions. Our results show that memory and state awareness are critical enablers of agentic planning and reliability, offering a generalizable foundation for deploying AI agents in complex environments.
-        </p>
+  <div id="abstractModal2" class="modal">
+    <div class="modal-content">
+      <div class="p-8">
+        <div class="flex justify-between items-center mb-6">
+          <h3 class="text-heading-2 text-neutral-900">Abstract: State and Memory</h3>
+          <button onclick="toggleAbstract2()" class="btn btn-ghost p-2">
+            <i class="fas fa-times text-xl"></i>
+          </button>
+        </div>
+        <div class="prose max-w-none">
+          <p class="text-body text-neutral-700 mb-6">
+            Large language models (LLMs) have enabled powerful advances in natural language understanding and generation. Yet their application to complex, real-world scientific workflows remain limited by challenges in memory, planning, and tool integration.
+          </p>
+          <p class="text-body text-neutral-700 mb-6">
+            Here, we introduce SciBORG (Scientific Bespoke Artificial Intelligence Agents Optimized for Research Goals), a modular agentic framework that allows LLM-based agents to autonomously plan, reason, and achieve robust and reliable domain-specific task execution. Agents are constructed dynamically from source code documentation and augmented with finite-state automata (FSA) memory, enabling persistent state tracking and context-aware decision-making.
+          </p>
+          <p class="text-body text-neutral-700 mb-6">
+            This approach eliminates the need for manual prompt engineering and allows for robust, scalable deployment across diverse applications via maintaining context across extended workflows and to recover from tool or execution failures. We validate SciBORG through integration with both physical and virtual hardware, such as microwave synthesizers for executing user-specified reactions, with context-aware decision making and demonstrate its use in autonomous multi-step bioassay retrieval from the PubChem database utilizing multi-step planning, reasoning, agent-to-agent communication and coordination for execution of exploratory tasks.
+          </p>
+          <p class="text-body text-neutral-700">
+            Systematic benchmarking shows that SciBORG agents achieve reliable execution, adaptive planning, and interpretable state transitions. Our results show that memory and state awareness are critical enablers of agentic planning and reliability, offering a generalizable foundation for deploying AI agents in complex environments.
+          </p>
+        </div>
       </div>
     </div>
   </div>
@@ -451,37 +987,91 @@
    
 
   <!-- Contact Section -->
-  <section id="contact" class="py-16 bg-gradient-to-br from-indigo-600 to-purple-600">
-    <div class="container mx-auto px-6">
-      <div class="text-center mb-10">
-        <h2 class="text-4xl font-bold text-white mb-4">Contact Us</h2>
-        <p class="text-xl text-white mb-8">Let's discuss how we can help transform your business</p>
-      </div>
-      <div class="max-w-lg mx-auto bg-white p-8 rounded-xl shadow-lg">
-        <p class="mb-4 text-gray-800"><strong class="text-gray-900">Name:</strong> Gaurav Chopra</p>
-        <p class="mb-4 text-gray-800"><strong class="text-gray-900">Title:</strong> CEO of BrainGnosis</p>
-        <p class="mb-4 text-gray-800"><strong class="text-gray-900">Email:</strong> <a href="mailto:gaurav@braingnosis.ai" class="text-indigo-600 hover:underline">gaurav@braingnosis.ai</a></p>
+  <section id="contact" class="section neural-bg-alt">
+    <div class="container">
+      <div class="max-w-4xl mx-auto">
+        <div class="card p-8 card-elevated">
+          <div class="text-center mb-6">
+            <div class="w-16 h-16 rounded-full flex items-center justify-center bg-gradient-to-br from-primary-100 to-primary-200 mx-auto mb-3">
+              <i class="fas fa-comments text-2xl text-primary-600"></i>
+            </div>
+            <h3 class="text-heading-2 mb-2 text-neutral-900">Contact Us</h3>
+            <p class="text-body text-neutral-600">Let's discuss how we can help transform your business with intelligent AI solutions</p>
+          </div>
+          
+          <div class="grid md:grid-cols-2 gap-6">
+            <div class="flex items-center space-x-4 p-4 rounded-xl bg-gradient-to-r from-primary-50 to-primary-100 border border-primary-200">
+              <div class="w-12 h-12 rounded-xl flex items-center justify-center bg-white shadow-md">
+                <i class="fas fa-user text-xl text-primary-600"></i>
+              </div>
+              <div class="flex-1">
+                <p class="text-body font-semibold text-neutral-900">Gaurav Chopra</p>
+                <p class="text-body-small text-neutral-600">Chief Executive Officer</p>
+                <p class="text-body-small text-neutral-500">AI Visionary & Technology Leader</p>
+              </div>
+            </div>
+            
+            <div class="flex items-center space-x-4 p-4 rounded-xl bg-gradient-to-r from-primary-50 to-primary-100 border border-primary-200">
+              <div class="w-12 h-12 rounded-xl flex items-center justify-center bg-white shadow-md">
+                <i class="fas fa-envelope text-xl text-primary-600"></i>
+              </div>
+              <div class="flex-1">
+                <p class="text-body font-semibold text-neutral-900">Email Us</p>
+                <a href="mailto:gaurav@braingnosis.ai" class="text-body-small text-primary-600 hover:text-primary-700 transition-colors font-medium">gaurav@braingnosis.ai</a>
+                <p class="text-body-small text-neutral-500">We typically respond within 24 hours</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="mt-6 pt-6 border-t border-neutral-200 text-center">
+            <p class="text-body text-neutral-600 mb-3">Ready to explore the future of AI?</p>
+            <a href="mailto:gaurav@braingnosis.ai" class="btn btn-primary">
+              <i class="fas fa-paper-plane mr-2"></i>
+              Send Message
+            </a>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- Footer -->
-  <footer class="bg-white py-6 border-t">
-    <div class="container mx-auto px-6 text-center text-sm text-gray-600">
-      <p>&copy; 2024 BrainGnosis Inc. All rights reserved.</p>
-      <p>
-        <a href="#contact" class="hover:text-indigo-600 transition">Contact Us</a> |
-        <a href="#services" class="hover:text-indigo-600 transition">Our Services</a>
-      </p>
+  <footer class="py-16" style="background: #171717;">
+    <div class="container">
+      <div class="text-center">
+        <div class="flex items-center justify-center space-x-3 mb-8">
+          <img src="company_logos/BrainGnosis Logo without background black.png" alt="Logo" class="w-8 h-8" style="filter: invert(1);">
+          <span class="text-heading-2 font-semibold" style="color: white;">BrainGnosis</span>
+        </div>
+        <p class="text-body-small mb-8" style="color: #a3a3a3;">&copy; 2024 BrainGnosis Inc. All rights reserved.</p>
+        <div class="flex justify-center space-x-8 text-body-small">
+          <a href="#contact" style="color: #a3a3a3; text-decoration: none;" onmouseover="this.style.color='white'" onmouseout="this.style.color='#a3a3a3'">Contact Us</a>
+          <a href="#services" style="color: #a3a3a3; text-decoration: none;" onmouseover="this.style.color='white'" onmouseout="this.style.color='#a3a3a3'">Our Services</a>
+          <a href="#products" style="color: #a3a3a3; text-decoration: none;" onmouseover="this.style.color='white'" onmouseout="this.style.color='#a3a3a3'">Products</a>
+          <a href="#research" style="color: #a3a3a3; text-decoration: none;" onmouseover="this.style.color='white'" onmouseout="this.style.color='#a3a3a3'">Research</a>
+        </div>
+      </div>
     </div>
   </footer>
 
-  <!-- Mobile Menu Script -->
+  <!-- Enhanced JavaScript -->
   <script>
+    // Mobile menu functionality
     const mobileMenuButton = document.getElementById('mobile-menu-button');
     const mobileMenu = document.getElementById('mobile-menu');
+    
     mobileMenuButton.addEventListener('click', () => {
-      mobileMenu.style.display = mobileMenu.style.display === 'none' || mobileMenu.style.display === '' ? 'block' : 'none';
+      mobileMenu.classList.toggle('hidden');
+    });
+
+    // Header scroll effect
+    const header = document.getElementById('header');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
     });
 
     // Abstract modal toggles
@@ -506,6 +1096,26 @@
       if (e.target === this) {
         toggleAbstract2();
       }
+    });
+
+    // Smooth scroll for navigation links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          const headerHeight = header.offsetHeight;
+          const targetPosition = target.offsetTop - headerHeight - 20;
+          
+          window.scrollTo({
+            top: targetPosition,
+            behavior: 'smooth'
+          });
+          
+          // Close mobile menu if open
+          mobileMenu.classList.add('hidden');
+        }
+      });
     });
   </script>
 </body>
