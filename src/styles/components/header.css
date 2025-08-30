@@ -60,3 +60,12 @@
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
+
+/* Desktop Navigation Override */
+@media (min-width: 768px) {
+  .desktop-nav {
+    display: flex !important;
+    align-items: center;
+    gap: 2rem;
+  }
+}
