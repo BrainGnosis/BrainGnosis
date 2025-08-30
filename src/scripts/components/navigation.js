@@ -106,6 +106,27 @@ class Navigation {
         }
       });
     });
+
+    // Handle cross-page navigation with hash (from careers page to homepage sections)
+    this.handleHashNavigation();
+  }
+
+  handleHashNavigation() {
+    // Check if page loaded with a hash
+    if (window.location.hash) {
+      setTimeout(() => {
+        const target = document.querySelector(window.location.hash);
+        if (target) {
+          const headerHeight = this.header ? this.header.offsetHeight : 0;
+          const targetPosition = target.offsetTop - headerHeight - 20;
+          
+          window.scrollTo({
+            top: targetPosition,
+            behavior: 'smooth'
+          });
+        }
+      }, 100); // Small delay to ensure page is fully loaded
+    }
   }
 }
 
