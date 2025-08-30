@@ -1,0 +1,90 @@
+CLOUD DEVELOPER JOB DESCRIPTION
+=====================================
+
+POSITION: Cloud Developer
+LOCATION: Remote / West Lafayette, IN
+EXPERIENCE LEVEL: Junior+ (1-2 years)
+ROLE TYPE: Multiple Hats - Startup Environment
+COMPENSATION: Competitive + Equity Opportunity
+
+ABOUT THE ROLE:
+---------------
+We're looking for a passionate Cloud Developer to join our fast-growing AI startup. You'll be responsible for deploying AI features to the cloud and building scalable solutions. This is a hands-on role where you'll wear multiple hats and directly impact how our technology reaches users.
+
+As part of our small, mission-driven team, you'll work closely with founders to build cloud infrastructure and ensure our AI technology is accessible and reliable.
+
+KEY RESPONSIBILITIES:
+--------------------
+• Deploy and maintain AI models and features on major cloud platforms (AWS, Azure, GCP)
+• Build and optimize cloud infrastructure for scalable services
+• Implement CI/CD pipelines for rapid deployment
+• Design and maintain APIs for cloud-based services
+• Monitor system performance and scaling
+• Ensure security best practices for cloud deployments
+• Collaborate with AI/ML team to deploy models
+• Support DevOps practices and infrastructure as code
+
+REQUIRED QUALIFICATIONS:
+-----------------------
+• 1-2 years of experience with cloud platforms (AWS, Azure, or GCP)
+• Proficiency in containerization (Docker, Kubernetes)
+• Experience with Infrastructure as Code (Terraform, CloudFormation, or similar)
+• Knowledge of CI/CD tools (GitHub Actions, Jenkins, GitLab CI)
+• Programming skills in Python, Node.js, or Go
+• Understanding of API development and microservices architecture
+• Basic knowledge of database management (SQL/NoSQL)
+• Familiarity with monitoring and logging tools
+• Experience with version control (Git)
+• Strong problem-solving skills and attention to detail
+
+PREFERRED QUALIFICATIONS:
+------------------------
+• Experience with serverless computing (Lambda, Cloud Functions)
+• Knowledge of ML model deployment and MLOps practices
+• Experience with load balancing and auto-scaling
+• Understanding of cloud security and compliance
+• Previous startup or fast-paced environment experience
+• Knowledge of AI/ML workflows and model serving
+• Experience with CDN and edge computing
+
+WHAT WE OFFER:
+--------------
+• Competitive salary based on domain understanding and execution
+• Equity opportunity based on performance and contribution
+• Direct impact on AI technology that's changing industries
+• Mentorship and growth opportunities in a fast-paced startup
+• Work directly with founders and shape product direction
+• Flexible remote work with occasional in-person collaboration
+• Opportunity to build cloud infrastructure from the ground up
+
+IDEAL CANDIDATE:
+---------------
+You're someone who thrives in a startup environment and isn't afraid to tackle diverse challenges. You're passionate about cloud technologies and excited about working with AI systems. You understand that in a startup, everyone wears multiple hats, and you're eager to grow beyond traditional role boundaries.
+
+You're mission-driven, not just money-driven. You want to be part of something meaningful and are excited about working with cutting-edge technology. You're comfortable with rapid iteration, learning new technologies quickly, and building reliable solutions.
+
+GROWTH OPPORTUNITIES:
+--------------------
+• Lead cloud architecture decisions as we scale
+• Build and mentor a cloud/DevOps team as we grow
+• Opportunity for technical leadership roles
+• Learn cutting-edge AI/ML deployment strategies
+• Gain experience across the full startup technology stack
+
+WHY JOIN US:
+-----------
+BrainGnosis is at the forefront of AI innovation. You'll have the opportunity to build scalable cloud systems while working directly with cutting-edge AI technology.
+
+This isn't just a job – it's a chance to be part of an AI startup and build the infrastructure that powers intelligent systems.
+
+APPLY NOW:
+---------
+Ready to help us bring AI to the cloud? We'd love to hear from you!
+
+Send us your profile including:
+• Your resume/CV
+• Brief cover letter explaining your interest in cloud development and startups
+• Links to any relevant projects, GitHub repos, or cloud deployments
+• Any questions about the role or our mission
+
+Subject: Cloud Developer Application - [Your Name]

@@ -1,0 +1,23 @@
+/* BrainGnosis Main Stylesheet */
+
+/* Import CSS Variables */
+@import url('./variables.css');
+
+/* Import Base Styles */
+@import url('./base.css');
+
+/* Import Layout System */
+@import url('./layout.css');
+
+/* Import Utilities */
+@import url('./utilities.css');
+
+/* Import Components */
+@import url('./components/buttons.css');
+@import url('./components/cards.css');
+@import url('./components/header.css');
+@import url('./components/modals.css');
+@import url('./components/careers.css');
+
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');

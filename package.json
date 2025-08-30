@@ -1,0 +1,28 @@
+{
+  "name": "braingnosis-website",
+  "version": "2.0.0",
+  "description": "BrainGnosis Enterprise AI Agent Platform Website",
+  "main": "index.html",
+  "scripts": {
+    "dev": "python -m http.server 8000",
+    "build": "echo 'Build process - ready for production'",
+    "serve": "python -m http.server 8000",
+    "lint": "echo 'Linting CSS and JS files'"
+  },
+  "keywords": [
+    "AI",
+    "agents",
+    "enterprise",
+    "neurosymbolic",
+    "AgentOS"
+  ],
+  "author": "BrainGnosis Inc.",
+  "license": "MIT",
+  "devDependencies": {},
+  "dependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/braingnosis/website"
+  },
+  "homepage": "https://braingnosis.ai"
+}
