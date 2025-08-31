@@ -129,3 +129,104 @@
 .bg-subtle {
   background: linear-gradient(135deg, rgba(250, 250, 250, 0.95) 0%, rgba(248, 248, 248, 0.9) 100%);
 }
+
+/* Hero Animation System */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes gradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { 
+    box-shadow: 0 0 20px rgba(242, 117, 42, 0.3);
+    transform: scale(1);
+  }
+  50% { 
+    box-shadow: 0 0 40px rgba(242, 117, 42, 0.6);
+    transform: scale(1.02);
+  }
+}
+
+@keyframes particle-float {
+  0%, 100% { transform: translateY(0px) translateX(0px); }
+  33% { transform: translateY(-10px) translateX(5px); }
+  66% { transform: translateY(5px) translateX(-5px); }
+}
+
+/* Hero Animation Classes */
+.animate-fade-in-up {
+  animation: fadeInUp 0.8s ease-out forwards;
+  opacity: 0;
+}
+
+.animate-gradient {
+  background: linear-gradient(-45deg, var(--primary-600), var(--accent-purple), var(--accent-blue), var(--primary-600));
+  background-size: 400% 400%;
+  animation: gradient 3s ease infinite;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+/* Hero Animation Delay Classes */
+.delay-200 { animation-delay: 0.2s; }
+.delay-400 { animation-delay: 0.4s; }
+.delay-600 { animation-delay: 0.6s; }
+.delay-800 { animation-delay: 0.8s; }
+
+/* Neural Background Animation */
+.neural-particles {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    radial-gradient(circle at 20% 20%, var(--primary-400) 1px, transparent 1px),
+    radial-gradient(circle at 80% 30%, var(--accent-blue) 1px, transparent 1px),
+    radial-gradient(circle at 60% 70%, var(--accent-purple) 1px, transparent 1px),
+    radial-gradient(circle at 40% 90%, var(--primary-500) 1px, transparent 1px),
+    radial-gradient(circle at 90% 80%, var(--accent-blue) 1px, transparent 1px);
+  background-size: 200px 200px, 300px 300px, 250px 250px, 400px 400px, 350px 350px;
+  animation: particle-float 8s ease-in-out infinite;
+  opacity: 0.4;
+}
+
+/* Mobile Responsiveness for Hero */
+@media (max-width: 768px) {
+  .animate-fade-in-up {
+    animation-duration: 0.6s;
+  }
+  
+  .neural-particles {
+    opacity: 0.2;
+  }
+}
+
+/* Accessibility Enhancements */
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-in-up,
+  .animate-gradient,
+  .animate-pulse-glow,
+  .neural-particles {
+    animation: none;
+  }
+  
+  .btn {
+    transform: none;
+  }
+}
