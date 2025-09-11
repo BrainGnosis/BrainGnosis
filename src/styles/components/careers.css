@@ -1,0 +1,263 @@
+/* Careers Section Styles */
+
+/* Job Card Animations */
+.job-card {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.job-card:hover {
+  transform: translateY(-2px);
+}
+
+.job-card .card {
+  border: 1px solid var(--neutral-200);
+  transition: all 0.3s ease;
+}
+
+.job-card:hover .card {
+  border-color: var(--primary-300);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Job Details Expandable Section */
+.job-details {
+  overflow: hidden;
+  transition: all 0.3s ease-in-out;
+}
+
+.job-details.hidden {
+  max-height: 0;
+  opacity: 0;
+}
+
+/* Chevron Animation */
+.job-card i[id^="chevron-"] {
+  transition: transform 0.3s ease;
+}
+
+/* Status Badges */
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.status-badge.hiring {
+  background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%);
+  color: #166534;
+  border: 1px solid #86efac;
+}
+
+.status-badge.hiring::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  background: #22c55e;
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+
+/* Department Tags */
+.department-tag {
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.department-tag.engineering {
+  background: #dbeafe;
+  color: #1e40af;
+}
+
+.department-tag.design {
+  background: #f3e8ff;
+  color: #7c3aed;
+}
+
+.department-tag.marketing {
+  background: #fef3c7;
+  color: #d97706;
+}
+
+.department-tag.sales {
+  background: #dcfce7;
+  color: #166534;
+}
+
+/* Employment Type Tags */
+.employment-tag {
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.employment-tag.full-time {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.employment-tag.part-time {
+  background: #fef3c7;
+  color: #d97706;
+}
+
+.employment-tag.contract {
+  background: #e0e7ff;
+  color: #4338ca;
+}
+
+/* Hiring Process Steps */
+.hiring-step {
+  position: relative;
+}
+
+.hiring-step:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  top: 1.5rem;
+  left: calc(100% + 1rem);
+  width: calc(100% - 2rem);
+  height: 2px;
+  background: linear-gradient(90deg, var(--primary-300) 0%, var(--primary-200) 100%);
+  z-index: 1;
+}
+
+@media (max-width: 768px) {
+  .hiring-step:not(:last-child)::after {
+    display: none;
+  }
+}
+
+/* Benefits List */
+.benefits-list {
+  list-style: none;
+  padding: 0;
+}
+
+.benefits-list li {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.25rem 0;
+}
+
+.benefits-list i {
+  color: var(--accent-emerald);
+  font-size: 0.875rem;
+}
+
+/* Job Requirements */
+.requirements-list {
+  list-style: none;
+  padding: 0;
+}
+
+.requirements-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  padding: 0.25rem 0;
+}
+
+.requirements-list i {
+  margin-top: 0.125rem;
+  font-size: 0.75rem;
+}
+
+/* Bonus Points Section */
+.bonus-section {
+  background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+  border: 1px solid #93c5fd;
+  border-radius: 0.75rem;
+  padding: 1rem;
+}
+
+.bonus-section h6 {
+  color: #1e40af;
+  margin-bottom: 0.5rem;
+}
+
+.bonus-section ul {
+  color: #1e3a8a;
+  margin: 0;
+  padding-left: 1rem;
+}
+
+.bonus-section li {
+  margin-bottom: 0.25rem;
+}
+
+/* Application CTA */
+.application-cta {
+  background: linear-gradient(135deg, var(--primary-50) 0%, var(--primary-100) 100%);
+  border: 1px solid var(--primary-200);
+  border-radius: 1rem;
+  padding: 2rem;
+  text-align: center;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .job-card .card {
+    padding: 1rem;
+  }
+  
+  .job-details .card {
+    padding: 1.5rem;
+  }
+  
+  .job-details .grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  
+  .hiring-step {
+    margin-bottom: 2rem;
+  }
+}
+
+/* Animation Keyframes */
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* Smooth Scrolling for Job Details */
+.job-details {
+  scroll-margin-top: 100px;
+}
+
+/* Toast Notifications */
+.toast {
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  background: var(--neutral-900);
+  color: white;
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  box-shadow: var(--shadow-lg);
+  z-index: 1000;
+  transform: translateY(100%);
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+
+.toast.show {
+  transform: translateY(0);
+  opacity: 1;
+}
