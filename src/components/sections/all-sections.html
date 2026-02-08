@@ -1,43 +1,106 @@
-<!-- All Main Sections -->
-
-<!-- Services Section -->
-<section id="services" class="section bg-white">
+<!-- === TECHNOLOGY (Interlink) === -->
+<section id="technology" class="section bg-base section-border-top">
   <div class="container">
-    <div class="text-center mb-16">
-      <h2 class="text-heading-1 mb-4 text-neutral-900">Our Services</h2>
-      <p class="text-body-large text-neutral-600 max-w-2xl mx-auto">
-        Deploy AgentOS across your enterprise with our comprehensive B2B service offerings
+    <div class="grid-2">
+      <div class="reveal">
+        <span class="section-label">Core Technology</span>
+        <h2 class="text-h1 mb-6">Interlink: The Engine Behind LINK</h2>
+        <p class="text-body-lg mb-8" style="max-width: 480px;">
+          A vertical-agnostic neurosymbolic platform that combines neural intelligence with symbolic reasoning to create structured, reliable agents.
+        </p>
+
+        <div class="flex flex-col gap-6">
+          <div class="flex items-start gap-4">
+            <div class="icon-box" style="background: rgba(0, 119, 182, 0.08);">
+              <i class="fas fa-robot" style="color: var(--brand); font-size: 0.85rem;"></i>
+            </div>
+            <div>
+              <h4 class="text-h4 mb-2">Auto-Agent Builder</h4>
+              <p class="text-body-sm">Define a goal and Interlink configures the right agent. No prompt engineering required.</p>
+            </div>
+          </div>
+
+          <div class="flex items-start gap-4">
+            <div class="icon-box" style="background: rgba(8, 145, 178, 0.08);">
+              <i class="fas fa-memory" style="color: var(--accent-cyan); font-size: 0.85rem;"></i>
+            </div>
+            <div>
+              <h4 class="text-h4 mb-2">Finite-State Automata Memory</h4>
+              <p class="text-body-sm">Persistent state tracking and context-aware decision-making across extended workflows.</p>
+            </div>
+          </div>
+
+          <div class="flex items-start gap-4">
+            <div class="icon-box" style="background: rgba(124, 58, 237, 0.08);">
+              <i class="fas fa-users" style="color: var(--accent-violet); font-size: 0.85rem;"></i>
+            </div>
+            <div>
+              <h4 class="text-h4 mb-2">Multi-Agent Hierarchy</h4>
+              <p class="text-body-sm">Assign, delegate, and orchestrate teams of agents with clear roles and responsibilities.</p>
+            </div>
+          </div>
+
+          <div class="flex items-start gap-4">
+            <div class="icon-box" style="background: rgba(5, 150, 105, 0.08);">
+              <i class="fas fa-exchange-alt" style="color: var(--accent-emerald); font-size: 0.85rem;"></i>
+            </div>
+            <div>
+              <h4 class="text-h4 mb-2">LLM-Agnostic Gateway</h4>
+              <p class="text-body-sm">Swap or combine any LLM. No vendor lock-in. Use the best model for each task.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="reveal reveal-delay-2">
+        <div class="card-glass p-8">
+          <img src="src/assets/images/icons/AgentOS Features.png" alt="Interlink Architecture" style="width: 100%; border-radius: var(--radius-lg);">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- === WHY LINKTON === -->
+<section id="why-us" class="section bg-surface">
+  <div class="container">
+    <div class="text-center mb-16 reveal">
+      <span class="section-label">Why Linkton</span>
+      <h2 class="text-h1 mb-4">LLMs Alone Are Not Enough</h2>
+      <p class="text-body-lg max-w-3xl mx-auto">
+        LLMs can generate plans, but they do not reliably execute in the physical world without structure, constraints, and grounded state. In scientific automation, &ldquo;good enough&rdquo; is not good enough.
       </p>
     </div>
-    
+
     <div class="grid-3">
-      <div class="card p-8 text-center">
-        <div class="w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-6" style="background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);">
-          <i class="fas fa-flask text-2xl" style="color: #3b82f6;"></i>
+      <div class="feature-card reveal reveal-delay-1">
+        <div class="icon-box icon-box-lg mb-4" style="background: rgba(0, 119, 182, 0.06);">
+          <i class="fas fa-layer-group" style="color: var(--brand); font-size: 1rem;"></i>
         </div>
-        <h3 class="text-heading-3 mb-4 text-neutral-900">Scientific Workflow Automation</h3>
-        <p class="text-body text-neutral-600">
-          Deploy intelligent agents in laboratories to automate instrument control, experimental protocols, and data analysis workflows.
+        <h3 class="text-h4 mb-3">The Systems Layer Is the Moat</h3>
+        <p class="text-body">
+          Foundation models provide general reasoning. Our focus is the hard problem: instrument abstraction, bidirectional control, sensor ingestion, orchestration, validation, and deployment into real environments.
         </p>
       </div>
-      
-      <div class="card p-8 text-center">
-        <div class="w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-6" style="background: linear-gradient(135deg, var(--primary-100) 0%, var(--primary-200) 100%);">
-          <i class="fas fa-industry text-2xl" style="color: #f97316;"></i>
+
+      <div class="feature-card reveal reveal-delay-2">
+        <div class="icon-box icon-box-lg mb-4" style="background: rgba(8, 145, 178, 0.06);">
+          <i class="fas fa-expand-arrows-alt" style="color: var(--accent-cyan); font-size: 1rem;"></i>
         </div>
-        <h3 class="text-heading-3 mb-4 text-neutral-900">Industry-Specific Solutions</h3>
-        <p class="text-body text-neutral-600">
-          Custom AgentOS deployments for enterprise clients in healthcare, pharma, manufacturing, and other industries with specialized business requirements.
+        <h3 class="text-h4 mb-3">Extensible Across Configurations</h3>
+        <p class="text-body">
+          Not one robot driving one setup. An extensible platform deployed across many different instrument configurations and organizational constraints &mdash; from pharma R&amp;D to healthcare operations and regulatory compliance.
         </p>
       </div>
-      
-      <div class="card p-8 text-center">
-        <div class="w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-6" style="background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%);">
-          <i class="fas fa-cogs text-2xl" style="color: #059669;"></i>
+
+      <div class="feature-card reveal reveal-delay-3">
+        <div class="icon-box icon-box-lg mb-4" style="background: rgba(124, 58, 237, 0.06);">
+          <i class="fas fa-eye" style="color: var(--accent-violet); font-size: 1rem;"></i>
         </div>
-        <h3 class="text-heading-3 mb-4 text-neutral-900">Architecture Consulting</h3>
-        <p class="text-body text-neutral-600">
-          Expert enterprise consulting on implementing structured intelligence architectures and multi-agent systems for your business operations.
+        <h3 class="text-h4 mb-3">Transparent &amp; Controllable</h3>
+        <p class="text-body">
+          Systems must be deterministic where needed, verifiable, and safe. Full audit trails, compliance-grade traceability, and granular control over every agent decision.
         </p>
       </div>
     </div>
@@ -45,292 +108,108 @@
 </section>
 
 
-<!-- Architecture Section -->
-<section id="architecture" class="section neural-bg-alt">
+<!-- === PRODUCTS === -->
+<section id="products" class="section bg-base section-border-top">
   <div class="container">
-    <div class="text-center mb-16">
-      <h2 class="text-heading-1 mb-4 text-neutral-900">What Makes Our Agents More Capable and Reliable?</h2>
-      <p class="text-body-large text-neutral-600 max-w-2xl mx-auto">
-        It's our architecture, purpose-built for structured autonomy
-      </p>
+    <div class="text-center mb-16 reveal">
+      <span class="section-label">Products</span>
+      <h2 class="text-h1 mb-4">Enterprise Platform &amp; Open Source</h2>
     </div>
-    
-    <div class="grid-3">
-      <div class="card p-8">
-        <div class="w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-6" style="background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);">
-          <i class="fas fa-robot text-2xl" style="color: #3b82f6;"></i>
-        </div>
-        <h3 class="text-heading-3 mb-4 text-neutral-900">Auto-Agent Builder</h3>
-        <p class="text-body text-neutral-600">
-          Rapidly configure intelligent agents for any task with our intuitive builder. Simply define the goal and AgentOS creates the right agent for you.
+
+    <!-- Interlink Product -->
+    <div class="grid-2 mb-20 reveal">
+      <div>
+        <div class="pill pill-brand mb-4">Enterprise Platform</div>
+        <h3 class="text-h2 mb-4">Interlink</h3>
+        <p class="text-body-lg mb-6" style="max-width: 460px;">
+          Powers enterprise workflows with smart, modular, and autonomous agents. Already accelerating research discoveries and improving patient outcomes in production.
         </p>
-      </div>
-      
-      <div class="card p-8">
-        <div class="w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-6" style="background: linear-gradient(135deg, #f3e8ff 0%, #e9d5ff 100%);">
-          <i class="fas fa-magic text-2xl" style="color: #8b5cf6;"></i>
+
+        <div class="flex flex-col gap-3 mb-8">
+          <div class="feature-check">
+            <i class="fas fa-check"></i>
+            <span>Modular &amp; scalable &mdash; add or scale agents across teams</span>
+          </div>
+          <div class="feature-check">
+            <i class="fas fa-check"></i>
+            <span>Stateful intelligence &mdash; agents remember and adapt in real time</span>
+          </div>
+          <div class="feature-check">
+            <i class="fas fa-check"></i>
+            <span>Plug &amp; Play SDK for easy integration with existing tools</span>
+          </div>
+          <div class="feature-check">
+            <i class="fas fa-check"></i>
+            <span>Benchmark-ready with built-in fault tolerance</span>
+          </div>
         </div>
-        <h3 class="text-heading-3 mb-4 text-neutral-900">Promptless Task Automator</h3>
-        <p class="text-body text-neutral-600">
-          Agents complete goals without relying on user prompts. They understand context, plan autonomously, and execute complex workflows independently.
-        </p>
-      </div>
-      
-      <div class="card p-8">
-        <div class="w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-6" style="background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%);">
-          <i class="fas fa-users text-2xl" style="color: #059669;"></i>
-        </div>
-        <h3 class="text-heading-3 mb-4 text-neutral-900">Role-based Multi-Agent Hierarchy</h3>
-        <p class="text-body text-neutral-600">
-          Assign, delegate, and orchestrate teams of agents with clear roles and responsibilities. Build complex workflows with specialized agents working together.
-        </p>
-      </div>
-      
-      <div class="card p-8">
-        <div class="w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-6" style="background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);">
-          <i class="fas fa-chart-bar text-2xl" style="color: #475569;"></i>
-        </div>
-        <h3 class="text-heading-3 mb-4 text-neutral-900">ARM Framework</h3>
-        <p class="text-body text-neutral-600 mb-4">
-          Agentic Reliability and Mediation (ARM) research framework studies how to measure and improve AI agent reliability and conflict mediation during autonomous decision making, ensuring dependable and aligned behavior across varied conditions.
-        </p>
-        <div class="flex items-center gap-2 text-sm">
-          <span class="px-2 py-1 bg-green-100 text-green-700 rounded text-xs">Open Source</span>
-          <a href="#products" class="text-primary-600 hover:text-primary-700 font-medium">
-            Learn about OmniBAR →
-          </a>
-        </div>
-      </div>
-      
-      <div class="card p-8">
-        <div class="w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-6" style="background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);">
-          <i class="fas fa-shield-alt text-2xl" style="color: #059669;"></i>
-        </div>
-        <h3 class="text-heading-3 mb-4 text-neutral-900">DIG Framework</h3>
-        <p class="text-body text-neutral-600">
-          Data & Information Governance built for agent compliance and traceability. Maintain full audit trails and ensure regulatory compliance in sensitive environments.
-        </p>
-      </div>
-      
-      <div class="card p-8">
-        <div class="w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-6" style="background: linear-gradient(135deg, #e0e7ff 0%, #c7d2fe 100%);">
-          <i class="fas fa-compass text-2xl" style="color: #4f46e5;"></i>
-        </div>
-        <h3 class="text-heading-3 mb-4 text-neutral-900">Context-aware Workflow Planner</h3>
-        <p class="text-body text-neutral-600">
-          Dynamic, memory-aware execution that adapts to changing conditions and maintains context across complex, multi-step workflows.
-        </p>
-      </div>
-      
-      <div class="card p-8">
-        <div class="w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-6" style="background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);">
-          <i class="fas fa-brain text-2xl" style="color: #d97706;"></i>
-        </div>
-        <h3 class="text-heading-3 mb-4 text-neutral-900">Neurosymbolic AI Architecture</h3>
-        <p class="text-body text-neutral-600">
-          Combining neural language models with symbolic reasoning systems (FSA memory) for interpretable, reliable, and controllable enterprise AI agents.
-        </p>
-      </div>
-      
-      <div class="card p-8">
-        <div class="w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-6" style="background: linear-gradient(135deg, #ccfbf1 0%, #99f6e4 100%);">
-          <i class="fas fa-exchange-alt text-2xl" style="color: #0d9488;"></i>
-        </div>
-        <h3 class="text-heading-3 mb-4 text-neutral-900">LLM-Agnostic Gateway</h3>
-        <p class="text-body text-neutral-600">
-          Swap or combine LLMs without vendor lock-in. Use the best model for each task and maintain flexibility as the AI landscape evolves.
-        </p>
-      </div>
-      
-      <div class="card p-8 card-elevated">
-        <div class="w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-6" style="background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%); border: 2px dashed #cbd5e1;">
-          <i class="fas fa-plus-circle text-2xl" style="color: #64748b;"></i>
-        </div>
-        <h3 class="text-heading-3 mb-4 text-neutral-900">And More...</h3>
-        <p class="text-body text-neutral-600 mb-4">
-          Discover additional AgentOS capabilities and enterprise features designed for your specific industry needs.
-        </p>
-        <a href="mailto:info@braingnosis.ai" class="btn btn-ghost text-sm">
-          <i class="fas fa-arrow-right mr-2 text-neutral-600"></i>
-          Contact Us: info@braingnosis.ai
+
+        <a href="mailto:info@braingnosis.ai" class="btn btn-primary">
+          <i class="fas fa-envelope"></i>
+          Request a Demo
         </a>
       </div>
-    </div>
-  </div>
-</section>
 
-
-
-<!-- Products Section -->
-<section id="products" class="section bg-white">
-  <div class="container">
-    <div class="text-center mb-16">
-      <h2 class="text-heading-1 mb-4 text-neutral-900">Our Products</h2>
-      <p class="text-body-large text-neutral-600 max-w-2xl mx-auto">
-        Enterprise AI solutions and open-source tools for reliable agent development
-      </p>
-    </div>
-    
-    <!-- AgentOS - Enterprise Platform -->
-    <div class="grid-2 mb-16">
       <div>
         <div class="card p-8">
-          <img src="src/assets/images/icons/AgentOS Features.png" alt="AgentOS Visualization" class="w-full rounded-xl">
+          <img src="src/assets/images/icons/AgentOS.png" alt="Interlink" style="width: 100%; border-radius: var(--radius-lg);">
         </div>
-      </div>
-      
-      <div>
-        <div class="mb-4">
-          <span class="px-3 py-1 bg-blue-100 text-blue-700 text-xs rounded-full font-medium">Enterprise Platform</span>
-        </div>
-        <h3 class="text-heading-2 mb-6 text-neutral-900">AgentOS: Operating System for AI Agents</h3>
-        <p class="text-body-large mb-8 text-neutral-600">
-          AgentOS powers enterprise workflows with smart, modular, and autonomous agents. Built specifically for large-scale business operations with neural-inspired architectures.
-        </p>
-        
-        <div class="feature-list mb-8">
-          <div class="feature-item">
-            <div class="feature-icon">📦</div>
-            <div>
-              <h4 class="text-heading-3 mb-1 text-neutral-900">Modular & Scalable</h4>
-              <p class="text-body text-neutral-600">Add or scale agents instantly across teams and tasks.</p>
-            </div>
-          </div>
-          
-          <div class="feature-item">
-            <div class="feature-icon">🧠</div>
-            <div>
-              <h4 class="text-heading-3 mb-1 text-neutral-900">Stateful Intelligence</h4>
-              <p class="text-body text-neutral-600">Agents remember, adapt, and learn in real time.</p>
-            </div>
-          </div>
-          
-          <div class="feature-item">
-            <div class="feature-icon">🔌</div>
-            <div>
-              <h4 class="text-heading-3 mb-1 text-neutral-900">Plug & Play SDK</h4>
-              <p class="text-body text-neutral-600">Easy integration with your existing tools and systems.</p>
-            </div>
-          </div>
-          
-          <div class="feature-item">
-            <div class="feature-icon">📊</div>
-            <div>
-              <h4 class="text-heading-3 mb-1 text-neutral-900">Reliable & Measurable</h4>
-              <p class="text-body text-neutral-600">Benchmark-ready with built-in fault tolerance.</p>
-            </div>
-          </div>
-          
-          <div class="feature-item">
-            <div class="feature-icon">🤝</div>
-            <div>
-              <h4 class="text-heading-3 mb-1 text-neutral-900">Agent Collaboration</h4>
-              <p class="text-body text-neutral-600">Agents communicate to complete complex tasks together.</p>
-            </div>
-          </div>
-        </div>
-        
-        <a href="mailto:info@braingnosis.ai" class="btn btn-primary">
-          <i class="fas fa-envelope mr-2 text-white"></i>
-          Contact Us: info@braingnosis.ai
-        </a>
       </div>
     </div>
 
-    <!-- OmniBAR - Open Source Framework -->
-    <div class="grid-2">
-      <div>
-        <div class="mb-4">
-          <span class="px-3 py-1 bg-green-100 text-green-700 text-xs rounded-full font-medium">Open Source</span>
+    <!-- OmniBAR Product -->
+    <div class="grid-2 reveal">
+      <div style="order: 2;">
+        <div class="flex gap-2 mb-4">
+          <span class="pill pill-success">Open Source</span>
+          <span class="pill pill-neutral">Apache 2.0</span>
         </div>
-        <h3 class="text-heading-2 mb-6 text-neutral-900">OmniBAR: Benchmarking Agentic Reliability</h3>
-        <p class="text-body-large mb-8 text-neutral-600">
-          A customizable, multi-objective AI agent benchmarking framework for evaluating reliability, decision quality, and adaptability in both single-agent and multi-agent systems.
+        <h3 class="text-h2 mb-4">OmniBAR</h3>
+        <p class="text-body-lg mb-6" style="max-width: 460px;">
+          A customizable, multi-objective AI agent benchmarking framework for evaluating reliability, decision quality, and adaptability across single and multi-agent systems.
         </p>
-        
-        <div class="feature-list mb-8">
-          <div class="feature-item">
-            <div class="feature-icon">🔬</div>
-            <div>
-              <h4 class="text-heading-3 mb-1 text-neutral-900">Multi-Objective Evaluation</h4>
-              <p class="text-body text-neutral-600">Assess decision quality, adaptability, and conflict handling beyond simple output checks.</p>
-            </div>
+
+        <div class="flex flex-col gap-3 mb-8">
+          <div class="feature-check">
+            <i class="fas fa-check"></i>
+            <span>Multi-objective evaluation beyond simple output checks</span>
           </div>
-          
-          <div class="feature-item">
-            <div class="feature-icon">🔧</div>
-            <div>
-              <h4 class="text-heading-3 mb-1 text-neutral-900">Framework Agnostic</h4>
-              <p class="text-body text-neutral-600">Works with LangChain, Pydantic AI, AutoGen, and custom agent frameworks.</p>
-            </div>
+          <div class="feature-check">
+            <i class="fas fa-check"></i>
+            <span>Framework agnostic &mdash; LangChain, Pydantic AI, AutoGen</span>
           </div>
-          
-          <div class="feature-item">
-            <div class="feature-icon">📈</div>
-            <div>
-              <h4 class="text-heading-3 mb-1 text-neutral-900">Reproducible Reports</h4>
-              <p class="text-body text-neutral-600">Generate comprehensive, reproducible benchmarking reports for research and production.</p>
-            </div>
-          </div>
-          
-          <div class="feature-item">
-            <div class="feature-icon">🌐</div>
-            <div>
-              <h4 class="text-heading-3 mb-1 text-neutral-900">ARM Research</h4>
-              <p class="text-body text-neutral-600">Built from our Agentic Reliability and Mediation research framework.</p>
-            </div>
-          </div>
-          
-          <div class="feature-item">
-            <div class="feature-icon">⚡</div>
-            <div>
-              <div class="flex items-center gap-2 mb-1">
-                <h4 class="text-heading-3 text-neutral-900">Active Development</h4>
-                <div class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-              </div>
-              <p class="text-body text-neutral-600">Continuously updated with new features and framework integrations.</p>
-            </div>
+          <div class="feature-check">
+            <i class="fas fa-check"></i>
+            <span>Reproducible benchmarking reports for research and production</span>
           </div>
         </div>
-        
-        <div class="flex gap-4">
+
+        <div class="flex flex-wrap gap-3">
           <a href="https://github.com/BrainGnosis/OmniBAR" class="btn btn-primary" target="_blank" rel="noopener noreferrer">
-            <i class="fab fa-github mr-2 text-white"></i>
+            <i class="fab fa-github"></i>
             View on GitHub
           </a>
           <a href="https://github.com/BrainGnosis/OmniBAR#installation" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">
-            <i class="fas fa-download mr-2"></i>
             Quick Start
           </a>
         </div>
       </div>
-      
-      <div>
+
+      <div style="order: 1;">
         <div class="card p-8">
-          <div class="bg-gradient-to-br from-gray-50 to-gray-100 rounded-xl p-6 mb-6">
-            <div class="text-center mb-4">
-              <div class="w-32 h-20 flex items-center justify-center mx-auto mb-4">
-                <img src="src/assets/images/brand/OmniBAR_Logo.png" alt="OmniBAR Logo" class="max-w-full max-h-full object-contain">
-              </div>
-              <p class="text-body-small text-neutral-600">Benchmarking Framework</p>
-            </div>
-            
-            <!-- Code snippet preview -->
-            <div class="bg-gray-900 rounded-lg p-4 text-sm font-mono text-gray-300 overflow-x-auto">
-              <div class="text-green-400"># Quick Start</div>
-              <div class="text-blue-400">pip install omnibar</div>
-              <div class="mt-2 text-green-400"># Benchmark any agent</div>
-              <div class="text-yellow-400">benchmarker = OmniBARmarker(</div>
-              <div class="text-white ml-4">executor_fn=your_agent,</div>
-              <div class="text-white ml-4">initial_input=[benchmark]</div>
-              <div class="text-yellow-400">)</div>
-              <div class="text-blue-400">results = benchmarker.benchmark()</div>
-            </div>
+          <div style="background: var(--bg-surface); border-radius: var(--radius-lg); padding: 1.5rem; text-align: center; margin-bottom: 1.25rem;">
+            <img src="src/assets/images/brand/OmniBAR_Logo.png" alt="OmniBAR" style="max-height: 72px; margin: 0 auto 0.75rem;">
+            <p class="text-body-sm">Benchmarking Framework</p>
           </div>
-          
-          <div class="text-center">
-            <div class="text-heading-3 text-primary-600 font-bold mb-1">Apache 2.0</div>
-            <div class="text-body-small text-neutral-600">Open source license for research and commercial use</div>
+          <div style="background: #1e293b; border-radius: var(--radius-lg); padding: 1.25rem; font-family: 'JetBrains Mono', 'Fira Code', monospace; font-size: 0.8rem; line-height: 1.7; overflow-x: auto;">
+            <div style="color: #34d399;"># Quick Start</div>
+            <div style="color: #22d3ee;">pip install omnibar</div>
+            <div style="margin-top: 0.4rem; color: #34d399;"># Benchmark any agent</div>
+            <div style="color: #fbbf24;">benchmarker = OmniBARmarker(</div>
+            <div style="color: #cbd5e1; padding-left: 1rem;">executor_fn=your_agent,</div>
+            <div style="color: #cbd5e1; padding-left: 1rem;">initial_input=[benchmark]</div>
+            <div style="color: #fbbf24;">)</div>
+            <div style="color: #22d3ee;">results = benchmarker.benchmark()</div>
           </div>
         </div>
       </div>
@@ -338,326 +217,138 @@
   </div>
 </section>
 
-<!-- Differentiation Section -->
-<section id="differentiation" class="section bg-white">
+
+<!-- === RESEARCH === -->
+<section id="research" class="section bg-surface">
   <div class="container">
-    <div class="text-center mb-16">
-      <h2 class="text-heading-1 mb-4 text-neutral-900">AI You Can Trust and Understand</h2>
-      <p class="text-body-large text-neutral-600 max-w-2xl mx-auto">
-        Unlike black-box AI, AgentOS gives enterprise teams complete control and transparency, making AI serve business needs.
+    <div class="text-center mb-16 reveal">
+      <span class="section-label">Research &amp; Publications</span>
+      <h2 class="text-h1 mb-4">Advancing the Science of Reliable AI</h2>
+      <p class="text-body-lg max-w-2xl mx-auto">
+        Our research drives our products. We publish openly to advance the field.
       </p>
     </div>
-    
-    <div class="grid-2">
-      <div>
-        <h3 class="text-heading-2 mb-6 text-neutral-900">Human-Centered Design</h3>
-        <p class="text-body-large mb-8 text-neutral-600">
-          AgentOS is designed to serve humans, not replace them. Complete transparency and control ensure AI decisions align with human values and goals.
+
+    <div class="grid-2 gap-6">
+      <div class="research-card reveal reveal-delay-1">
+        <div class="pill pill-brand mb-4" style="align-self: flex-start;">arXiv 2025</div>
+        <h3 class="text-h3 mb-3">State and Memory is All You Need for Robust and Reliable AI Agents</h3>
+        <p class="text-body mb-6" style="flex: 1;">
+          Introducing SciBORG, a modular agentic framework enabling LLM-based agents to autonomously plan, reason, and achieve robust domain-specific task execution through stateful memory systems.
         </p>
-        
-        <div class="space-y-4">
-          <div class="flex items-center space-x-3">
-            <i class="fas fa-check-circle text-green-600"></i>
-            <span class="text-body text-neutral-700">Full audit trails and decision logs</span>
-          </div>
-          <div class="flex items-center space-x-3">
-            <i class="fas fa-check-circle text-green-600"></i>
-            <span class="text-body text-neutral-700">Real-time performance monitoring</span>
-          </div>
-          <div class="flex items-center space-x-3">
-            <i class="fas fa-check-circle text-green-600"></i>
-            <span class="text-body text-neutral-700">Granular control over agent behavior</span>
-          </div>
-          <div class="flex items-center space-x-3">
-            <i class="fas fa-check-circle text-green-600"></i>
-            <span class="text-body text-neutral-700">Compliance-ready governance frameworks</span>
-          </div>
-        </div>
+        <a href="https://arxiv.org/abs/2507.00081" class="btn btn-secondary btn-sm" target="_blank" rel="noopener noreferrer">
+          <i class="fas fa-external-link-alt"></i>
+          Read on arXiv
+        </a>
       </div>
-      
-      <div class="flex items-center justify-center">
-        <div class="card p-8 text-center">
-          <i class="fas fa-eye text-6xl text-blue-600 mb-4"></i>
-          <h3 class="text-heading-2 mb-2 text-neutral-900">Human-AI Partnership</h3>
-          <p class="text-body text-neutral-600">AI that amplifies human capabilities while remaining transparent and controllable</p>
-        </div>
+
+      <div class="research-card reveal reveal-delay-2">
+        <div class="pill pill-neutral mb-4" style="align-self: flex-start;">Authorea 2025</div>
+        <h3 class="text-h3 mb-3">Rethinking AGI: Emergence through Multi-Agent Systems and Statistical Mechanics</h3>
+        <p class="text-body mb-6" style="flex: 1;">
+          A framework shifting the definition of AGI from scale to structure, from model to system, and from static prediction to dynamic emergence.
+        </p>
+        <a href="https://doi.org/10.22541/au.174612619.90687134/v1" class="btn btn-secondary btn-sm" target="_blank" rel="noopener noreferrer">
+          <i class="fas fa-external-link-alt"></i>
+          Read on Authorea
+        </a>
       </div>
     </div>
   </div>
 </section>
 
-<!-- Team Section -->
-<section id="team" class="section neural-bg-alt">
+
+<!-- === CAREERS === -->
+<section id="careers" class="section bg-surface">
   <div class="container">
-    <div class="text-center mb-16">
-      <h2 class="text-heading-1 mb-4 text-neutral-900">Our Team</h2>
-      <p class="text-body-large text-neutral-600 max-w-2xl mx-auto">
-        Meet the minds behind our innovative solutions
+    <div class="text-center mb-16 reveal">
+      <span class="section-label">Careers</span>
+      <h2 class="text-h1 mb-4">Build What Matters</h2>
+      <p class="text-body-lg max-w-2xl mx-auto mb-8">
+        We are a small, focused team building AI-driven software for pharma and healthcare. If you care about shipping real products and solving hard problems, we want to hear from you.
       </p>
+      <div class="inline-flex items-center gap-3 px-5 py-3 rounded-full" style="background: rgba(5, 150, 105, 0.06); border: 1px solid rgba(5, 150, 105, 0.12);">
+        <span class="dot-live"></span>
+        <span class="text-body-sm" style="color: var(--accent-emerald); font-weight: 500;">Actively hiring &middot; 2 open positions</span>
+      </div>
     </div>
-    
-    <div class="grid-4">
-      <div class="card p-8 text-center">
-        <div class="w-32 h-32 rounded-full mx-auto mb-6 overflow-hidden">
-          <img src="src/assets/images/team/chopra.jpeg" alt="Gaurav Chopra" class="w-full h-full object-cover">
+
+    <div class="grid-2" style="max-width: 720px; margin: 0 auto;">
+      <!-- Frontend Developer -->
+      <a href="pages/jobs/frontend-developer.html" class="feature-card reveal reveal-delay-1" style="text-decoration: none; display: flex; flex-direction: column;">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="icon-box" style="background: rgba(124, 58, 237, 0.08);">
+            <i class="fas fa-palette" style="color: var(--accent-violet); font-size: 0.85rem;"></i>
+          </div>
+          <div class="flex gap-2">
+            <span class="pill pill-brand" style="font-size: 0.7rem; padding: 0.25rem 0.65rem;">Remote-first</span>
+            <span class="pill pill-success" style="font-size: 0.7rem; padding: 0.25rem 0.65rem;">Entry &ndash; Mid</span>
+          </div>
         </div>
-        <h3 class="text-heading-3 mb-2 text-neutral-900">Gaurav Chopra</h3>
-        <p class="text-caption text-primary-600 mb-3">Chief Executive Officer</p>
-        <p class="text-body-small text-neutral-600 mb-6">Visionary leader with deep expertise in AI and machine learning.</p>
-        <div class="flex justify-center">
-          <a href="https://www.linkedin.com/in/choprag/" class="btn btn-ghost p-2">
-            <i class="fab fa-linkedin text-lg text-blue-600"></i>
-          </a>
+        <h3 class="text-h3 mb-2">Frontend Developer</h3>
+        <p class="text-body-sm mb-4" style="flex: 1;">Build product pages, interactive demos, and state-driven visualizations for our AI agent platform.</p>
+        <span class="text-body-sm" style="color: var(--brand); font-weight: 600;">View Position &rarr;</span>
+      </a>
+
+      <!-- AI & Software Developer -->
+      <a href="pages/jobs/ai-software-developer.html" class="feature-card reveal reveal-delay-2" style="text-decoration: none; display: flex; flex-direction: column;">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="icon-box" style="background: rgba(0, 119, 182, 0.08);">
+            <i class="fas fa-code" style="color: var(--brand); font-size: 0.85rem;"></i>
+          </div>
+          <div class="flex gap-2">
+            <span class="pill pill-brand" style="font-size: 0.7rem; padding: 0.25rem 0.65rem;">Remote-first</span>
+            <span class="pill pill-success" style="font-size: 0.7rem; padding: 0.25rem 0.65rem;">Entry &ndash; Mid</span>
+          </div>
         </div>
-      </div>
-      
-      <div class="card p-8 text-center">
-        <div class="w-32 h-32 rounded-full mx-auto mb-6 overflow-hidden">
-          <img src="src/assets/images/team/atharva.jpeg" alt="Atharva Parikh" class="w-full h-full object-cover">
-        </div>
-        <h3 class="text-heading-3 mb-2 text-neutral-900">Atharva Parikh</h3>
-        <p class="text-caption text-primary-600 mb-3">Head of Product Engineering and Strategy</p>
-        <p class="text-body-small text-neutral-600 mb-6">Drives innovation with creative and technical expertise in AI solutions.</p>
-        <div class="flex justify-center">
-          <a href="https://www.linkedin.com/in/aaparikh/" class="btn btn-ghost p-2">
-            <i class="fab fa-linkedin text-lg text-blue-600"></i>
-          </a>
-        </div>
-      </div>
-      
-      <div class="card p-8 text-center">
-        <div class="w-32 h-32 rounded-full mx-auto mb-6 overflow-hidden">
-          <img src="src/assets/images/team/connor.jpeg" alt="Connor Beveridge" class="w-full h-full object-cover">
-        </div>
-        <h3 class="text-heading-3 mb-2 text-neutral-900">Connor Beveridge</h3>
-        <p class="text-caption text-primary-600 mb-3">Head of Business and Customer Success</p>
-        <p class="text-body-small text-neutral-600 mb-6">Crafts compelling strategies to connect with global audiences.</p>
-        <div class="flex justify-center">
-          <a href="https://www.linkedin.com/in/connor-beveridge-b194b8134/" class="btn btn-ghost p-2">
-            <i class="fab fa-linkedin text-lg text-blue-600"></i>
-          </a>
-        </div>
-      </div>
-      
-      <div class="card p-8 text-center">
-        <div class="w-32 h-32 rounded-full mx-auto mb-6 overflow-hidden">
-          <img src="src/assets/images/team/matt.jpeg" alt="Matthew Muhoberac" class="w-full h-full object-cover">
-        </div>
-        <h3 class="text-heading-3 mb-2 text-neutral-900">Matthew Muhoberac</h3>
-        <p class="text-caption text-primary-600 mb-3">Head of Technology Innovation and Platform</p>
-        <p class="text-body-small text-neutral-600 mb-6">Ensures our AI solutions are ahead of the curve.</p>
-        <div class="flex justify-center">
-          <!-- LinkedIn link removed -->
-        </div>
-      </div>
+        <h3 class="text-h3 mb-2">AI &amp; Software Developer</h3>
+        <p class="text-body-sm mb-4" style="flex: 1;">Build backend services, agent capabilities, and LLM-powered systems that drive real scientific workflows.</p>
+        <span class="text-body-sm" style="color: var(--brand); font-weight: 600;">View Position &rarr;</span>
+      </a>
+    </div>
+
+    <div class="text-center mt-10 reveal">
+      <p class="text-body-sm" style="color: var(--text-tertiary);">Remote-first &middot; Eastern Time &middot; Internships, Contract &amp; Full-time</p>
     </div>
   </div>
 </section>
 
-<!-- Research Section -->
-<section id="research" class="section bg-white">
+
+<!-- === CONTACT === -->
+<section id="contact" class="section bg-base section-border-top">
   <div class="container">
-    <div class="text-center mb-16">
-      <h2 class="text-heading-1 mb-4 text-neutral-900">Research & Publications</h2>
-      <p class="text-body-large text-neutral-600 max-w-2xl mx-auto">
-        Redefining the path to Artificial General Intelligence
+    <div class="text-center max-w-3xl mx-auto reveal">
+      <span class="section-label">Get in Touch</span>
+      <h2 class="text-h1 mb-6">Ready to Transform Your Workflows?</h2>
+      <p class="text-body-lg mb-10" style="max-width: 500px; margin-left: auto; margin-right: auto;">
+        Whether you are in pharma R&amp;D, healthcare operations, or regulatory compliance &mdash; we would love to talk about how LINK can accelerate your work.
       </p>
-    </div>
-    
-    <div class="grid-2 gap-8">
-      <!-- Paper 1: State and Memory -->
-      <div class="card p-8">
-        <div class="w-16 h-16 rounded-2xl flex items-center justify-center mb-6" style="background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);">
-          <i class="fas fa-memory text-2xl" style="color: #3b82f6;"></i>
-        </div>
-        <h3 class="text-heading-3 mb-4 text-neutral-900">State and Memory is All You Need for Robust and Reliable AI Agents</h3>
-        <p class="text-body text-neutral-600 mb-8">Introducing SciBORG (Scientific Bespoke Artificial Intelligence Agents Optimized for Research Goals), a modular agentic framework that enables LLM-based agents to autonomously plan, reason, and achieve robust domain-specific task execution through stateful memory systems.</p>
-        
-        <div class="space-y-6 mb-8">
-          <div class="flex items-start space-x-4">
-            <div class="w-12 h-12 bg-gradient-to-br from-blue-100 to-blue-200 rounded-xl flex items-center justify-center flex-shrink-0">
-              <span class="text-xl">🧬</span>
-            </div>
-            <div>
-              <h4 class="text-heading-4 mb-2 text-neutral-900">SciBORG Framework</h4>
-              <p class="text-body-small text-neutral-600">Modular agentic framework for autonomous planning, reasoning, and reliable domain-specific task execution across complex scientific workflows.</p>
-            </div>
-          </div>
-          <div class="flex items-start space-x-4">
-            <div class="w-12 h-12 bg-gradient-to-br from-blue-100 to-blue-200 rounded-xl flex items-center justify-center flex-shrink-0">
-              <span class="text-xl">🧠</span>
-            </div>
-            <div>
-              <h4 class="text-heading-4 mb-2 text-neutral-900">Finite-State Automata Memory</h4>
-              <p class="text-body-small text-neutral-600">Persistent state tracking and context-aware decision-making across extended workflows, ensuring reliable and predictable behavior.</p>
-            </div>
-          </div>
-          <div class="flex items-start space-x-4">
-            <div class="w-12 h-12 bg-gradient-to-br from-blue-100 to-blue-200 rounded-xl flex items-center justify-center flex-shrink-0">
-              <span class="text-xl">🔬</span>
-            </div>
-            <div>
-              <h4 class="text-heading-4 mb-2 text-neutral-900">Scientific Applications</h4>
-              <p class="text-body-small text-neutral-600">Validated with physical hardware (microwave synthesizers) and virtual systems (PubChem database) for autonomous multi-step workflows.</p>
-            </div>
-          </div>
-        </div>
 
-        <div>
-          <a href="https://arxiv.org/abs/2507.00081" class="btn btn-primary text-body-small font-semibold">
-            <i class="fas fa-file-alt mr-2 text-white"></i>View on arXiv
-          </a>
-        </div>
-      </div>
-
-      <!-- Paper 2: Rethinking AGI -->
-      <div class="card p-8">
-        <div class="w-16 h-16 rounded-2xl flex items-center justify-center mb-6" style="background: linear-gradient(135deg, #f3e8ff 0%, #e9d5ff 100%);">
-          <i class="fas fa-network-wired text-2xl" style="color: #8b5cf6;"></i>
-        </div>
-        <h3 class="text-heading-3 mb-4 text-neutral-900">Rethinking AGI: Emergence through Multi-Agent Systems and Statistical Mechanics</h3>
-        <p class="text-body text-neutral-600 mb-8">A comprehensive framework that shifts the definition of AGI from scale to structure, from model to system, and from static prediction to dynamic emergence, rooted in statistical mechanics and neuroscience principles.</p>
-        
-        <div class="space-y-6 mb-8">
-          <div class="flex items-start space-x-4">
-            <div class="w-12 h-12 bg-gradient-to-br from-purple-100 to-purple-200 rounded-xl flex items-center justify-center flex-shrink-0">
-              <span class="text-xl">🔬</span>
-            </div>
-            <div>
-              <h4 class="text-heading-4 mb-2 text-neutral-900">Multi-Agent Intelligence</h4>
-              <p class="text-body-small text-neutral-600">Intelligence emerges from networks of dense, interacting systems constrained by entropy, feedback, and cooperation principles.</p>
-            </div>
-          </div>
-          <div class="flex items-start space-x-4">
-            <div class="w-12 h-12 bg-gradient-to-br from-purple-100 to-purple-200 rounded-xl flex items-center justify-center flex-shrink-0">
-              <span class="text-xl">🧠</span>
-            </div>
-            <div>
-              <h4 class="text-heading-4 mb-2 text-neutral-900">Statistical Mechanics Framework</h4>
-              <p class="text-body-small text-neutral-600">Defines AGI as a critical point where collective behavior becomes qualitatively intelligent, analogous to phase transitions in physics.</p>
-            </div>
-          </div>
-          <div class="flex items-start space-x-4">
-            <div class="w-12 h-12 bg-gradient-to-br from-purple-100 to-purple-200 rounded-xl flex items-center justify-center flex-shrink-0">
-              <span class="text-xl">🔄</span>
-            </div>
-            <div>
-              <h4 class="text-heading-4 mb-2 text-neutral-900">Essential Properties</h4>
-              <p class="text-body-small text-neutral-600">Demonstrates adaptivity to changing goals, context-awareness, conflict resolution, and sophisticated long-term planning coordination.</p>
-            </div>
-          </div>
-        </div>
-
-        <div>
-          <a href="https://doi.org/10.22541/au.174612619.90687134/v1" class="btn btn-primary text-body-small font-semibold">
-            <i class="fas fa-file-alt mr-2 text-white"></i>View on Authorea
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Careers Teaser Section -->
-<section id="careers" class="section bg-gradient-to-br from-primary-50 via-white to-primary-50">
-  <div class="container">
-    <div class="text-center max-w-4xl mx-auto">
-      <h2 class="text-heading-1 mb-6 text-neutral-900">Join Our Mission</h2>
-      <p class="text-body-large text-neutral-600 mb-8 leading-relaxed">
-        Help us build the future of enterprise AI. We're looking for passionate individuals who want to make AI smarter for humans across industries.
-      </p>
-      
-      <!-- Status Badge -->
-      <div class="inline-flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-green-50 to-emerald-50 rounded-full border border-green-200 mb-8">
-        <div class="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
-        <span class="text-body font-medium text-green-800">We're actively hiring</span>
-        <span class="text-body-small text-green-600">• 2 open positions</span>
-      </div>
-
-      <!-- Quick Job Preview -->
-      <div class="grid md:grid-cols-2 gap-6 mb-8 max-w-3xl mx-auto">
-        <a href="pages/jobs/ui-developer.html" class="card p-6 text-left hover:shadow-lg transition-all duration-300 cursor-pointer block">
-          <h3 class="text-heading-4 mb-2 text-neutral-900">UI Developer</h3>
-          <p class="text-body-small text-neutral-600 mb-4">Build beautiful interfaces for our AgentOS platform. Full-time, remote-friendly.</p>
-          <div class="flex items-center justify-between">
-            <span class="px-3 py-1 bg-purple-100 text-purple-700 text-xs rounded-full">Multiple Hats</span>
-            <span class="text-primary-600 font-medium text-sm">View Details →</span>
-          </div>
-        </a>
-        
-        <a href="pages/jobs/cloud-developer.html" class="card p-6 text-left hover:shadow-lg transition-all duration-300 cursor-pointer block">
-          <h3 class="text-heading-4 mb-2 text-neutral-900">Cloud Developer</h3>
-          <p class="text-body-small text-neutral-600 mb-4">Deploy AI models and build scalable cloud infrastructure. Full-time, remote-friendly.</p>
-          <div class="flex items-center justify-between">
-            <span class="px-3 py-1 bg-blue-100 text-blue-700 text-xs rounded-full">Cloud & DevOps</span>
-            <span class="text-primary-600 font-medium text-sm">View Details →</span>
-          </div>
+      <div class="flex flex-wrap justify-center gap-4 mb-12">
+        <a href="mailto:info@linkton.ai" class="btn btn-primary btn-lg">
+          <i class="fas fa-envelope"></i>
+          info@linkton.ai
         </a>
       </div>
 
-      <!-- CTA -->
-      <div class="space-y-4">
-        <a href="careers.html" class="btn btn-primary text-body-small font-semibold">
-          <i class="fas fa-users mr-2"></i>
-          View All Positions
-        </a>
+      <div class="flex flex-wrap justify-center gap-10">
         <div class="text-center">
-          <p class="text-body-small text-neutral-600">
-            100% Remote • Equity for Everyone • Mission-Driven Culture
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Contact Section -->
-<section id="contact" class="section neural-bg-alt">
-  <div class="container">
-    <div class="max-w-4xl mx-auto">
-      <div class="card p-8 card-elevated">
-        <div class="text-center mb-6">
-          <div class="w-16 h-16 rounded-full flex items-center justify-center bg-gradient-to-br from-primary-100 to-primary-200 mx-auto mb-3">
-            <i class="fas fa-building text-2xl text-primary-600"></i>
+          <div class="icon-box icon-box-lg mx-auto mb-3" style="background: var(--bg-surface);">
+            <i class="fas fa-building" style="color: var(--text-tertiary); font-size: 0.9rem;"></i>
           </div>
-          <h3 class="text-heading-2 mb-2 text-neutral-900">Transform Your Organization</h3>
-          <p class="text-body text-neutral-600">Ready to make AI smarter for your enterprise? Let's discuss how AgentOS can empower your teams and accelerate your business objectives.</p>
+          <p class="text-body-sm">Enterprise Demos</p>
         </div>
-        
-        <div class="grid md:grid-cols-2 gap-8 max-w-2xl mx-auto">
-          <!-- Business Inquiries -->
-          <div class="text-center p-6 rounded-xl bg-gradient-to-r from-primary-50 to-primary-100 border border-primary-200">
-            <div class="w-16 h-16 rounded-full flex items-center justify-center bg-white shadow-md mx-auto mb-4">
-              <i class="fas fa-building text-2xl text-primary-600"></i>
-            </div>
-            <h4 class="text-heading-3 mb-2 text-neutral-900">Business Inquiries</h4>
-            <p class="text-body-small text-neutral-600 mb-4">Enterprise demos, implementation, and partnerships</p>
-            <a href="mailto:info@braingnosis.ai" class="btn btn-ghost text-sm">
-              <i class="fas fa-envelope mr-2"></i>
-              Contact Sales
-            </a>
+        <div class="text-center">
+          <div class="icon-box icon-box-lg mx-auto mb-3" style="background: var(--bg-surface);">
+            <i class="fas fa-handshake" style="color: var(--text-tertiary); font-size: 0.9rem;"></i>
           </div>
-
-          <!-- Career Opportunities -->
-          <div class="text-center p-6 rounded-xl bg-gradient-to-r from-accent-blue/10 to-accent-blue/20 border border-accent-blue/30">
-            <div class="w-16 h-16 rounded-full flex items-center justify-center bg-white shadow-md mx-auto mb-4">
-              <i class="fas fa-briefcase text-2xl text-accent-blue"></i>
-            </div>
-            <h4 class="text-heading-3 mb-2 text-neutral-900">Join Our Team</h4>
-            <p class="text-body-small text-neutral-600 mb-4">Career opportunities and job applications</p>
-            <a href="/careers.html" class="btn btn-ghost text-sm">
-              <i class="fas fa-briefcase mr-2"></i>
-              View Jobs
-            </a>
-          </div>
+          <p class="text-body-sm">Partnerships</p>
         </div>
-        
-        <div class="mt-6 pt-6 border-t border-neutral-200 text-center">
-          <p class="text-body text-neutral-600 mb-3">Ready to make AI work smarter for your enterprise?</p>
-          <a href="mailto:info@braingnosis.ai" class="btn btn-primary">
-            <i class="fas fa-paper-plane mr-2 text-white"></i>
-            info@braingnosis.ai
-          </a>
+        <div class="text-center">
+          <div class="icon-box icon-box-lg mx-auto mb-3" style="background: var(--bg-surface);">
+            <i class="fas fa-briefcase" style="color: var(--text-tertiary); font-size: 0.9rem;"></i>
+          </div>
+          <p class="text-body-sm">Career Opportunities</p>
         </div>
       </div>
     </div>

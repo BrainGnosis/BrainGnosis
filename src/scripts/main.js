@@ -1,67 +1,111 @@
 /**
- * BrainGnosis Main JavaScript
- * Entry point for all JavaScript functionality
+ * Linkton Main JavaScript
+ * Handles header, mobile nav, smooth scroll, and scroll-reveal animations
  */
 
-import Navigation from './components/navigation.js';
-import Modals from './components/modals.js';
-import Careers from './components/careers.js';
+(function () {
+  var header, mobileMenuBtn, mobileMenu;
 
-class App {
-  constructor() {
-    this.init();
+  // Wait for components to load before initializing
+  document.addEventListener('components-loaded', setup);
+  // Fallback: if event already fired or never fires
+  window.addEventListener('load', function () { setTimeout(setup, 100); });
+
+  var initialized = false;
+
+  function setup() {
+    if (initialized) return;
+    initialized = true;
+
+    header = document.getElementById('header');
+    mobileMenuBtn = document.getElementById('mobile-menu-button');
+    mobileMenu = document.getElementById('mobile-menu');
+
+    initHeaderScroll();
+    initMobileMenu();
+    initSmoothScroll();
+    initScrollReveal();
   }
 
-  init() {
-    // Wait for DOM to be fully loaded
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', () => this.initializeComponents());
-    } else {
-      this.initializeComponents();
+  /* --- Header: transparent -> solid on scroll --- */
+  function initHeaderScroll() {
+    if (!header) return;
+
+    function update() {
+      if (window.scrollY > 50) {
+        header.classList.remove('header--transparent');
+        header.classList.add('header--scrolled');
+      } else {
+        header.classList.remove('header--scrolled');
+        header.classList.add('header--transparent');
+      }
     }
+
+    window.addEventListener('scroll', update, { passive: true });
+    update();
   }
 
-  initializeComponents() {
-    // Initialize all components
-    new Navigation();
-    new Modals();
-    new Careers();
-    
-    // Initialize basic hero animations
-    this.initHeroAnimations();
-    
-    console.log('BrainGnosis website initialized successfully');
-  }
+  /* --- Mobile menu toggle --- */
+  function initMobileMenu() {
+    if (!mobileMenuBtn || !mobileMenu) return;
 
-  // Simple hero animations only
-  initHeroAnimations() {
-    // Basic parallax effect for hero section
-    const throttledScrollHandler = this.throttle(() => {
-      const scrolled = window.pageYOffset;
-      const parallaxElements = document.querySelectorAll('.neural-particles');
-      
-      parallaxElements.forEach(element => {
-        const speed = 0.5;
-        element.style.transform = `translateY(${scrolled * speed}px)`;
+    mobileMenuBtn.addEventListener('click', function () {
+      var isActive = mobileMenu.classList.toggle('active');
+      var icon = mobileMenuBtn.querySelector('i');
+      if (icon) icon.className = isActive ? 'fas fa-times' : 'fas fa-bars';
+    });
+
+    mobileMenu.querySelectorAll('a').forEach(function (link) {
+      link.addEventListener('click', function () {
+        mobileMenu.classList.remove('active');
+        var icon = mobileMenuBtn.querySelector('i');
+        if (icon) icon.className = 'fas fa-bars';
       });
-    }, 16); // ~60fps
-
-    window.addEventListener('scroll', throttledScrollHandler);
+    });
   }
 
-  // Performance optimization: Throttle function
-  throttle(func, wait) {
-    let timeout;
-    return function executedFunction(...args) {
-      const later = () => {
-        clearTimeout(timeout);
-        func(...args);
-      };
-      clearTimeout(timeout);
-      timeout = setTimeout(later, wait);
-    };
-  }
-}
+  /* --- Smooth scroll for #anchors --- */
+  function initSmoothScroll() {
+    document.addEventListener('click', function (e) {
+      var link = e.target.closest('a[href^="#"]');
+      if (!link) return;
 
-// Initialize the application
-new App();
+      var id = link.getAttribute('href');
+      if (id === '#') return;
+
+      var target = document.querySelector(id);
+      if (!target) return;
+
+      e.preventDefault();
+      var offset = header ? header.offsetHeight : 64;
+      var top = target.getBoundingClientRect().top + window.scrollY - offset;
+      window.scrollTo({ top: top, behavior: 'smooth' });
+    });
+  }
+
+  /* --- Scroll reveal with IntersectionObserver --- */
+  function initScrollReveal() {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      document.querySelectorAll('.reveal').forEach(function (el) {
+        el.classList.add('visible');
+      });
+      return;
+    }
+
+    var observer = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.08, rootMargin: '0px 0px -30px 0px' }
+    );
+
+    document.querySelectorAll('.reveal').forEach(function (el) {
+      observer.observe(el);
+    });
+  }
+})();
