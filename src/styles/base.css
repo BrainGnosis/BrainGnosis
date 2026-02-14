@@ -1,4 +1,4 @@
-/* Base Styles - Polished Light Pharma Theme */
+/* Base Styles */
 *,
 *::before,
 *::after {
@@ -14,11 +14,11 @@ html {
 }
 
 body {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-family: 'Manrope', 'Avenir Next', 'Segoe UI', sans-serif;
   background-color: var(--bg-base);
   color: var(--text-secondary);
   line-height: 1.65;
-  font-weight: 400;
+  font-weight: 450;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
@@ -35,78 +35,82 @@ a {
   text-decoration: none;
 }
 
-/* ── Typography ── */
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--brand);
+  outline-offset: 2px;
+}
+
 .text-display {
-  font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
-  font-size: clamp(2.75rem, 5.5vw, 4.25rem);
+  font-family: 'Manrope', 'Avenir Next', 'Segoe UI', sans-serif;
+  font-size: clamp(2.5rem, 5.5vw, 4.3rem);
   font-weight: 800;
   line-height: 1.08;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.032em;
   color: var(--text-primary);
 }
 
 .text-h1 {
-  font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
-  font-size: clamp(2rem, 3.5vw, 2.75rem);
-  font-weight: 700;
-  line-height: 1.18;
+  font-family: 'Manrope', 'Avenir Next', 'Segoe UI', sans-serif;
+  font-size: clamp(1.95rem, 3.7vw, 2.85rem);
+  font-weight: 750;
+  line-height: 1.15;
   letter-spacing: -0.025em;
   color: var(--text-primary);
 }
 
 .text-h2 {
-  font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
-  font-size: clamp(1.5rem, 2.5vw, 2rem);
-  font-weight: 700;
-  line-height: 1.28;
+  font-family: 'Manrope', 'Avenir Next', 'Segoe UI', sans-serif;
+  font-size: clamp(1.45rem, 2.6vw, 2.2rem);
+  font-weight: 720;
+  line-height: 1.24;
   letter-spacing: -0.02em;
   color: var(--text-primary);
 }
 
 .text-h3 {
-  font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
-  font-size: clamp(1.2rem, 1.8vw, 1.4rem);
-  font-weight: 600;
-  line-height: 1.35;
+  font-family: 'Manrope', 'Avenir Next', 'Segoe UI', sans-serif;
+  font-size: clamp(1.1rem, 1.9vw, 1.45rem);
+  font-weight: 700;
+  line-height: 1.32;
   letter-spacing: -0.01em;
   color: var(--text-primary);
 }
 
 .text-h4 {
-  font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
-  font-size: 1.0625rem;
-  font-weight: 600;
-  line-height: 1.4;
+  font-family: 'Manrope', 'Avenir Next', 'Segoe UI', sans-serif;
+  font-size: 1.025rem;
+  font-weight: 700;
+  line-height: 1.38;
   color: var(--text-primary);
 }
 
 .text-body-lg {
-  font-size: 1.125rem;
-  line-height: 1.75;
+  font-size: 1.06rem;
+  line-height: 1.72;
   color: var(--text-secondary);
 }
 
 .text-body {
-  font-size: 0.9375rem;
+  font-size: 0.95rem;
   line-height: 1.7;
   color: var(--text-secondary);
 }
 
 .text-body-sm {
-  font-size: 0.8125rem;
-  line-height: 1.6;
+  font-size: 0.84rem;
+  line-height: 1.62;
   color: var(--text-tertiary);
 }
 
 .text-caption {
-  font-size: 0.75rem;
-  line-height: 1.5;
-  font-weight: 600;
-  letter-spacing: 0.04em;
+  font-size: 0.72rem;
+  line-height: 1.45;
+  font-weight: 700;
+  letter-spacing: 0.09em;
   text-transform: uppercase;
 }
 
-/* Color helpers */
 .text-white { color: #ffffff; }
 .text-primary { color: var(--text-primary); }
 .text-muted { color: var(--text-secondary); }
@@ -114,6 +118,6 @@ a {
 .text-brand { color: var(--text-brand); }
 
 ::selection {
-  background: rgba(0, 119, 182, 0.15);
+  background: rgba(13, 111, 159, 0.22);
   color: var(--text-primary);
 }

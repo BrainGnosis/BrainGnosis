@@ -25,6 +25,7 @@
     initMobileMenu();
     initSmoothScroll();
     initScrollReveal();
+    initDemoTabs();
   }
 
   /* --- Header: transparent -> solid on scroll --- */
@@ -106,6 +107,31 @@
 
     document.querySelectorAll('.reveal').forEach(function (el) {
       observer.observe(el);
+    });
+  }
+
+  /* --- Walkthrough tabs --- */
+  function initDemoTabs() {
+    var tabs = document.querySelectorAll('[data-demo-tab]');
+    if (!tabs.length) return;
+
+    var panels = document.querySelectorAll('[data-demo-panel]');
+
+    tabs.forEach(function (tab) {
+      tab.addEventListener('click', function () {
+        var target = tab.getAttribute('data-demo-tab');
+        if (!target) return;
+
+        tabs.forEach(function (btn) {
+          var active = btn === tab;
+          btn.classList.toggle('active', active);
+          btn.setAttribute('aria-selected', active ? 'true' : 'false');
+        });
+
+        panels.forEach(function (panel) {
+          panel.classList.toggle('active', panel.getAttribute('data-demo-panel') === target);
+        });
+      });
     });
   }
 })();
