@@ -1,5 +1,5 @@
 /**
- * Linkton Main JavaScript
+ * BrainGnosis Main JavaScript
  * Handles header, mobile nav, smooth scroll, and scroll-reveal animations
  */
 
