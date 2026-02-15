@@ -1,58 +1,67 @@
-<!-- Capabilities Section -->
-<section id="capabilities" class="section neural-bg-alt">
+<!-- LINK Platform -->
+<section id="platform" class="section bg-surface">
   <div class="container">
-    <div class="text-center mb-16">
-      <h2 class="text-heading-1 mb-4 text-neutral-900">Making AI Work for Humans Today</h2>
-      <p class="text-body-large text-neutral-600 max-w-2xl mx-auto">
-        Enterprise customers in healthcare and pharma are already using AgentOS to empower their teams and accelerate business outcomes
+    <div class="text-center mb-16 reveal">
+      <span class="section-label" style="justify-content: center;">How LINK Works</span>
+      <h2 class="text-h1 mb-4">A governed workflow engine for real-world AI execution</h2>
+      <p class="text-body-lg max-w-3xl mx-auto">
+        LINK is built as an operational graph: it ingests context, plans safely, executes tasks, validates outcomes, and escalates to humans when confidence drops.
       </p>
     </div>
-    
-    <div class="grid-2">
-      <div class="space-y-6">
-        <div class="card p-6">
-          <div class="flex items-start space-x-4">
-            <div class="w-12 h-12 bg-gradient-to-br from-blue-100 to-blue-200 rounded-xl flex items-center justify-center flex-shrink-0">
-              <i class="fas fa-flask text-blue-600 text-xl"></i>
-            </div>
-            <div>
-              <h3 class="text-heading-3 mb-2 text-neutral-900">Empower Scientific Teams</h3>
-              <p class="text-body text-neutral-600">Intelligent agents handle routine laboratory tasks, freeing scientists to focus on discovery and innovation while ensuring precision and reliability.</p>
-            </div>
-          </div>
+
+    <div class="grid-3">
+      <div class="feature-card workflow-card reveal reveal-delay-1">
+        <div class="icon-box mb-4" style="background: rgba(17, 138, 178, 0.1);">
+          <i class="fas fa-database" style="color: var(--accent-cyan); font-size: 0.9rem;"></i>
         </div>
-        
-        <div class="card p-6">
-          <div class="flex items-start space-x-4">
-            <div class="w-12 h-12 bg-gradient-to-br from-green-100 to-green-200 rounded-xl flex items-center justify-center flex-shrink-0">
-              <i class="fas fa-brain text-xl" style="color: #059669;"></i>
-            </div>
-            <div>
-              <h3 class="text-heading-3 mb-2 text-neutral-900">Augment Human Intelligence</h3>
-              <p class="text-body text-neutral-600">Agents understand context and maintain memory across complex workflows, amplifying human decision-making and enabling powerful insights.</p>
-            </div>
-          </div>
-        </div>
-        
-        <div class="card p-6">
-          <div class="flex items-start space-x-4">
-            <div class="w-12 h-12 bg-gradient-to-br from-purple-100 to-purple-200 rounded-xl flex items-center justify-center flex-shrink-0">
-              <i class="fas fa-chart-line text-purple-600 text-xl"></i>
-            </div>
-            <div>
-              <h3 class="text-heading-3 mb-2 text-neutral-900">Accelerate Human Impact</h3>
-              <p class="text-body text-neutral-600">This is not theoretical. AgentOS is already accelerating research discoveries and improving patient outcomes in real biotech and health applications.</p>
-            </div>
-          </div>
-        </div>
+        <p class="text-caption">01 Ingest</p>
+        <h3 class="text-h4 mb-3">Unify Context</h3>
+        <p class="text-body">Pull structured and unstructured context from lab systems, SOP repositories, and operational databases.</p>
       </div>
-      
-      <div class="flex items-center justify-center">
-        <div class="card p-8 text-center">
-          <i class="fas fa-industry text-6xl text-primary-600 mb-4"></i>
-          <h3 class="text-heading-2 mb-2 text-neutral-900">Production Ready</h3>
-          <p class="text-body text-neutral-600">Deployed in real laboratories and research facilities</p>
+
+      <div class="feature-card workflow-card reveal reveal-delay-2">
+        <div class="icon-box mb-4" style="background: rgba(13, 111, 159, 0.1);">
+          <i class="fas fa-sitemap" style="color: var(--brand); font-size: 0.9rem;"></i>
         </div>
+        <p class="text-caption">02 Plan</p>
+        <h3 class="text-h4 mb-3">Constrain Agent Decisions</h3>
+        <p class="text-body">Translate goals into bounded execution plans with policy checks, risk thresholds, and deterministic gates.</p>
+      </div>
+
+      <div class="feature-card workflow-card reveal reveal-delay-3">
+        <div class="icon-box mb-4" style="background: rgba(47, 90, 184, 0.1);">
+          <i class="fas fa-cogs" style="color: var(--accent-indigo); font-size: 0.9rem;"></i>
+        </div>
+        <p class="text-caption">03 Execute</p>
+        <h3 class="text-h4 mb-3">Orchestrate Tools and Instruments</h3>
+        <p class="text-body">Dispatch tasks across APIs, enterprise tools, and physical systems while preserving state between steps.</p>
+      </div>
+
+      <div class="feature-card workflow-card reveal reveal-delay-1">
+        <div class="icon-box mb-4" style="background: rgba(31, 143, 104, 0.1);">
+          <i class="fas fa-wave-square" style="color: var(--accent-emerald); font-size: 0.9rem;"></i>
+        </div>
+        <p class="text-caption">04 Observe</p>
+        <h3 class="text-h4 mb-3">Track Outcomes in Real Time</h3>
+        <p class="text-body">Continuously monitor signals, compare against expected ranges, and capture context for downstream review.</p>
+      </div>
+
+      <div class="feature-card workflow-card reveal reveal-delay-2">
+        <div class="icon-box mb-4" style="background: rgba(194, 122, 20, 0.11);">
+          <i class="fas fa-clipboard-check" style="color: var(--accent-amber); font-size: 0.9rem;"></i>
+        </div>
+        <p class="text-caption">05 Validate</p>
+        <h3 class="text-h4 mb-3">Enforce Quality Controls</h3>
+        <p class="text-body">Apply domain rules, benchmark policies, and procedural constraints before outcomes are accepted.</p>
+      </div>
+
+      <div class="feature-card workflow-card reveal reveal-delay-3">
+        <div class="icon-box mb-4" style="background: rgba(178, 67, 103, 0.11);">
+          <i class="fas fa-user-shield" style="color: var(--accent-rose); font-size: 0.9rem;"></i>
+        </div>
+        <p class="text-caption">06 Escalate</p>
+        <h3 class="text-h4 mb-3">Route to Human Oversight</h3>
+        <p class="text-body">Trigger reviewer interventions with full context when confidence, policy, or safety conditions require manual control.</p>
       </div>
     </div>
   </div>

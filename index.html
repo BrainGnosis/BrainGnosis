@@ -2,74 +2,56 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <link rel="icon" href="src/assets/images/brand/BrainGnosis_Logo_favicon.png" type="image/png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>BrainGnosis - Enterprise AI Agent Platform | AgentOS</title>
-  
-  <!-- Tailwind CSS via CDN -->
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-  
-  <!-- Font Awesome for Icons -->
+  <title>Linkton - Operational AI Infrastructure and SaaS for Regulated Teams</title>
+  <meta name="description" content="Linkton helps pharma, healthcare, and regulatory teams deploy reliable AI workflows through a domain SaaS control tower and governed execution infrastructure.">
+
+  <link rel="icon" href="src/assets/images/brand/BrainGnosis_Logo_favicon.png" type="image/png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  
-  <!-- Custom Styles -->
+
   <link rel="stylesheet" href="src/styles/main.css">
 </head>
 <body>
-  <!-- Header -->
   <div id="header-container"></div>
-
-  <!-- Hero Section -->
   <div id="hero-container"></div>
-
-  <!-- About Section -->
   <div id="about-container"></div>
-
-  <!-- Capabilities Section -->
   <div id="capabilities-container"></div>
-
-  <!-- All Other Sections -->
   <div id="sections-container"></div>
-
-  <!-- Footer -->
   <div id="footer-container"></div>
 
-  <!-- Modals -->
-  <div id="modals-container"></div>
-
-  <!-- JavaScript -->
-  <script type="module" src="src/scripts/main.js"></script>
-  
-  <!-- Component Loading Script -->
   <script>
-    // Load all components when DOM is ready
     document.addEventListener('DOMContentLoaded', async function() {
-      const components = [
-        { elementId: 'header-container', componentPath: 'src/components/header.html' },
-        { elementId: 'hero-container', componentPath: 'src/components/sections/hero.html' },
-        { elementId: 'about-container', componentPath: 'src/components/sections/about.html' },
-        { elementId: 'capabilities-container', componentPath: 'src/components/sections/capabilities.html' },
-        { elementId: 'sections-container', componentPath: 'src/components/sections/all-sections.html' },
-        { elementId: 'footer-container', componentPath: 'src/components/sections/footer.html' },
-        { elementId: 'modals-container', componentPath: 'src/components/modals/research-modals.html' }
+      var components = [
+        { id: 'header-container', path: 'src/components/header.html' },
+        { id: 'hero-container', path: 'src/components/sections/hero.html' },
+        { id: 'about-container', path: 'src/components/sections/about.html' },
+        { id: 'capabilities-container', path: 'src/components/sections/capabilities.html' },
+        { id: 'sections-container', path: 'src/components/sections/all-sections.html' },
+        { id: 'footer-container', path: 'src/components/sections/footer.html' }
       ];
 
-      // Load all components
-      for (const { elementId, componentPath } of components) {
+      for (var i = 0; i < components.length; i++) {
         try {
-          const response = await fetch(componentPath);
-          if (response.ok) {
-            const html = await response.text();
-            const element = document.getElementById(elementId);
-            if (element) {
-              element.innerHTML = html;
-            }
+          var res = await fetch(components[i].path);
+          if (res.ok) {
+            var html = await res.text();
+            var el = document.getElementById(components[i].id);
+            if (el) el.innerHTML = html;
           }
-        } catch (error) {
-          console.error(`Error loading component ${componentPath}:`, error);
+        } catch (err) {
+          console.error('Failed to load ' + components[i].path, err);
         }
       }
+
+      document.dispatchEvent(new Event('components-loaded'));
     });
   </script>
+
+  <script src="src/scripts/main.js" defer></script>
 </body>
 </html>

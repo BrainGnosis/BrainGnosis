@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI &amp; Software Developer - Linkton</title>
+  <meta name="description" content="Join Linkton as an AI and Software Developer. Build backend services, agent capabilities, and LLM-powered systems that drive real scientific workflows.">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="../../src/assets/images/brand/BrainGnosis_Logo_favicon.png">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;450;500;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="../../src/styles/main.css">
+
+  <style>
+    /* Job page specific */
+    .job-hero { padding: 7rem 0 3.5rem; background: var(--bg-surface); }
+    .breadcrumb { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 2rem; }
+    .breadcrumb a { font-size: 0.8125rem; color: var(--text-tertiary); transition: color var(--t-fast); }
+    .breadcrumb a:hover { color: var(--brand); }
+    .breadcrumb .sep { font-size: 0.65rem; color: var(--text-faint); }
+    .breadcrumb .current { font-size: 0.8125rem; color: var(--text-primary); font-weight: 500; }
+
+    .job-meta { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.5rem; }
+
+    .job-layout { display: grid; grid-template-columns: 1fr; gap: 3rem; }
+    @media (min-width: 1024px) { .job-layout { grid-template-columns: 2fr 1fr; } }
+
+    .sidebar { position: sticky; top: 2rem; display: flex; flex-direction: column; gap: 1.5rem; }
+    .sidebar-card { background: var(--bg-raised); border: 1px solid var(--border-subtle); border-radius: var(--radius-xl); padding: 1.5rem; box-shadow: var(--shadow-sm); }
+    .sidebar-card-highlight { background: rgba(0, 119, 182, 0.03); border-color: var(--border-brand); }
+
+    .detail-row { display: flex; justify-content: space-between; align-items: center; padding: 0.625rem 0; border-bottom: 1px solid var(--border-subtle); }
+    .detail-row:last-child { border-bottom: none; }
+    .detail-label { font-size: 0.8125rem; color: var(--text-tertiary); }
+    .detail-value { font-size: 0.8125rem; color: var(--text-primary); font-weight: 500; }
+
+    .job-section { margin-bottom: 2.5rem; }
+    .job-section h2 { margin-bottom: 1rem; }
+    .job-section h3 { margin-bottom: 0.75rem; }
+
+    .job-list { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 0.625rem; }
+    .job-list li { display: flex; align-items: flex-start; gap: 0.75rem; font-size: 0.9375rem; line-height: 1.6; color: var(--text-secondary); }
+    .job-list li i { color: var(--accent-emerald); margin-top: 0.3rem; flex-shrink: 0; font-size: 0.7rem; }
+
+    .nice-to-have li i { color: var(--accent-cyan); }
+
+    .who-grid { display: grid; grid-template-columns: 1fr; gap: 1rem; }
+    @media (min-width: 640px) { .who-grid { grid-template-columns: 1fr 1fr; } }
+    .who-card { background: var(--bg-surface); border-radius: var(--radius-lg); padding: 1.25rem; }
+    .who-card p { font-size: 0.875rem; line-height: 1.65; color: var(--text-secondary); }
+
+    .apply-banner { background: var(--bg-surface); border-top: 1px solid var(--border-subtle); padding: 4rem 0; }
+
+    .other-role { background: var(--bg-raised); border: 1px solid var(--border-subtle); border-radius: var(--radius-xl); padding: 1.5rem; transition: all var(--t-slow); box-shadow: var(--shadow-sm); text-decoration: none; display: block; }
+    .other-role:hover { border-color: var(--border-brand); box-shadow: var(--shadow-glow-brand); transform: translateY(-2px); }
+
+    /* Mobile sidebar toggle */
+    @media (max-width: 1023px) {
+      .sidebar { position: static; }
+      .desktop-sidebar { display: none; }
+    }
+    @media (min-width: 1024px) {
+      .mobile-sidebar { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="header header--transparent" id="header">
+    <div class="container">
+      <a href="../../index.html" class="header-logo">
+        <img src="../../src/assets/images/brand/linkton logo design.png" alt="Linkton">
+        <span class="header-logo-text">Linkton</span>
+      </a>
+      <nav class="header-nav">
+        <a href="../../index.html#about" class="header-nav-link">About</a>
+        <a href="../../index.html#technology" class="header-nav-link">Interlink</a>
+        <a href="../../index.html#products" class="header-nav-link">Products</a>
+        <a href="../../index.html#research" class="header-nav-link">Research</a>
+        <a href="../../index.html#contact" class="btn btn-primary btn-sm">Contact</a>
+      </nav>
+      <button class="mobile-menu-btn" id="mobile-menu-button" aria-label="Open menu">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+    <div class="mobile-menu" id="mobile-menu">
+      <a href="../../index.html#about">About</a>
+      <a href="../../index.html#technology">Interlink</a>
+      <a href="../../index.html#products">Products</a>
+      <a href="../../index.html#research">Research</a>
+      <a href="../../index.html#contact">Contact</a>
+    </div>
+  </header>
+
+  <!-- Job Hero -->
+  <section class="job-hero">
+    <div class="container">
+      <nav class="breadcrumb">
+        <a href="../../index.html">Home</a>
+        <span class="sep"><i class="fas fa-chevron-right"></i></span>
+        <a href="../../index.html#careers">Careers</a>
+        <span class="sep"><i class="fas fa-chevron-right"></i></span>
+        <span class="current">AI &amp; Software Developer</span>
+      </nav>
+
+      <div class="job-meta">
+        <span class="pill pill-brand">Remote-first</span>
+        <span class="pill pill-success">Entry &ndash; Mid Level</span>
+        <span class="pill pill-neutral">Eastern Time</span>
+      </div>
+
+      <h1 class="text-h1 mb-3">AI &amp; Software Developer</h1>
+      <p class="text-body-lg" style="max-width: 600px;">
+        Build and ship backend and AI-powered services that support agent workflows and product features. Work with LLMs, real data sources, and scientific workflow systems to deliver reliable, production-grade software.
+      </p>
+    </div>
+  </section>
+
+  <!-- Mobile sidebar -->
+  <section class="mobile-sidebar section bg-base" style="padding: 2rem 0;">
+    <div class="container">
+      <div class="sidebar-card sidebar-card-highlight mb-4">
+        <h3 class="text-h4 mb-3">Apply for this Position</h3>
+        <p class="text-body-sm mb-3">Send your resume and relevant work to:</p>
+        <a href="https://app.sproutsai.com/job-post/details/699088c5e7de78000733d726" class="btn btn-primary" style="width: 100%; justify-content: center;" target="_blank" rel="noopener noreferrer">
+          <i class="fas fa-envelope"></i>
+          Apply Now
+        </a>
+      </div>
+      <div class="sidebar-card">
+        <div class="detail-row">
+          <span class="detail-label">Location</span>
+          <span class="detail-value">Remote-first (ET)</span>
+        </div>
+        <div class="detail-row">
+          <span class="detail-label">Experience</span>
+          <span class="detail-value">Entry to Mid Level</span>
+        </div>
+        <div class="detail-row">
+          <span class="detail-label">Type</span>
+          <span class="detail-value">Intern / Contract / Full-time</span>
+        </div>
+        <div class="detail-row">
+          <span class="detail-label">Compensation</span>
+          <span class="detail-value">Competitive + Equity</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Job Content -->
+  <section class="section bg-base">
+    <div class="container">
+      <div class="job-layout">
+        <!-- Main Content -->
+        <div>
+          <!-- What You Will Work On -->
+          <div class="job-section">
+            <h2 class="text-h2">What You Will Work On</h2>
+            <ul class="job-list">
+              <li><i class="fas fa-check-circle"></i>Build and ship backend and AI-powered services that support agent workflows and product features</li>
+              <li><i class="fas fa-check-circle"></i>Develop agent capabilities including tool use, planning, memory, and reliable execution with human review when needed</li>
+              <li><i class="fas fa-check-circle"></i>Integrate LLM-based systems with real data sources, document stores, and scientific workflow inputs</li>
+              <li><i class="fas fa-check-circle"></i>Design and maintain APIs that power the product &mdash; including auth, rate limits, logs, and error handling</li>
+              <li><i class="fas fa-check-circle"></i>Implement evals and monitoring for quality, safety, and reliability</li>
+              <li><i class="fas fa-check-circle"></i>Improve performance and cost efficiency across inference, retrieval, and data pipelines</li>
+              <li><i class="fas fa-check-circle"></i>Collaborate with frontend and product to deliver end-to-end features, from prototype to production</li>
+            </ul>
+          </div>
+
+          <!-- Core Skills -->
+          <div class="job-section">
+            <h2 class="text-h2">Core Skills</h2>
+            <ul class="job-list">
+              <li><i class="fas fa-check-circle"></i>Strong programming fundamentals in Python and/or TypeScript, plus Git workflows</li>
+              <li><i class="fas fa-check-circle"></i>Experience building backend services, APIs, and working with databases</li>
+              <li><i class="fas fa-check-circle"></i>Practical experience with LLM-powered apps or ML projects &mdash; through internships, research, freelance, or personal work</li>
+              <li><i class="fas fa-check-circle"></i>Ability to write clean, modular code, add tests, debug issues, and own small to medium features end to end</li>
+              <li><i class="fas fa-check-circle"></i>Comfort working independently, communicating clearly, and iterating quickly</li>
+            </ul>
+          </div>
+
+          <!-- Nice to Have -->
+          <div class="job-section">
+            <h2 class="text-h2">Nice to Have</h2>
+            <ul class="job-list nice-to-have">
+              <li><i class="fas fa-plus-circle"></i>Experience with agent frameworks or orchestration patterns &mdash; tool calling, function routing, state machines</li>
+              <li><i class="fas fa-plus-circle"></i>RAG experience &mdash; embeddings, vector databases, chunking, reranking, retrieval evaluation</li>
+              <li><i class="fas fa-plus-circle"></i>Experience deploying models or services &mdash; Docker, cloud services, CI/CD, background jobs</li>
+              <li><i class="fas fa-plus-circle"></i>Familiarity with observability &mdash; tracing, structured logging, metrics, model monitoring</li>
+            </ul>
+          </div>
+
+          <!-- Who You Are -->
+          <div class="job-section">
+            <h2 class="text-h2 mb-4">Who You Are</h2>
+            <div class="who-grid">
+              <div class="who-card">
+                <div class="icon-box mb-3" style="background: rgba(0, 119, 182, 0.08);">
+                  <i class="fas fa-box-open" style="color: var(--brand); font-size: 0.8rem;"></i>
+                </div>
+                <p>You have shipped at least one real project and can explain your design decisions and tradeoffs.</p>
+              </div>
+              <div class="who-card">
+                <div class="icon-box mb-3" style="background: rgba(5, 150, 105, 0.08);">
+                  <i class="fas fa-shield-alt" style="color: var(--accent-emerald); font-size: 0.8rem;"></i>
+                </div>
+                <p>You care about reliability and can build guardrails, tests, and monitoring &mdash; not only demos.</p>
+              </div>
+              <div class="who-card">
+                <div class="icon-box mb-3" style="background: rgba(124, 58, 237, 0.08);">
+                  <i class="fas fa-flag" style="color: var(--accent-violet); font-size: 0.8rem;"></i>
+                </div>
+                <p>You take ownership and can move from idea to working product code.</p>
+              </div>
+              <div class="who-card">
+                <div class="icon-box mb-3" style="background: rgba(8, 145, 178, 0.08);">
+                  <i class="fas fa-brain" style="color: var(--accent-cyan); font-size: 0.8rem;"></i>
+                </div>
+                <p>You are curious about AI systems and enjoy building practical software that interacts with real-world workflows.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Desktop Sidebar -->
+        <div class="desktop-sidebar">
+          <div class="sidebar">
+            <div class="sidebar-card sidebar-card-highlight">
+              <h3 class="text-h4 mb-3">Apply for this Position</h3>
+              <p class="text-body-sm mb-4">Send your resume and relevant work to:</p>
+              <a href="https://app.sproutsai.com/job-post/details/699088c5e7de78000733d726" class="btn btn-primary" style="width: 100%; justify-content: center;" target="_blank" rel="noopener noreferrer">
+                <i class="fas fa-envelope"></i>
+                Apply Now
+              </a>
+            </div>
+
+            <div class="sidebar-card">
+              <h4 class="text-h4 mb-4">Details</h4>
+              <div class="detail-row">
+                <span class="detail-label">Location</span>
+                <span class="detail-value">Remote-first (ET)</span>
+              </div>
+              <div class="detail-row">
+                <span class="detail-label">Experience</span>
+                <span class="detail-value">Entry to Mid Level</span>
+              </div>
+              <div class="detail-row">
+                <span class="detail-label">Type</span>
+                <span class="detail-value">Intern / Contract / Full-time</span>
+              </div>
+              <div class="detail-row">
+                <span class="detail-label">Compensation</span>
+                <span class="detail-value">Competitive + Equity</span>
+              </div>
+            </div>
+
+            <div class="sidebar-card">
+              <h4 class="text-h4 mb-3">What We Offer</h4>
+              <ul class="job-list" style="gap: 0.5rem;">
+                <li><i class="fas fa-check-circle"></i><span class="text-body-sm">Equity based on performance</span></li>
+                <li><i class="fas fa-check-circle"></i><span class="text-body-sm">Flexible remote work</span></li>
+                <li><i class="fas fa-check-circle"></i><span class="text-body-sm">Work directly with founders</span></li>
+                <li><i class="fas fa-check-circle"></i><span class="text-body-sm">Learning &amp; growth budget</span></li>
+                <li><i class="fas fa-check-circle"></i><span class="text-body-sm">Direct product impact</span></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Apply Banner -->
+  <section class="apply-banner">
+    <div class="container">
+      <div class="text-center max-w-xl mx-auto">
+        <h2 class="text-h2 mb-3">Interested?</h2>
+        <p class="text-body mb-6">Send us your resume, GitHub, or anything that shows your work. Tell us what you have built and why it mattered.</p>
+        <a href="https://app.sproutsai.com/job-post/details/699088c5e7de78000733d726" class="btn btn-primary btn-lg" target="_blank" rel="noopener noreferrer">
+          <i class="fas fa-envelope"></i>
+          Apply Now
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Other Positions -->
+  <section class="section bg-base" style="padding-top: 3rem; padding-bottom: 4rem;">
+    <div class="container" style="max-width: 600px;">
+      <h3 class="text-h3 mb-4">Other Open Positions</h3>
+      <a href="frontend-developer.html" class="other-role">
+        <div class="flex items-center gap-3 mb-2">
+          <div class="icon-box" style="background: rgba(124, 58, 237, 0.08);">
+            <i class="fas fa-palette" style="color: var(--accent-violet); font-size: 0.85rem;"></i>
+          </div>
+          <h4 class="text-h4">Frontend Developer</h4>
+        </div>
+        <p class="text-body-sm">Build product pages, interactive demos, and state-driven visualizations for our AI agent platform.</p>
+      </a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer style="padding: 3.5rem 0 2rem; background: #0c1929; color: #94a3b8;">
+    <div class="container">
+      <div class="flex flex-col items-center text-center">
+        <div class="flex items-center gap-2 mb-4">
+          <img src="../../src/assets/images/brand/linkton logo design.png" alt="Linkton" style="width: 1.25rem; height: 1.25rem; filter: brightness(0) invert(1); opacity: 0.8;">
+          <span style="color: #e2e8f0; font-size: 1rem; font-weight: 600; font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;">Linkton</span>
+        </div>
+        <nav class="flex flex-wrap justify-center gap-6 mb-6">
+          <a href="../../index.html#about" style="font-size: 0.8125rem; color: #64748b; transition: color 0.2s;" onmouseover="this.style.color='#cbd5e1'" onmouseout="this.style.color='#64748b'">About</a>
+          <a href="../../index.html#technology" style="font-size: 0.8125rem; color: #64748b; transition: color 0.2s;" onmouseover="this.style.color='#cbd5e1'" onmouseout="this.style.color='#64748b'">Interlink</a>
+          <a href="../../index.html#products" style="font-size: 0.8125rem; color: #64748b; transition: color 0.2s;" onmouseover="this.style.color='#cbd5e1'" onmouseout="this.style.color='#64748b'">Products</a>
+          <a href="../../index.html#research" style="font-size: 0.8125rem; color: #64748b; transition: color 0.2s;" onmouseover="this.style.color='#cbd5e1'" onmouseout="this.style.color='#64748b'">Research</a>
+        </nav>
+        <hr style="width: 100%; height: 1px; background: rgba(255,255,255,0.08); border: none; margin: 0 0 1.25rem;">
+        <p style="font-size: 0.6875rem; color: #475569;">&copy; 2025 BrainGnosis Inc. DBA Linkton. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../../src/scripts/main.js" defer></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var btn = document.getElementById('mobile-menu-button');
+      var menu = document.getElementById('mobile-menu');
+      if (btn && menu) {
+        btn.addEventListener('click', function() {
+          menu.classList.toggle('active');
+          var icon = btn.querySelector('i');
+          if (icon) icon.className = menu.classList.contains('active') ? 'fas fa-times' : 'fas fa-bars';
+        });
+      }
+    });
+  </script>
+</body>
+</html>

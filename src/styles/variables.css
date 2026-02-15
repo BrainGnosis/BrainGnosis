@@ -1,38 +1,62 @@
-/* CSS Custom Properties (Variables) */
+/* BrainGnosis Design Tokens */
 :root {
-  /* Primary Colors */
-  --primary-50: #fef7f0;
-  --primary-100: #fdecd8;
-  --primary-200: #fbd5b0;
-  --primary-300: #f8b87d;
-  --primary-400: #f5944a;
-  --primary-500: #f2752a;
-  --primary-600: #e35a1f;
-  --primary-700: #bc441c;
-  --primary-800: #96371e;
-  --primary-900: #7a2f1c;
-  
-  /* Neutral Colors */
-  --neutral-50: #fafafa;
-  --neutral-100: #f5f5f5;
-  --neutral-200: #e5e5e5;
-  --neutral-300: #d4d4d4;
-  --neutral-400: #a3a3a3;
-  --neutral-500: #737373;
-  --neutral-600: #525252;
-  --neutral-700: #404040;
-  --neutral-800: #262626;
-  --neutral-900: #171717;
-  
-  /* Accent Colors */
-  --accent-blue: #3b82f6;
-  --accent-purple: #8b5cf6;
-  --accent-emerald: #10b981;
-  
+  /* Brand */
+  --brand: #0d6f9f;
+  --brand-light: #2b8dbe;
+  --brand-dark: #0a4c70;
+  --brand-soft: rgba(13, 111, 159, 0.12);
+
+  /* Surfaces */
+  --bg-deepest: #081422;
+  --bg-base: #f8fbff;
+  --bg-raised: #ffffff;
+  --bg-surface: #edf4fb;
+  --bg-surface-2: #e3edf8;
+  --bg-hover: #dbe8f8;
+
+  /* Borders */
+  --border-subtle: rgba(8, 20, 34, 0.08);
+  --border-default: rgba(8, 20, 34, 0.14);
+  --border-strong: rgba(8, 20, 34, 0.2);
+  --border-brand: rgba(13, 111, 159, 0.28);
+
+  /* Text */
+  --text-primary: #0b1726;
+  --text-secondary: #294155;
+  --text-tertiary: #4d6478;
+  --text-faint: #8ba0b3;
+  --text-brand: #0d6f9f;
+
+  /* Accents */
+  --accent-cyan: #118ab2;
+  --accent-emerald: #1f8f68;
+  --accent-amber: #c27a14;
+  --accent-rose: #b24367;
+  --accent-indigo: #2f5ab8;
+
+  /* Semantic */
+  --success: #1f8f68;
+  --warning: #c27a14;
+  --error: #c0392b;
+
   /* Shadows */
-  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
-  --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+  --shadow-sm: 0 1px 2px rgba(8, 20, 34, 0.05), 0 1px 4px rgba(8, 20, 34, 0.06);
+  --shadow-md: 0 2px 8px rgba(8, 20, 34, 0.06), 0 8px 22px rgba(8, 20, 34, 0.08);
+  --shadow-lg: 0 6px 18px rgba(8, 20, 34, 0.08), 0 20px 42px rgba(8, 20, 34, 0.12);
+  --shadow-xl: 0 10px 26px rgba(8, 20, 34, 0.1), 0 30px 56px rgba(8, 20, 34, 0.16);
+  --shadow-glow-brand: 0 8px 24px rgba(13, 111, 159, 0.2);
+
+  /* Radius */
+  --radius-sm: 0.375rem;
+  --radius-md: 0.625rem;
+  --radius-lg: 0.875rem;
+  --radius-xl: 1.125rem;
+  --radius-2xl: 1.5rem;
+  --radius-full: 9999px;
+
+  /* Motion */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --t-fast: 150ms var(--ease-out);
+  --t-base: 240ms var(--ease-out);
+  --t-slow: 420ms var(--ease-out);
 }

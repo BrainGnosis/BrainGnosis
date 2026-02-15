@@ -1,38 +1,31 @@
-<!-- Header Component -->
-<header class="header" id="header">
+<!-- Header -->
+<header class="header header--transparent" id="header">
   <div class="container">
-    <div class="flex justify-between items-center py-4">
-      <a href="index.html" class="logo text-heading-4 font-bold">
-        <img src="src/assets/images/brand/BrainGnosis Logo without background black.png" alt="Logo" class="w-8 h-8">
-        <span class="logo-gradient">BrainGnosis</span>
-      </a>
-      
-      <nav class="desktop-nav hidden md:flex items-center gap-8">
-        <a href="#about" class="nav-link text-body font-medium">About</a>
-        <a href="#products" class="nav-link text-body font-medium">AgentOS</a>
-        <a href="#services" class="nav-link text-body font-medium">Services</a>
-        <a href="#research" class="nav-link text-body font-medium">Research</a>
-        <a href="#team" class="nav-link text-body font-medium">Team</a>
-        <a href="careers.html" class="nav-link text-body font-medium">Careers</a>
-        <a href="#contact" class="nav-link text-body font-medium">Contact</a>
-      </nav>
-      
-      <button class="block md:hidden btn btn-ghost" id="mobile-menu-button">
-        <i class="fas fa-bars text-lg text-neutral-600"></i>
-      </button>
-    </div>
-    
-    <!-- Mobile Menu -->
-    <div class="md:hidden hidden" id="mobile-menu">
-      <nav class="py-4 space-y-2 border-t border-neutral-200">
-        <a href="#about" class="block py-2 nav-link text-body font-medium">About</a>
-        <a href="#products" class="block py-2 nav-link text-body font-medium">AgentOS</a>
-        <a href="#services" class="block py-2 nav-link text-body font-medium">Services</a>
-        <a href="#research" class="block py-2 nav-link text-body font-medium">Research</a>
-        <a href="#team" class="block py-2 nav-link text-body font-medium">Team</a>
-        <a href="careers.html" class="block py-2 nav-link text-body font-medium">Careers</a>
-        <a href="#contact" class="block py-2 nav-link text-body font-medium">Contact</a>
-      </nav>
-    </div>
+    <a href="index.html" class="header-logo" aria-label="BrainGnosis home">
+      <img src="src/assets/images/brand/BrainGnosis Logo without background black.png" alt="BrainGnosis logo">
+      <span class="header-logo-text">BrainGnosis</span>
+    </a>
+
+    <nav class="header-nav" aria-label="Primary">
+      <a href="#about" class="header-nav-link">What We Do</a>
+      <a href="#platform" class="header-nav-link">Workflow</a>
+      <a href="#suite" class="header-nav-link">Suite</a>
+      <a href="#assurance" class="header-nav-link">Trust</a>
+      <a href="#products" class="header-nav-link">Products</a>
+      <a href="#contact" class="btn btn-primary btn-sm">Book a Call</a>
+    </nav>
+
+    <button class="mobile-menu-btn" id="mobile-menu-button" aria-label="Open menu">
+      <i class="fas fa-bars"></i>
+    </button>
+  </div>
+
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="#about">What We Do</a>
+    <a href="#platform">Workflow</a>
+    <a href="#suite">Suite</a>
+    <a href="#assurance">Trust</a>
+    <a href="#products">Products</a>
+    <a href="#contact">Book a Call</a>
   </div>
 </header>

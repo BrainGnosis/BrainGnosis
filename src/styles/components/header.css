@@ -1,74 +1,132 @@
-/* Header System */
+/* Header */
 .header {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   z-index: 1000;
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(20px);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.04);
-  transition: all 0.3s ease;
+  transition: background var(--t-base), border-color var(--t-base), box-shadow var(--t-base);
 }
 
-.header.scrolled {
-  background: rgba(255, 255, 255, 0.98);
-  box-shadow: var(--shadow-sm);
+.header--transparent {
+  background: transparent;
 }
 
-.nav-link {
-  position: relative;
-  color: var(--neutral-600);
-  /* Typography handled by text-body class */
-  text-decoration: none;
-  transition: color 0.3s ease;
+.header--scrolled {
+  background: rgba(248, 251, 255, 0.92);
+  backdrop-filter: blur(14px) saturate(150%);
+  -webkit-backdrop-filter: blur(14px) saturate(150%);
+  border-bottom: 1px solid var(--border-subtle);
+  box-shadow: 0 1px 3px rgba(8, 20, 34, 0.05), 0 8px 20px rgba(8, 20, 34, 0.06);
 }
 
-.nav-link::after {
-  content: '';
-  position: absolute;
-  bottom: -4px;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background: linear-gradient(90deg, var(--primary-500), var(--primary-600));
-  transition: width 0.3s ease;
-}
-
-.nav-link:hover {
-  color: var(--neutral-900);
-}
-
-.nav-link:hover::after {
-  width: 100%;
-}
-
-/* Logo System */
-.logo {
+.header .container {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
-  /* Typography handled by text-heading-4 class */
-  color: var(--neutral-900);
+  justify-content: space-between;
+  height: 4.1rem;
+}
+
+.header-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
   text-decoration: none;
+  font-size: 1rem;
+  font-weight: 700;
+  transition: opacity var(--t-fast);
 }
 
-.logo-gradient {
-  background: linear-gradient(135deg, var(--primary-600) 0%, var(--primary-700) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+.header-logo:hover { opacity: 0.78; }
+
+.header-logo img {
+  width: 1.65rem;
+  height: 1.65rem;
 }
 
-/* Desktop Navigation Override */
-@media (min-width: 768px) {
-  .desktop-nav {
-    display: flex !important;
-    align-items: center;
-    gap: 2rem;
-  }
-  
-  #mobile-menu-button {
-    display: none !important;
-  }
+.header-logo-text {
+  font-family: 'Manrope', 'Avenir Next', 'Segoe UI', sans-serif;
+  color: var(--text-primary);
+  letter-spacing: -0.01em;
+}
+
+.header-nav {
+  display: none;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.2rem;
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.66);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+}
+
+.header-nav-link {
+  padding: 0.44rem 0.82rem;
+  font-size: 0.79rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  border-radius: var(--radius-full);
+  transition: background var(--t-fast), color var(--t-fast);
+}
+
+.header-nav-link:hover {
+  color: var(--brand);
+  background: var(--brand-soft);
+}
+
+.header-nav .btn-sm {
+  margin-left: 0.35rem;
+}
+
+.mobile-menu-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.3rem;
+  height: 2.3rem;
+  border: 1px solid var(--border-subtle);
+  background: rgba(255, 255, 255, 0.8);
+  cursor: pointer;
+  border-radius: var(--radius-md);
+  color: var(--text-secondary);
+  transition: all var(--t-fast);
+  font-size: 0.95rem;
+}
+
+.mobile-menu-btn:hover {
+  background: var(--bg-surface);
+  color: var(--text-primary);
+}
+
+.mobile-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: rgba(248, 251, 255, 0.97);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border-subtle);
+  box-shadow: var(--shadow-md);
+  padding: 0.75rem 1.4rem 1.2rem;
+}
+
+.mobile-menu.active { display: block; }
+
+.mobile-menu a {
+  display: block;
+  padding: 0.7rem 0;
+  font-size: 0.91rem;
+  font-weight: 560;
+  color: var(--text-secondary);
+  border-bottom: 1px solid var(--border-subtle);
+  transition: color var(--t-fast);
+}
+
+.mobile-menu a:last-child { border-bottom: none; }
+.mobile-menu a:hover { color: var(--brand); }
+
+@media (min-width: 900px) {
+  .header-nav { display: flex; }
+  .mobile-menu-btn { display: none; }
 }
