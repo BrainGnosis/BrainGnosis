@@ -5,25 +5,29 @@
 
 (function () {
   var header, mobileMenuBtn, mobileMenu;
+  var coreInitialized = false;
 
   // Wait for components to load before initializing
   document.addEventListener('components-loaded', setup);
   // Fallback: if event already fired or never fires
-  window.addEventListener('load', function () { setTimeout(setup, 100); });
-
-  var initialized = false;
+  window.addEventListener('load', function () {
+    setTimeout(setup, 100);
+    setTimeout(setup, 400);
+  });
 
   function setup() {
-    if (initialized) return;
-    initialized = true;
-
     header = document.getElementById('header');
     mobileMenuBtn = document.getElementById('mobile-menu-button');
     mobileMenu = document.getElementById('mobile-menu');
 
-    initHeaderScroll();
-    initMobileMenu();
-    initSmoothScroll();
+    if (!coreInitialized && header) {
+      initHeaderScroll();
+      initMobileMenu();
+      initSmoothScroll();
+      coreInitialized = true;
+    }
+
+    // Some sections are injected asynchronously, so re-run these safely.
     initScrollReveal();
     initDemoTabs();
   }
@@ -118,6 +122,8 @@
     var panels = document.querySelectorAll('[data-demo-panel]');
 
     tabs.forEach(function (tab) {
+      if (tab.getAttribute('data-demo-bound') === '1') return;
+      tab.setAttribute('data-demo-bound', '1');
       tab.addEventListener('click', function () {
         var target = tab.getAttribute('data-demo-tab');
         if (!target) return;
