@@ -6,7 +6,7 @@
   <title>BrainGnosis - Operational AI Infrastructure and SaaS for Regulated Teams</title>
   <meta name="description" content="BrainGnosis helps pharma, healthcare, and regulatory teams deploy reliable AI workflows through a domain SaaS control tower and governed execution infrastructure.">
 
-  <link rel="icon"operational href="src/assets/images/brand/BrainGnosis_Logo_favicon.png" type="image/png">
+  <link rel="icon" href="src/assets/images/brand/BrainGnosis_Logo_favicon.png" type="image/png">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -35,19 +35,28 @@
         { id: 'footer-container', path: 'src/components/sections/footer.html' }
       ];
 
-      for (var i = 0; i < components.length; i++) {
-        try {
-          var res = await fetch(components[i].path);
-          if (res.ok) {
-            var html = await res.text();
-            var el = document.getElementById(components[i].id);
-            if (el) el.innerHTML = html;
+      async function loadComponent(component) {
+        var retries = 2;
+        while (retries > 0) {
+          try {
+            var response = await fetch(component.path, { cache: 'no-store' });
+            if (!response.ok) throw new Error('HTTP ' + response.status);
+            var html = await response.text();
+            var element = document.getElementById(component.id);
+            if (element) element.innerHTML = html;
+            return;
+          } catch (err) {
+            retries -= 1;
+            if (retries === 0) {
+              console.error('Failed to load ' + component.path, err);
+            } else {
+              await new Promise(function(resolve) { setTimeout(resolve, 120); });
+            }
           }
-        } catch (err) {
-          console.error('Failed to load ' + components[i].path, err);
         }
       }
 
+      await Promise.all(components.map(loadComponent));
       document.dispatchEvent(new Event('components-loaded'));
     });
   </script>
