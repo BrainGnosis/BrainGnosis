@@ -1,5 +1,5 @@
 /**
- * BrainGnosis Main JavaScript
+ * LINKTON Main JavaScript
  * Handles header, mobile nav, smooth scroll, and scroll-reveal animations
  */
 
@@ -29,7 +29,6 @@
 
     // Some sections are injected asynchronously, so re-run these safely.
     initScrollReveal();
-    initDemoTabs();
   }
 
   /* --- Header: transparent -> solid on scroll --- */
@@ -114,30 +113,4 @@
     });
   }
 
-  /* --- Walkthrough tabs --- */
-  function initDemoTabs() {
-    var tabs = document.querySelectorAll('[data-demo-tab]');
-    if (!tabs.length) return;
-
-    var panels = document.querySelectorAll('[data-demo-panel]');
-
-    tabs.forEach(function (tab) {
-      if (tab.getAttribute('data-demo-bound') === '1') return;
-      tab.setAttribute('data-demo-bound', '1');
-      tab.addEventListener('click', function () {
-        var target = tab.getAttribute('data-demo-tab');
-        if (!target) return;
-
-        tabs.forEach(function (btn) {
-          var active = btn === tab;
-          btn.classList.toggle('active', active);
-          btn.setAttribute('aria-selected', active ? 'true' : 'false');
-        });
-
-        panels.forEach(function (panel) {
-          panel.classList.toggle('active', panel.getAttribute('data-demo-panel') === target);
-        });
-      });
-    });
-  }
 })();
