@@ -60,8 +60,8 @@ class Careers {
     
     if (navigator.share) {
       navigator.share({
-        title: `${jobTitle} at BrainGnosis`,
-        text: `Check out this opportunity at BrainGnosis: ${jobTitle}`,
+        title: `${jobTitle} at LINKTON`,
+        text: `Check out this opportunity at LINKTON: ${jobTitle}`,
         url: url
       }).catch(console.error);
     } else {

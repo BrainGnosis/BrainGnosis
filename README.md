@@ -1,3 +1,3 @@
-# BrainGnosis
+# LINKTON
 
-**Making AI Smarter for Humans**
+**LINKTON&trade; (a BrainGnosis Inc company)**

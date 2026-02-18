@@ -1,7 +1,7 @@
 {
-  "name": "braingnosis-website",
+  "name": "linkton-website",
   "version": "2.0.0",
-  "description": "BrainGnosis Enterprise AI Agent Platform Website",
+  "description": "LINKTON™ (a BrainGnosis Inc company) website",
   "main": "index.html",
   "scripts": {
     "dev": "python -m http.server 8000",
@@ -16,7 +16,7 @@
     "neurosymbolic",
     "AgentOS"
   ],
-  "author": "BrainGnosis Inc.",
+  "author": "LINKTON™ (a BrainGnosis Inc company)",
   "license": "MIT",
   "devDependencies": {},
   "dependencies": {},
