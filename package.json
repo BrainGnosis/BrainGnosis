@@ -1,28 +1,25 @@
 {
-  "name": "braingnosis-website",
-  "version": "2.0.0",
-  "description": "BrainGnosis Enterprise AI Agent Platform Website",
-  "main": "index.html",
+  "name": "linkton-website",
+  "private": true,
+  "version": "3.0.0",
+  "description": "Linkton website for BrainGnosis Inc.",
+  "type": "module",
   "scripts": {
-    "dev": "python -m http.server 8000",
-    "build": "echo 'Build process - ready for production'",
-    "serve": "python -m http.server 8000",
-    "lint": "echo 'Linting CSS and JS files'"
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
   },
-  "keywords": [
-    "AI",
-    "agents",
-    "enterprise",
-    "neurosymbolic",
-    "AgentOS"
-  ],
-  "author": "BrainGnosis Inc.",
-  "license": "MIT",
-  "devDependencies": {},
-  "dependencies": {},
+  "dependencies": {
+    "react": "18.3.1",
+    "react-dom": "18.3.1"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "4.7.0",
+    "vite": "^6.4.3"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/braingnosis/website"
   },
-  "homepage": "https://braingnosis.ai"
+  "homepage": "https://braingnosis.com"
 }
