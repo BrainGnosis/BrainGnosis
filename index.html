@@ -1,66 +1,27 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>LINKTON&trade; - Operational AI Infrastructure and SaaS for Regulated Teams</title>
-  <meta name="description" content="LINKTON&trade; (a BrainGnosis Inc company) helps pharma, healthcare, and regulatory teams deploy reliable AI workflows through a domain SaaS control tower and governed execution infrastructure.">
-
-  <link rel="icon" href="src/assets/images/brand/BrainGnosis_Logo_favicon.png" type="image/png">
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
-  <link rel="stylesheet" href="src/styles/main.css">
-</head>
-<body>
-  <div id="header-container"></div>
-  <div id="hero-container"></div>
-  <div id="about-container"></div>
-  <div id="capabilities-container"></div>
-  <div id="sections-container"></div>
-  <div id="footer-container"></div>
-
-  <script>
-    document.addEventListener('DOMContentLoaded', async function() {
-      var components = [
-        { id: 'header-container', path: 'src/components/header.html' },
-        { id: 'hero-container', path: 'src/components/sections/hero.html' },
-        { id: 'about-container', path: 'src/components/sections/about.html' },
-        { id: 'capabilities-container', path: 'src/components/sections/capabilities.html' },
-        { id: 'sections-container', path: 'src/components/sections/all-sections.html' },
-        { id: 'footer-container', path: 'src/components/sections/footer.html' }
-      ];
-
-      async function loadComponent(component) {
-        var retries = 2;
-        while (retries > 0) {
-          try {
-            var response = await fetch(component.path, { cache: 'no-store' });
-            if (!response.ok) throw new Error('HTTP ' + response.status);
-            var html = await response.text();
-            var element = document.getElementById(component.id);
-            if (element) element.innerHTML = html;
-            return;
-          } catch (err) {
-            retries -= 1;
-            if (retries === 0) {
-              console.error('Failed to load ' + component.path, err);
-            } else {
-              await new Promise(function(resolve) { setTimeout(resolve, 120); });
-            }
-          }
-        }
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Linkton brings instruments, records, and documents together in one auditable AI layer for drug development workflows."
+    />
+    <title>Linkton | Intelligence Layer for Drug Development</title>
+    <style>
+      html,
+      body,
+      #root {
+        min-height: 100%;
       }
 
-      await Promise.all(components.map(loadComponent));
-      document.dispatchEvent(new Event('components-loaded'));
-    });
-  </script>
-
-  <script src="src/scripts/main.js" defer></script>
-</body>
+      body {
+        margin: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
 </html>
