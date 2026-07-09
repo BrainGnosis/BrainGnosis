@@ -649,28 +649,32 @@ export default function App() {
                 </div>
                 <div className="app-body">
                   <div className="app-chat">
+                    <div className="msg msg-user">
+                      <div className="bubble">Can we release Batch B-24017? Cross-check QC results, open deviations, and the approved SOP.</div>
+                    </div>
                     <div className="msg">
                       <div className="av"><LinktonLogoMini /></div>
                       <div>
                         <div className="msg-name">LINKTON</div>
-                        <div className="msg-text">The limit of detection for the Q-TOF on this assay is <span className="hl">1.4&nbsp;zg/mL</span> — pulled from the instrument manual, not a public model.</div>
+                        <div className="msg-text">Yes—every QC result is <span className="hl">within specification</span>, no deviations remain open, and testing followed SOP-QC-104 v7.</div>
                         <div className="src-chips">
-                          <span className="src-chip"><svg><use href="#i-file" /></svg>Q-TOF manual v3.2</span>
-                          <span className="src-chip"><svg><use href="#i-flask" /></svg>Assay SOP-0481</span>
+                          <span className="src-chip"><svg><use href="#i-db" /></svg>LIMS · Batch B-24017</span>
+                          <span className="src-chip"><svg><use href="#i-doc" /></svg>Veeva · SOP-QC-104 v7</span>
+                          <span className="src-chip"><svg><use href="#i-file" /></svg>Deviation Log</span>
                         </div>
                       </div>
                     </div>
                     <div className="msg msg-user">
-                      <div className="bubble">Cross-check it against the validation report.</div>
+                      <div className="bubble">Show me the complete evidence trail.</div>
                     </div>
                     <div className="msg">
                       <div className="av"><LinktonLogoMini /></div>
                       <div style={{ flex: 1 }}>
                         <div className="msg-name">LINKTON</div>
                         <div className="idx">
-                          <div className="idx-row"><span className="l">Indexing validation report</span><span className="pc">72%</span></div>
+                          <div className="idx-row"><span className="l">Compiling evidence trail</span><span className="pc">72%</span></div>
                           <div className="bar"><i /></div>
-                          <div className="idx-note">Aggregating across 3 documents · traceable</div>
+                          <div className="idx-note">Linking QC, deviations &amp; SOP · traceable</div>
                         </div>
                       </div>
                     </div>
