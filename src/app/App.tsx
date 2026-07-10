@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState, type FormEvent, type MouseEvent as ReactMouseEvent } from "react";
 
 const CSS = `
 :root{
@@ -61,6 +61,31 @@ p{margin:0}
 .btn-light{background:rgba(255,255,255,.1); color:#fff; border-color:rgba(255,255,255,.18); backdrop-filter:blur(6px)}
 .btn-light:hover{background:rgba(255,255,255,.18); transform:translateY(-2px)}
 .btn-lg{padding:16px 26px; font-size:16px}
+.contact-overlay{position:fixed;inset:0;z-index:100;background:rgba(12,21,38,.62);backdrop-filter:blur(9px);display:grid;place-items:center;padding:20px}
+.contact-modal{width:min(100%,620px);max-height:calc(100vh - 40px);overflow:auto;background:#fff;border-radius:var(--r-xl);box-shadow:0 40px 100px -30px rgba(6,17,38,.7);padding:36px;position:relative}
+.contact-close{position:absolute;top:18px;right:18px;width:40px;height:40px;border:0;border-radius:10px;background:var(--mist);color:var(--tx-2);display:grid;place-items:center;cursor:pointer;transition:.18s}
+.contact-close:hover{background:var(--sky);color:var(--blue-600)}
+.contact-close:focus-visible{outline:3px solid rgba(17,136,205,.28);outline-offset:2px}
+.contact-close svg{width:18px;height:18px;stroke:currentColor;stroke-width:1.8}
+.contact-kicker{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--blue-600);margin-bottom:12px}
+.contact-modal h2{font-size:clamp(30px,4vw,42px);max-width:470px;padding-right:40px}
+.contact-intro{font-size:15px;line-height:1.58;color:var(--tx-2);max-width:500px;margin-top:12px}
+.contact-form{display:grid;gap:16px;margin-top:26px}
+.contact-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.contact-field{display:grid;gap:7px}
+.contact-field label{font-size:12.5px;font-weight:600;color:var(--tx)}
+.contact-field label span{font-weight:400;color:var(--slate);margin-left:4px}
+.contact-field input,.contact-field textarea{width:100%;border:1px solid var(--line-2);border-radius:10px;background:#fff;color:var(--tx);font:inherit;font-size:14px;line-height:1.45;padding:11px 13px;outline:none;transition:border-color .18s,box-shadow .18s,background .18s}
+.contact-field input::placeholder,.contact-field textarea::placeholder{color:#8a96ab}
+.contact-field input:hover,.contact-field textarea:hover{border-color:#c5d2e5}
+.contact-field input:focus,.contact-field textarea:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(17,136,205,.12);background:#fcfeff}
+.contact-field textarea{min-height:118px;resize:vertical}
+.contact-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:2px}
+.contact-actions .btn{width:100%;justify-content:center;padding-left:14px;padding-right:14px}
+.contact-copy-status{min-height:18px;font-size:12px;line-height:1.5;text-align:center;color:var(--green)}
+.contact-copy-status.failed{color:var(--red)}
+.contact-note{font-size:12px;line-height:1.5;color:var(--slate);text-align:center}
+.contact-email{color:var(--blue-600);font-weight:600}
 .pill{display:inline-flex; align-items:center; gap:7px; font-family:var(--sans); font-weight:600; font-size:12.5px; padding:5px 11px; border-radius:999px; border:1px solid var(--line-2); background:#fff; color:var(--tx-2)}
 .dot{width:7px; height:7px; border-radius:50%; flex:none; background:var(--green)}
 .dot--g{background:var(--green)} .dot--a{background:var(--amber)} .dot--r{background:var(--red)}
@@ -97,6 +122,7 @@ p{margin:0}
 .hero h1{font-size:clamp(40px,5.6vw,72px); line-height:1.0; letter-spacing:-.022em; font-weight:600}
 .hero h1 .em{font-style:italic; color:var(--blue-600); font-weight:600}
 .hero-sub{font-family:var(--sans); font-size:clamp(16.5px,1.65vw,20px); color:var(--tx-2); line-height:1.55; margin-top:24px; max-width:540px}
+.hero-link{font-weight:700;color:var(--blue-600);letter-spacing:.04em}
 .hero-cta{display:flex; gap:13px; margin-top:34px; flex-wrap:wrap}
 .hero-trust{display:flex; align-items:center; gap:18px; margin-top:40px; flex-wrap:wrap; font-family:var(--mono); font-size:11.5px; letter-spacing:.07em; color:var(--slate); text-transform:uppercase}
 .hero-trust .tdot{width:4px;height:4px;border-radius:50%;background:var(--blue-300)}
@@ -160,59 +186,24 @@ p{margin:0}
 .fc1{top:-22px; left:-30px; animation-delay:.4s}
 .fc2{bottom:34px; left:-54px; animation-delay:1.4s}
 .fc3{bottom:64px; right:-46px; animation-delay:.9s}
-.marquee-wrap{border-top:1px solid var(--line); border-bottom:1px solid var(--line); background:var(--white); padding:30px 0; position:relative}
-.marquee-label{text-align:center; font-family:var(--mono); font-size:11.5px; letter-spacing:.13em; text-transform:uppercase; color:var(--slate); margin-bottom:22px}
-.marquee{display:flex; gap:14px; width:max-content; animation:scroll-x 40s linear infinite}
-.marquee.rev{animation-direction:reverse; animation-duration:46s; margin-top:14px}
-.marquee-mask{overflow:hidden; -webkit-mask-image:linear-gradient(90deg,transparent,#000 9%,#000 91%,transparent); mask-image:linear-gradient(90deg,transparent,#000 9%,#000 91%,transparent)}
-.mq-item{display:flex; align-items:center; gap:10px; padding:11px 18px; border:1px solid var(--line); border-radius:12px; background:#fff; font-weight:600; font-size:14.5px; color:var(--tx-2); white-space:nowrap}
-.mq-item svg{width:18px; height:18px; stroke:var(--blue-600)}
-@keyframes scroll-x{to{transform:translateX(calc(-50% - 7px))}}
-.split{display:grid; grid-template-columns:1fr 1.05fr; gap:60px; align-items:center}
-.feature-list{margin-top:26px; display:flex; flex-direction:column; gap:14px; padding:0}
-.feature-list li{list-style:none; display:flex; gap:13px; align-items:flex-start}
-.fl-ic{width:30px; height:30px; border-radius:9px; background:var(--sky); display:grid; place-items:center; flex:none; margin-top:1px}
-.fl-ic svg{width:16px; height:16px; stroke:var(--blue-600)}
-.fl-tx b{font-family:var(--serif); font-weight:600; font-size:16.5px; color:var(--tx); display:block; margin-bottom:1px}
-.fl-tx span{font-size:14.5px; color:var(--tx-2)}
-.layers{position:relative; background:linear-gradient(180deg,#fff,#fafcff); border:1px solid var(--line); border-radius:var(--r-xl); padding:30px; box-shadow:var(--sh-md); overflow:hidden}
-.layers-grid{position:absolute; inset:0; background-image:radial-gradient(circle at 1px 1px, rgba(17,136,205,.08) 1px, transparent 0); background-size:26px 26px; opacity:.6}
-.lyr{position:relative; border-radius:var(--r); padding:16px 18px; display:flex; align-items:center; gap:14px; z-index:2}
-.lyr-label{font-family:var(--mono); font-size:10.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--slate); width:84px; flex:none}
-.lyr-top{background:#fff; border:1px solid var(--line)}
-.lyr-mid{background:linear-gradient(120deg,#16243f,#22386a); color:#fff; box-shadow:0 18px 40px -20px rgba(20,40,90,.6); margin:14px 0}
-.lyr-mid .lyr-label{color:var(--blue-300)}
-.lyr-bot{background:#fff; border:1px solid var(--line)}
-.lyr-chips{display:flex; gap:8px; flex-wrap:wrap; flex:1}
-.lyr-chip{font-size:12px; font-weight:600; padding:6px 11px; border-radius:8px; background:var(--mist); color:var(--tx-2); display:inline-flex; align-items:center; gap:7px; border:1px solid var(--line)}
-.lyr-chip svg{width:14px;height:14px;stroke:var(--blue-600)}
-.lyr-mid .mid-main{flex:1; display:flex; align-items:center; gap:13px}
-.lyr-mid .brand-name{color:#fff; font-size:17px}
-.lyr-mid .mid-sub{font-size:12px; color:#aebfe2; font-family:var(--mono); letter-spacing:.03em}
-.flow{position:absolute; left:0; right:0; top:0; bottom:0; z-index:1; pointer-events:none}
-.flow i{position:absolute; width:5px; height:5px; border-radius:50%; background:var(--blue); box-shadow:0 0 8px 1px rgba(17,136,205,.7); opacity:0; animation:rise 3.6s linear infinite}
-@keyframes rise{0%{opacity:0; transform:translateY(0)}10%{opacity:.9}90%{opacity:.9}100%{opacity:0; transform:translateY(-178px)}}
-.kg{display:grid; grid-template-columns:1fr auto 1fr; gap:0; align-items:center; background:linear-gradient(180deg,#fff,#fafcff); border:1px solid var(--line); border-radius:var(--r-xl); padding:34px 26px; box-shadow:var(--sh-md); position:relative; overflow:hidden}
-.kg-grid{position:absolute; inset:0; background-image:radial-gradient(circle at 1px 1px, rgba(17,136,205,.07) 1px, transparent 0); background-size:24px 24px; opacity:.5}
-.kg-side{text-align:center; position:relative; z-index:2}
-.kg-ic{width:72px; height:72px; border-radius:18px; margin:0 auto 14px; display:grid; place-items:center; box-shadow:var(--sh-sm)}
-.kg-ic.reason{background:linear-gradient(150deg,#34AADF,#1188CD 60%,#0A5A8E)}
-.kg-ic.reason svg{stroke:#fff;width:30px;height:30px}
-.kg-ic.know{background:#fff; border:1px solid var(--line)}
-.kg-title{font-family:var(--serif); font-weight:600; font-size:18px; color:var(--tx)}
-.kg-desc{font-size:12.5px; color:var(--slate); margin-top:4px; font-family:var(--mono); letter-spacing:.02em}
-.kg-link{width:120px; height:90px; position:relative; z-index:2}
-.kg-node{fill:var(--blue);}
-.kg-edge{stroke:var(--blue-300); stroke-width:1.4; fill:none}
-.kg-badges{display:flex; justify-content:center; gap:12px; margin-top:30px; flex-wrap:wrap}
-.kg-badge{display:inline-flex; align-items:center; gap:9px; font-family:var(--sans); font-weight:600; font-size:14px; color:var(--tx); background:#fff; border:1px solid var(--line-2); border-radius:999px; padding:9px 18px; box-shadow:var(--sh-xs)}
-.kg-badge svg{width:16px;height:16px;stroke:var(--green)}
-.cluster{width:56px;height:50px}
-.cluster .nd{fill:#fff; stroke:var(--blue); stroke-width:1.6}
-.cluster .nd.c{fill:var(--blue); stroke:none}
-.cluster .ed{stroke:var(--blue-300); stroke-width:1.3}
-.cluster .nd.p{animation:nodepulse 3s ease-in-out infinite}
-@keyframes nodepulse{0%,100%{r:3.6}50%{r:4.8}}
+.problem-sec{border-top:1px solid var(--line); border-bottom:1px solid var(--line); background:linear-gradient(180deg,#fff,#f8fbff); position:relative; overflow:hidden}
+.problem-sec::after{content:"";position:absolute;width:520px;height:520px;right:-240px;top:-260px;border-radius:50%;background:radial-gradient(circle,rgba(52,170,223,.11),transparent 70%);pointer-events:none}
+.problem-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:44px;position:relative;z-index:1}
+.problem-card{background:#fff;border:1px solid var(--line);border-radius:var(--r-lg);padding:28px;box-shadow:var(--sh-sm);position:relative;overflow:hidden}
+.problem-num{font-family:var(--mono);font-size:10px;letter-spacing:.14em;color:var(--blue-600);margin-bottom:18px}
+.problem-card h3{font-size:22px;margin-bottom:10px}
+.problem-card p{color:var(--tx-2);font-size:14.5px;line-height:1.58}
+.op-journey{background:linear-gradient(180deg,#fff,#fafcff);border-radius:var(--r-xl);box-shadow:var(--sh-md);position:relative;overflow:hidden}
+.op-journey::before{content:"";position:absolute;inset:0;background-image:radial-gradient(circle at 1px 1px,rgba(17,136,205,.065) 1px,transparent 0);background-size:24px 24px;opacity:.52;pointer-events:none}
+.op-flow{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;align-items:stretch;position:relative;z-index:2;padding:32px 18px 34px;margin:0}
+.op-step{position:relative;list-style:none;padding:0 22px;min-width:0}
+.op-arrow{position:absolute;right:-9px;top:8px;width:18px;height:18px;stroke:var(--blue-600);stroke-width:1.8;z-index:3}
+.op-num{width:32px;height:32px;border-radius:50%;background:var(--sky);color:var(--blue-600);display:grid;place-items:center;font-family:var(--mono);font-size:10.5px;font-weight:600;margin-bottom:17px}
+.op-step h3{font-size:20px;margin-bottom:9px}
+.op-step p{font-size:14.5px;line-height:1.58;color:var(--tx-2)}
+.op-principles{display:flex;justify-content:center;gap:24px 34px;margin-top:26px;flex-wrap:wrap}
+.op-principle{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:var(--tx-2)}
+.op-principle svg{width:14px;height:14px;stroke:var(--green);stroke-width:2.2}
 .bento{display:grid; grid-template-columns:repeat(6,1fr); gap:18px; margin-top:48px}
 .card{background:#fff; border:1px solid var(--line); border-radius:var(--r-lg); box-shadow:var(--sh-sm); overflow:hidden; position:relative; transition:transform .25s cubic-bezier(.2,.7,.3,1), box-shadow .25s, border-color .25s}
 .card:hover{transform:translateY(-5px); box-shadow:var(--sh-md); border-color:var(--line-2)}
@@ -306,20 +297,29 @@ p{margin:0}
 .trust-card h4{color:#fff; font-size:18px; font-weight:600; margin-bottom:6px}
 .trust-card p{color:#9fb0cc; font-size:13.5px; line-height:1.5}
 .trust-card .badge{font-family:var(--mono); font-size:10px; letter-spacing:.08em; color:#86abff; margin-top:13px; display:inline-block; border:1px solid rgba(134,171,255,.25); padding:3px 8px; border-radius:6px}
-.lines{display:grid; grid-template-columns:1fr 1fr; gap:22px; margin-top:46px}
-.line-card{background:#fff; border:1px solid var(--line); border-radius:var(--r-xl); padding:34px; box-shadow:var(--sh-sm); transition:.25s; position:relative; overflow:hidden}
-.line-card:hover{box-shadow:var(--sh-md); transform:translateY(-4px)}
+.lines{display:grid; grid-template-columns:repeat(3,1fr); gap:18px; margin-top:46px}
+.line-card{background:linear-gradient(155deg,#fff 58%,#f6fbfe); border:0; border-radius:var(--r-xl); padding:28px; box-shadow:0 18px 44px -32px rgba(14,30,78,.35),0 2px 8px rgba(14,30,78,.06); transition:.25s; position:relative; overflow:hidden; display:flex; flex-direction:column}
+.line-card:hover{box-shadow:0 24px 54px -34px rgba(14,30,78,.42),0 4px 12px rgba(14,30,78,.08); transform:translateY(-3px)}
 .line-glow{position:absolute; width:200px; height:200px; border-radius:50%; right:-60px; top:-60px; background:radial-gradient(circle,rgba(52,170,223,.12),transparent 70%)}
 .line-ic{width:52px; height:52px; border-radius:14px; background:linear-gradient(150deg,#34AADF,#1188CD 60%,#0A5A8E); display:grid; place-items:center; margin-bottom:20px; box-shadow:0 10px 22px -10px rgba(17,136,205,.6)}
 .line-ic svg{width:26px; height:26px; stroke:#fff}
-.line-card h3{font-size:24px; margin-bottom:11px; font-weight:600}
-.line-card p{color:var(--tx-2); font-size:15px; line-height:1.55; margin-bottom:18px}
-.line-chips{display:flex; gap:8px; flex-wrap:wrap}
-.line-chip{font-size:12.5px; font-weight:600; color:var(--tx-2); background:var(--mist); border:1px solid var(--line); border-radius:8px; padding:6px 11px}
-.uc-strip{margin-top:24px; display:flex; gap:12px; flex-wrap:wrap; justify-content:center}
-.uc{display:inline-flex; align-items:center; gap:9px; font-size:14px; font-weight:600; color:var(--tx); background:#fff; border:1px solid var(--line-2); border-radius:999px; padding:10px 17px; box-shadow:var(--sh-xs); transition:.2s}
-.uc:hover{border-color:var(--blue-300); color:var(--blue-600); transform:translateY(-2px)}
-.uc svg{width:16px; height:16px; stroke:var(--blue-600)}
+.line-card h3{font-size:21px; font-weight:600; line-height:1.22; margin:0}
+.eco-head{display:flex; align-items:center; gap:14px; margin-bottom:24px}
+.eco-head .line-ic{margin:0; width:46px; height:46px; border-radius:12px; flex:none}
+.eco-head .line-ic svg{width:23px; height:23px}
+.eco-block{margin:0 0 20px}
+.eco-label{display:flex;align-items:center;gap:5px;font-family:var(--mono);font-size:9.5px;letter-spacing:.11em;text-transform:uppercase;color:var(--blue-600);margin-bottom:10px}
+.eco-workflows{display:flex;flex-wrap:wrap;gap:6px}
+.eco-workflow{font-size:12.5px;color:var(--tx-2);background:var(--mist);border:1px solid var(--line);padding:5px 11px;border-radius:8px;line-height:1.3}
+.eco-sources{margin-bottom:22px}
+.eco-tags{display:flex;flex-wrap:wrap;gap:6px}
+.eco-tag{font-family:var(--mono);font-size:10.5px;color:var(--blue-700);background:var(--sky-2);border:1px solid #D7ECF7;padding:4px 9px;border-radius:6px}
+.eco-result{margin-top:auto;background:linear-gradient(150deg,#F0F8FD,#E6F3FB);border:1px solid #D7ECF7;border-radius:13px;padding:14px 16px}
+.eco-result .eco-label{color:var(--blue-700);margin-bottom:6px}
+.eco-result .eco-label svg{width:12px;height:12px;stroke:var(--blue-600);stroke-width:2.2}
+.eco-output{font-size:13px;line-height:1.5;color:var(--ink-2);font-weight:500;margin:0}
+.ecosystem-note{display:flex;align-items:center;justify-content:center;gap:10px;width:fit-content;text-align:left;font-size:13.5px;line-height:1.45;color:#fff;margin:24px auto 0;max-width:900px;padding:13px 18px;border-radius:11px;background:linear-gradient(120deg,#16243f,#22386a);box-shadow:0 14px 28px -20px rgba(14,30,78,.72)}
+.ecosystem-note svg{width:18px;height:18px;flex:none;stroke:var(--blue-300)}
 .tech-grid{display:grid; grid-template-columns:1.1fr 1fr; gap:54px; align-items:center}
 .spec{display:grid; grid-template-columns:1fr 1fr; gap:1px; background:var(--line); border:1px solid var(--line); border-radius:var(--r-lg); overflow:hidden}
 .spec-item{background:#fff; padding:20px 22px}
@@ -348,6 +348,8 @@ p{margin:0}
 .foot-col h5{font-family:var(--mono); font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:#86abff; margin:0 0 18px; font-weight:500}
 .foot-col a{display:block; color:#aebccf; font-size:14px; margin-bottom:11px; transition:.15s}
 .foot-col a:hover{color:#fff}
+.foot-contact-button{display:block;border:0;background:none;padding:0;color:#aebccf;font:inherit;font-size:14px;margin:0 0 11px;cursor:pointer;transition:.15s}
+.foot-contact-button:hover{color:#fff}
 .foot-bot{display:flex; justify-content:space-between; align-items:center; padding-top:26px; flex-wrap:wrap; gap:14px}
 .foot-bot .cp{color:#7e90b4; font-size:13px; font-family:var(--mono); letter-spacing:.02em}
 .foot-bot .soc{display:flex; gap:10px}
@@ -361,6 +363,11 @@ p{margin:0}
   .bento{grid-template-columns:repeat(4,1fr)}
   .sp3{grid-column:span 4}.sp2{grid-column:span 2}.sp4{grid-column:span 4}
   .trust-grid{grid-template-columns:repeat(2,1fr)}
+  .lines{grid-template-columns:repeat(2,1fr)}
+  .line-card:last-child{grid-column:1/-1}
+  .op-flow{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .op-step{padding:18px 24px}
+  .op-arrow{display:none}
   .cap-flex{flex-direction:column}.cap-visual{width:100%; border-left:none; border-top:1px solid var(--line)}
 }
 @media (max-width:880px){
@@ -369,12 +376,12 @@ p{margin:0}
   .hero-grid{grid-template-columns:1fr; gap:48px}
   .hero{padding-top:120px}
   .hero-visual{max-width:560px; margin:0 auto}
-  .split{grid-template-columns:1fr; gap:40px}
   .tech-grid{grid-template-columns:1fr; gap:40px}
-  .vs-grid,.lines{grid-template-columns:1fr}
+  .problem-grid,.vs-grid,.lines{grid-template-columns:1fr}
+  .line-card:last-child{grid-column:auto}
   .foot-grid{grid-template-columns:1fr 1fr; gap:32px}
-  .kg{grid-template-columns:1fr; gap:22px; text-align:center}
-  .kg-link{transform:rotate(90deg); margin:0 auto}
+  .op-flow{grid-template-columns:1fr;gap:28px;padding:28px 22px 30px}
+  .op-step{padding:0}
 }
 @media (max-width:560px){
   body{font-size:15.5px}
@@ -404,6 +411,13 @@ p{margin:0}
   .src-chips{gap:5px}
   .src-chip{max-width:100%; white-space:normal}
   .float-chip{display:none}
+  .problem-card,.line-card{padding:24px}
+  .op-flow{padding:24px 20px 26px}
+  .op-principles{justify-content:flex-start;gap:12px 22px}
+  .contact-overlay{padding:10px;align-items:end}
+  .contact-modal{max-height:calc(100vh - 20px);border-radius:22px 22px 14px 14px;padding:30px 22px 24px}
+  .contact-row{grid-template-columns:1fr}
+  .contact-actions{grid-template-columns:1fr}
   .foot-grid{grid-template-columns:1fr}
 }
 @media (prefers-reduced-motion:reduce){
@@ -447,7 +461,161 @@ const LinktonLogoMini = () => (
   </span>
 );
 
+const executionProblems = [
+  {
+    title: "Operations span too many systems",
+    body: "Teams reconstruct the operating picture across records, files, models, and status updates before work can move forward."
+  },
+  {
+    title: "Evidence moves by hand",
+    body: "Information is repeatedly reconciled, reformatted, and reviewed before another team or organization can use it."
+  },
+  {
+    title: "Know-how does not compound",
+    body: "Procedures, corrections, and successful operating patterns remain trapped within individual teams."
+  }
+];
+
+const ecosystems = [
+  {
+    title: "Pharma and biotech",
+    icon: "#i-flask",
+    workflows: ["Batch release", "Deviations & CAPA", "Stability & regulatory reporting"],
+    systems: ["LIMS", "QMS", "ELN", "Data platforms", "Approved procedures"],
+    output: "Evidence-backed quality decisions with a complete, reviewable trail."
+  },
+  {
+    title: "Regulatory ecosystem",
+    icon: "#i-doc",
+    workflows: ["Evidence assembly", "Cross-document verification", "Response drafting & source-history review"],
+    systems: ["Submission records", "Document repositories", "Evidence archives", "Review procedures"],
+    output: "Review-ready evidence packages with expert approval and traceability."
+  },
+  {
+    title: "Clinical operations and CROs",
+    icon: "#i-route",
+    workflows: ["Site & recruitment reconciliation", "Operational reporting", "Sponsor deliverables"],
+    systems: ["CTMS", "EDC", "eTMF", "Trial records", "Sponsor requirements"],
+    output: "Repeatable operational reporting and correctly structured sponsor deliverables."
+  }
+];
+
+const operationSteps = [
+  {
+    title: "Connect",
+    body: "Bring together the systems, files, and procedures needed for the work."
+  },
+  {
+    title: "Check",
+    body: "Build a clear picture and flag anything missing or conflicting."
+  },
+  {
+    title: "Run",
+    body: "Move the workflow forward with experts approving key decisions."
+  },
+  {
+    title: "Reuse",
+    body: "Keep the approved result and evidence so future work starts with trusted context."
+  }
+];
+
+const buildContactDraft = (form: HTMLFormElement) => {
+  const data = new FormData(form);
+  const name = String(data.get("name") || "").trim();
+  const email = String(data.get("email") || "").trim();
+  const company = String(data.get("company") || "").trim();
+  const message = String(data.get("message") || "").trim();
+  const subject = company ? `Get in touch request from ${company}` : `Get in touch request from ${name}`;
+  const body = [
+    "Hi LINK team,",
+    "",
+    "I'd like to get in touch.",
+    "",
+    `Name: ${name}`,
+    `Work email: ${email}`,
+    `Company: ${company || "Not provided"}`,
+    "",
+    "What I'd like to discuss:",
+    message
+  ].join("\n");
+  return { subject, body };
+};
+
 export default function App() {
+  const [contactOpen, setContactOpen] = useState(false);
+  const [copyStatus, setCopyStatus] = useState<"idle" | "copied" | "failed">("idle");
+
+  const openContact = () => {
+    setCopyStatus("idle");
+    setContactOpen(true);
+  };
+
+  useEffect(() => {
+    if (!contactOpen) return;
+    const previousFocus = document.activeElement as HTMLElement | null;
+    const previousOverflow = document.body.style.overflow;
+    const focusTimer = window.setTimeout(() => document.getElementById("contact-name")?.focus({ preventScroll: true }), 0);
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setContactOpen(false);
+        return;
+      }
+      if (event.key !== "Tab") return;
+      const modal = document.querySelector(".contact-modal");
+      const focusable = modal
+        ? Array.from(modal.querySelectorAll<HTMLElement>("button, input, textarea, [href]"))
+            .filter((element) => !element.hasAttribute("disabled"))
+        : [];
+      if (!focusable.length) return;
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    };
+    document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", onKeyDown);
+    return () => {
+      window.clearTimeout(focusTimer);
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener("keydown", onKeyDown);
+      previousFocus?.focus();
+    };
+  }, [contactOpen]);
+
+  const handleContactSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const { subject, body } = buildContactDraft(event.currentTarget);
+    setContactOpen(false);
+    window.location.href = `mailto:info@braingnosis.ai?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  };
+
+  const handleCopyContact = async (event: ReactMouseEvent<HTMLButtonElement>) => {
+    const form = event.currentTarget.form;
+    if (!form || !form.reportValidity()) return;
+    const { subject, body } = buildContactDraft(form);
+    const draft = `To: info@braingnosis.ai\nSubject: ${subject}\n\n${body}`;
+    let copied = false;
+    try {
+      await navigator.clipboard.writeText(draft);
+      copied = true;
+    } catch {
+      const textarea = document.createElement("textarea");
+      textarea.value = draft;
+      textarea.style.position = "fixed";
+      textarea.style.opacity = "0";
+      document.body.appendChild(textarea);
+      textarea.select();
+      copied = document.execCommand("copy");
+      textarea.remove();
+    }
+    setCopyStatus(copied ? "copied" : "failed");
+  };
+
   useEffect(() => {
     const nav = document.getElementById("nav");
     if (nav) {
@@ -469,22 +637,6 @@ export default function App() {
     );
     document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
     return () => io.disconnect();
-  }, []);
-
-  useEffect(() => {
-    const flow = document.getElementById("flow");
-    if (!flow) return;
-    if (matchMedia("(prefers-reduced-motion:reduce)").matches) return;
-    const cols = [18, 38, 58, 78];
-    for (let i = 0; i < 10; i++) {
-      const d = document.createElement("i");
-      d.style.left = cols[i % cols.length] + "%";
-      d.style.bottom = "34px";
-      d.style.animationDelay = i * 0.36 + "s";
-      d.style.animationDuration = 3.2 + Math.random() * 1.1 + "s";
-      flow.appendChild(d);
-    }
-    return () => { flow.innerHTML = ""; };
   }, []);
 
   useEffect(() => {
@@ -597,17 +749,63 @@ export default function App() {
           <div className="nav-links">
             <a href="#platform">Platform</a>
             <a href="#how">How it works</a>
-            <a href="#use-cases">Use cases</a>
+            <a href="#ecosystems">Ecosystems</a>
             <a href="#trust">Trust</a>
             <a href="#tech">Technology</a>
           </div>
           <div className="nav-cta">
-            <a href="https://mail.google.com/mail/?view=cm&to=info@braingnosis.ai&su=Demo%20Request" target="_blank" rel="noopener noreferrer" className="btn btn-primary">Request a demo</a>
+            <button type="button" className="btn btn-primary" onClick={openContact}>Get in touch</button>
           </div>
         </div>
       </nav>
 
       <span id="top" />
+
+      {contactOpen && (
+        <div
+          className="contact-overlay"
+          onMouseDown={(event) => {
+            if (event.target === event.currentTarget) setContactOpen(false);
+          }}
+        >
+          <section className="contact-modal" role="dialog" aria-modal="true" aria-labelledby="contact-title" aria-describedby="contact-description">
+            <button type="button" className="contact-close" onClick={() => setContactOpen(false)} aria-label="Close contact form">
+              <svg aria-hidden="true"><use href="#i-x" /></svg>
+            </button>
+            <div className="contact-kicker">Get in touch</div>
+            <h2 id="contact-title">Tell us what you want to improve.</h2>
+            <p className="contact-intro" id="contact-description">Share a little context and we&apos;ll prepare an email you can review before sending.</p>
+            <form className="contact-form" onSubmit={handleContactSubmit}>
+              <div className="contact-row">
+                <div className="contact-field">
+                  <label htmlFor="contact-name">Name</label>
+                  <input id="contact-name" name="name" type="text" autoComplete="name" autoFocus required />
+                </div>
+                <div className="contact-field">
+                  <label htmlFor="contact-email">Work email</label>
+                  <input id="contact-email" name="email" type="email" autoComplete="email" required />
+                </div>
+              </div>
+              <div className="contact-field">
+                <label htmlFor="contact-company">Company <span>optional</span></label>
+                <input id="contact-company" name="company" type="text" autoComplete="organization" />
+              </div>
+              <div className="contact-field">
+                <label htmlFor="contact-message">What would you like to improve?</label>
+                <textarea id="contact-message" name="message" placeholder="Tell us about the workflow or problem you want to discuss." required />
+              </div>
+              <div className="contact-actions">
+                <button type="submit" className="btn btn-primary btn-lg">Open email draft <svg className="ic" aria-hidden="true"><use href="#i-mail" /></svg></button>
+                <button type="button" className="btn btn-ghost btn-lg" onClick={handleCopyContact}>{copyStatus === "copied" ? "Copied" : "Copy email and message"}<svg className="ic" aria-hidden="true"><use href={copyStatus === "copied" ? "#i-check" : "#i-doc"} /></svg></button>
+              </div>
+              <p className={`contact-copy-status${copyStatus === "failed" ? " failed" : ""}`} aria-live="polite">
+                {copyStatus === "copied" ? "Email details copied to your clipboard." : copyStatus === "failed" ? "Copying was blocked. Use the email address below." : ""}
+              </p>
+              <p className="contact-note">This opens your default email app. Nothing is sent automatically. You can also email <span className="contact-email">info@braingnosis.ai</span>.</p>
+            </form>
+          </section>
+        </div>
+      )}
 
       {/* HERO */}
       <header className="hero">
@@ -620,31 +818,31 @@ export default function App() {
         <div className="wrap">
           <div className="hero-grid">
             <div className="hero-copy">
-              <div className="eyebrow hero-eyebrow">Intelligence layer · Drug development</div>
+              <div className="eyebrow hero-eyebrow">Built for pharma · regulatory · clinical operations</div>
               <h1>One intelligent platform <span className="em">behind every medicine.</span></h1>
-              <p className="hero-sub">Linkton brings your instruments, records, and documents together in one place — an auditable AI layer that accelerates assays, compliance, and clinical work. Deployed in customer-controlled environments, including on-site and air-gapped-capable setups.</p>
+              <p className="hero-sub"><strong className="hero-link">LINK</strong> connects your existing systems, data, documents, and procedures so your teams can run repeatable AI enabled workflows for batch release, regulatory review, and clinical operations. It works inside your environment, keeps experts in control, and makes every result traceable.</p>
               <div className="hero-cta">
-                <a href="https://mail.google.com/mail/?view=cm&to=info@braingnosis.ai&su=Demo%20Request" target="_blank" rel="noopener noreferrer" className="btn btn-primary btn-lg">Request a demo <svg className="ic"><use href="#i-arrow" /></svg></a>
+                <button type="button" className="btn btn-primary btn-lg" onClick={openContact}>Get in touch <svg className="ic" aria-hidden="true"><use href="#i-mail" /></svg></button>
                 <a href="#how" className="btn btn-ghost btn-lg">See how it works</a>
               </div>
               <div className="hero-trust">
                 <span><span className="tdot" />Customer-controlled</span>
                 <span><span className="tdot" />Deployed with top-10 pharma</span>
-                <span><span className="tdot" />Fully auditable</span>
+                <span><span className="tdot" />Human-reviewed and traceable</span>
               </div>
             </div>
 
             <div className="hero-visual">
               <div className="float-chip fc1"><svg className="ic"><use href="#i-doc" /></svg>Veeva Vault <span className="mini-dot" /></div>
-              <div className="float-chip fc2"><svg className="ic"><use href="#i-flask" /></svg>Benchling <span className="mini-dot" /></div>
+              <div className="float-chip fc2"><svg className="ic"><use href="#i-file" /></svg>Deviation Log <span className="mini-dot" /></div>
               <div className="float-chip fc3"><svg className="ic"><use href="#i-db" /></svg>LIMS <span className="mini-dot" /></div>
 
               <div className="app-window">
                 <div className="app-top">
                   <div className="app-bread"><span>Home</span><span className="sl">›</span><span className="cur">Chat</span></div>
                   <div className="app-status">
-                    <span className="pill pill--green"><span className="dot dot--g" />4 routing active</span>
-                    <span className="pill pill--amber"><span className="dot dot--a" />5 awaiting</span>
+                    <span className="pill pill--green"><span className="dot dot--g" />3 sources verified</span>
+                    <span className="pill pill--green"><span className="dot dot--g" />Evidence complete</span>
                   </div>
                 </div>
                 <div className="app-body">
@@ -656,7 +854,7 @@ export default function App() {
                       <div className="av"><LinktonLogoMini /></div>
                       <div>
                         <div className="msg-name">LINKTON</div>
-                        <div className="msg-text">Yes—every QC result is <span className="hl">within specification</span>, no deviations remain open, and testing followed SOP-QC-104 v7.</div>
+                        <div className="msg-text">Yes. Every QC result is <span className="hl">within specification</span>, no deviations remain open, and testing followed SOP-QC-104 v7.</div>
                         <div className="src-chips">
                           <span className="src-chip"><svg><use href="#i-db" /></svg>LIMS · Batch B-24017</span>
                           <span className="src-chip"><svg><use href="#i-doc" /></svg>Veeva · SOP-QC-104 v7</span>
@@ -683,26 +881,21 @@ export default function App() {
                     <div className="rail-head">
                       <div className="rail-tabs"><span className="rail-tab on">Sources</span><span className="rail-tab">Decisions</span></div>
                     </div>
-                    <div className="rail-meta">6 CONNECTED · 1 ISSUE</div>
+                    <div className="rail-meta">3 CONNECTED · 0 GAPS</div>
                     <div className="src-row">
                       <div className="src-ic"><svg><use href="#i-doc" /></svg></div>
                       <div className="src-info"><div className="src-name"><span className="dot dot--g pulse-dot" />Veeva Vault</div><div className="src-desc">Regulatory &amp; quality docs</div></div>
                       <div className="src-time">2m</div>
                     </div>
                     <div className="src-row">
-                      <div className="src-ic"><svg><use href="#i-flask" /></svg></div>
-                      <div className="src-info"><div className="src-name"><span className="dot dot--g" />Benchling</div><div className="src-desc">ELN &amp; registry</div></div>
+                      <div className="src-ic"><svg><use href="#i-db" /></svg></div>
+                      <div className="src-info"><div className="src-name"><span className="dot dot--g" />LIMS</div><div className="src-desc">Batch QC &amp; results</div></div>
                       <div className="src-time">4m</div>
                     </div>
                     <div className="src-row">
-                      <div className="src-ic"><svg><use href="#i-db" /></svg></div>
-                      <div className="src-info"><div className="src-name"><span className="dot dot--g" />LIMS</div><div className="src-desc">Samples &amp; results</div></div>
+                      <div className="src-ic"><svg><use href="#i-file" /></svg></div>
+                      <div className="src-info"><div className="src-name"><span className="dot dot--g" />Deviation Log</div><div className="src-desc">Quality events</div></div>
                       <div className="src-time">8m</div>
-                    </div>
-                    <div className="src-row">
-                      <div className="src-ic"><svg><use href="#i-db" /></svg></div>
-                      <div className="src-info"><div className="src-name"><span className="dot dot--a" />LIMS</div><div className="src-desc">Re-auth needed</div></div>
-                      <div className="src-time">1h</div>
                     </div>
                   </div>
                 </div>
@@ -712,130 +905,93 @@ export default function App() {
         </div>
       </header>
 
-      {/* MARQUEE */}
-      <div className="marquee-wrap reveal">
+      {/* EXECUTION GAP */}
+      <section className="section problem-sec" id="problem">
         <div className="wrap">
-          <div className="marquee-label">Orchestrates the systems your lab already runs</div>
-        </div>
-        <div className="marquee-mask">
-          <div className="marquee">
-            {["Veeva Vault","Benchling","LIMS","ClinicalTrials.gov","Mass Spectrometry","ELN","PubMed","Databases",
-              "Veeva Vault","Benchling","LIMS","ClinicalTrials.gov","Mass Spectrometry","ELN","PubMed","Databases"].map((item, i) => (
-              <span key={i} className="mq-item">
-                <svg><use href={["#i-doc","#i-flask","#i-db","#i-vial","#i-micro","#i-doc","#i-book","#i-db"][i % 8]} /></svg>
-                {item}
-              </span>
-            ))}
+          <div className="sec-head reveal">
+            <div className="eyebrow">The execution gap</div>
+            <h2 className="h2">The problem is not more AI. It is disconnected execution.</h2>
+            <p className="lede">Drug-development work remains divided across systems, teams, formats, and handoffs, even when the individual tools are modern.</p>
           </div>
-          <div className="marquee rev">
-            {["Semantic Scholar","Chromatography","SOPs & protocols","Edge devices","Method workflows","Instrument logs","Regulatory filings","Sample registries",
-              "Semantic Scholar","Chromatography","SOPs & protocols","Edge devices","Method workflows","Instrument logs","Regulatory filings","Sample registries"].map((item, i) => (
-              <span key={i} className="mq-item">
-                <svg><use href={["#i-book","#i-flask","#i-file","#i-chip","#i-route","#i-pulse","#i-doc","#i-db"][i % 8]} /></svg>
-                {item}
-              </span>
+          <div className="problem-grid">
+            {executionProblems.map((problem, i) => (
+              <article key={problem.title} className={`problem-card reveal d${i + 1}`}>
+                <div className="problem-num">0{i + 1} / OPERATIONAL FRICTION</div>
+                <h3>{problem.title}</h3>
+                <p>{problem.body}</p>
+              </article>
             ))}
-          </div>
-        </div>
-      </div>
-
-      {/* HOW IT WORKS */}
-      <section className="section" id="how">
-        <div className="wrap">
-          <div className="split">
-            <div className="split-copy">
-              <div className="eyebrow reveal">What it is</div>
-              <h2 className="h2 reveal d1" style={{ fontSize: "clamp(30px,4.1vw,52px)", marginTop: 18 }}>Not another chatbot. An orchestration layer.</h2>
-              <p className="reveal d2" style={{ color: "var(--tx-2)", fontSize: 18, lineHeight: 1.6, marginTop: 18, maxWidth: 520 }}>Rather than replacing the systems you run, Linkton sits on top of them — turning instruments, lab software, databases, and documents into one conversational, fully-traceable platform.</p>
-              <ul className="feature-list">
-                <li className="reveal d2"><span className="fl-ic"><svg><use href="#i-layers" /></svg></span><span className="fl-tx"><b>Sits on your stack</b><span>Like an OS over the hardware — connects what you have, replaces nothing.</span></span></li>
-                <li className="reveal d3"><span className="fl-ic"><svg><use href="#i-nodes" /></svg></span><span className="fl-tx"><b>Connects the physical &amp; digital lab</b><span>Instruments, LIMS/ELN, databases, and documents in one place.</span></span></li>
-                <li className="reveal d4"><span className="fl-ic"><svg><use href="#i-eye" /></svg></span><span className="fl-tx"><b>Auditable by design</b><span>Every source, step, and decision is logged and exportable.</span></span></li>
-              </ul>
-            </div>
-            <div className="split-visual reveal d2">
-              <div className="layers">
-                <div className="layers-grid" />
-                <div className="flow" id="flow" />
-                <div className="lyr lyr-top">
-                  <span className="lyr-label">Output</span>
-                  <div className="lyr-chips">
-                    <span className="lyr-chip"><svg><use href="#i-chat" /></svg>Chat</span>
-                    <span className="lyr-chip"><svg><use href="#i-route" /></svg>Workflows</span>
-                    <span className="lyr-chip"><svg><use href="#i-doc" /></svg>Reports</span>
-                    <span className="lyr-chip"><svg><use href="#i-eye" /></svg>Evidence</span>
-                  </div>
-                </div>
-                <div className="lyr lyr-mid">
-                  <span className="lyr-label">Layer</span>
-                  <div className="mid-main">
-                    <LinktonLogo />
-                    <div><div className="brand-name">Linkton</div><div className="mid-sub">reasoning · knowledge graph · orchestration</div></div>
-                  </div>
-                </div>
-                <div className="lyr lyr-bot">
-                  <span className="lyr-label">Systems</span>
-                  <div className="lyr-chips">
-                    <span className="lyr-chip"><svg><use href="#i-micro" /></svg>Instruments</span>
-                    <span className="lyr-chip"><svg><use href="#i-db" /></svg>LIMS</span>
-                    <span className="lyr-chip"><svg><use href="#i-doc" /></svg>ELN</span>
-                    <span className="lyr-chip"><svg><use href="#i-book" /></svg>Literature</span>
-                  </div>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       </section>
 
-      {/* ARCHITECTURE */}
-      <section className="section section--tight" style={{ background: "var(--mist)", borderTop: "1px solid var(--line)", borderBottom: "1px solid var(--line)" }}>
+      {/* ECOSYSTEMS */}
+      <section className="section" id="ecosystems">
+        <div className="wrap">
+          <div className="sec-head reveal">
+            <div className="eyebrow">Where Linkton operates</div>
+            <h2 className="h2">One infrastructure. Three operational ecosystems.</h2>
+            <p className="lede">Linkton adapts to the systems, workflows, and expert decisions unique to each operating environment.</p>
+          </div>
+          <div className="lines">
+            {ecosystems.map((ecosystem, i) => (
+              <article key={ecosystem.title} className={`line-card reveal d${i + 1}`}>
+                <div className="line-glow" />
+                <div className="eco-head">
+                  <div className="line-ic"><svg><use href={ecosystem.icon} /></svg></div>
+                  <h3>{ecosystem.title}</h3>
+                </div>
+                <div className="eco-block">
+                  <div className="eco-label">Workflows</div>
+                  <div className="eco-workflows">
+                    {ecosystem.workflows.map((workflow) => <span key={workflow} className="eco-workflow">{workflow}</span>)}
+                  </div>
+                </div>
+                <div className="eco-sources">
+                  <div className="eco-label">Works across</div>
+                  <div className="eco-tags">
+                    {ecosystem.systems.map((system) => <span key={system} className="eco-tag">{system}</span>)}
+                  </div>
+                </div>
+                <div className="eco-result">
+                  <div className="eco-label"><svg aria-hidden="true"><use href="#i-check" /></svg>Result</div>
+                  <p className="eco-output">{ecosystem.output}</p>
+                </div>
+              </article>
+            ))}
+          </div>
+          <p className="ecosystem-note reveal">
+            <svg aria-hidden="true"><use href="#i-layers" /></svg>
+            <span>One operational foundation, configured around each organization&apos;s systems, procedures, and expert decision points.</span>
+          </p>
+        </div>
+      </section>
+
+      {/* HOW IT WORKS */}
+      <section className="section section--tight" id="how" style={{ background: "var(--mist)", borderTop: "1px solid var(--line)", borderBottom: "1px solid var(--line)" }}>
         <div className="wrap">
           <div className="sec-head center reveal" style={{ marginBottom: 42 }}>
-            <div className="eyebrow eyebrow--center">Architecture</div>
-            <h2 className="h2">Intelligence grounded in governed context.</h2>
-            <p className="lede">Your organization&apos;s knowledge is maintained as a governed context layer. That means answers can stay grounded, citable, and traceable while the intelligence layer can evolve without reworking your data foundation.</p>
+            <div className="eyebrow eyebrow--center">How it works</div>
+            <h2 className="h2">From scattered information to work your team can act on.</h2>
+            <p className="lede">Linkton brings the right information together, checks what is missing, runs the workflow, and keeps experts in charge of the final decision.</p>
           </div>
           <div className="reveal d2">
-            <div className="kg">
-              <div className="kg-grid" />
-              <div className="kg-side">
-                <div className="kg-ic reason"><svg viewBox="0 0 24 24"><use href="#i-cpu" /></svg></div>
-                <div className="kg-title">Reasoning layer</div>
-                <div className="kg-desc">model-flexible · task-aware</div>
-              </div>
-              <svg className="kg-link" viewBox="0 0 120 90">
-                <path className="kg-edge" d="M10 45 H110" />
-                <circle className="kg-node" cx="10" cy="45" r="4" />
-                <circle className="kg-node" cx="110" cy="45" r="4" />
-                <circle cx="46" cy="45" r="3.2" fill="#1188CD">
-                  <animate attributeName="cx" values="14;106;14" dur="3.2s" repeatCount="indefinite" />
-                  <animate attributeName="opacity" values="0;1;1;0" dur="3.2s" repeatCount="indefinite" />
-                </circle>
-                <circle cx="74" cy="45" r="3.2" fill="#7CC5E8">
-                  <animate attributeName="cx" values="106;14;106" dur="3.2s" repeatCount="indefinite" />
-                  <animate attributeName="opacity" values="0;1;1;0" dur="3.2s" repeatCount="indefinite" />
-                </circle>
-              </svg>
-              <div className="kg-side">
-                <div className="kg-ic know">
-                  <svg className="cluster" viewBox="0 0 72 64">
-                    <line className="ed" x1="36" y1="32" x2="16" y2="14" /><line className="ed" x1="36" y1="32" x2="56" y2="16" />
-                    <line className="ed" x1="36" y1="32" x2="13" y2="50" /><line className="ed" x1="36" y1="32" x2="59" y2="49" />
-                    <line className="ed" x1="16" y1="14" x2="56" y2="16" /><line className="ed" x1="13" y1="50" x2="59" y2="49" />
-                    <circle className="nd p" cx="16" cy="14" r="3.6" /><circle className="nd p" cx="56" cy="16" r="3.6" />
-                    <circle className="nd p" cx="13" cy="50" r="3.6" /><circle className="nd p" cx="59" cy="49" r="3.6" />
-                    <circle className="nd c" cx="36" cy="32" r="5" />
-                  </svg>
-                </div>
-                <div className="kg-title">Context Registry</div>
-                <div className="kg-desc">governed · citable · traceable</div>
-              </div>
+            <div className="op-journey">
+              <ol className="op-flow">
+                {operationSteps.map((step, i) => (
+                  <li key={step.title} className="op-step">
+                    <div className="op-num" aria-hidden="true">0{i + 1}</div>
+                    <h3>{step.title}</h3>
+                    <p>{step.body}</p>
+                    {i < operationSteps.length - 1 && <svg className="op-arrow" aria-hidden="true"><use href="#i-arrow" /></svg>}
+                  </li>
+                ))}
+              </ol>
             </div>
-            <div className="kg-badges">
-              <span className="kg-badge"><svg><use href="#i-check" /></svg>Grounded.</span>
-              <span className="kg-badge"><svg><use href="#i-check" /></svg>Citable.</span>
-              <span className="kg-badge"><svg><use href="#i-check" /></svg>Traceable.</span>
+            <div className="op-principles" aria-label="How Linkton works">
+              <span className="op-principle"><svg aria-hidden="true"><use href="#i-check" /></svg>Works with your current systems</span>
+              <span className="op-principle"><svg aria-hidden="true"><use href="#i-check" /></svg>Experts approve key decisions</span>
+              <span className="op-principle"><svg aria-hidden="true"><use href="#i-check" /></svg>Every result stays traceable</span>
             </div>
           </div>
         </div>
@@ -846,18 +1002,18 @@ export default function App() {
         <div className="wrap">
           <div className="sec-head reveal">
             <div className="eyebrow">The platform</div>
-            <h2 className="h2">One surface for the whole lab.</h2>
-            <p className="lede">Query in plain language, automate repeatable methods, and keep every action audit-ready — without leaving a single screen.</p>
+            <h2 className="h2">One operational surface for evidence, workflows, and action.</h2>
+            <p className="lede">Inspect operational state, launch repeatable work, resolve exceptions, and preserve the evidence behind every outcome.</p>
           </div>
 
           <div className="bento">
-            {/* Conversational control */}
+            {/* Conversational operations */}
             <div className="card sp3 reveal">
               <div className="cap-flex">
                 <div className="cap-text">
                   <div className="cap-ic"><svg><use href="#i-chat" /></svg></div>
-                  <div className="cap-title">Conversational control</div>
-                  <div className="cap-desc">One chat controls the platform — query data, run analyses, and generate reports. Answers come back grounded and cited.</div>
+                  <div className="cap-title">Conversational operations</div>
+                  <div className="cap-desc">Query operational state, inspect evidence, start workflows, and investigate exceptions from one conversational surface.</div>
                 </div>
                 <div className="cap-visual">
                   <div className="mini-chat">
@@ -868,13 +1024,13 @@ export default function App() {
               </div>
             </div>
 
-            {/* Methods & workflows */}
+            {/* AI-enabled workflows */}
             <div className="card sp3 reveal d1">
               <div className="cap-flex">
                 <div className="cap-text">
                   <div className="cap-ic"><svg><use href="#i-route" /></svg></div>
-                  <div className="cap-title">Methods &amp; workflows</div>
-                  <div className="cap-desc">Low-code automation that mixes deterministic steps with AI reasoning — every run leaves a full audit trace.</div>
+                  <div className="cap-title">AI-enabled workflows</div>
+                  <div className="cap-desc">Combine deterministic process steps with AI reasoning and defined human decision gates.</div>
                 </div>
                 <div className="cap-visual">
                   <div className="steps">
@@ -893,7 +1049,7 @@ export default function App() {
                 <div className="cap-title">Skills</div>
                 <div className="cap-desc">Reusable templates that capture organization-specific know-how.</div>
                 <div style={{ marginTop: 15, display: "flex", flexDirection: "column", gap: 8 }}>
-                  <span className="pack" style={{ padding: "9px 11px", margin: 0 }}><span className="pack-l"><span className="pic"><svg><use href="#i-flask" /></svg></span><b style={{ fontSize: 12.5 }}>Lipidomics analysis</b></span><span className="tag tag--blue">Skill</span></span>
+                  <span className="pack" style={{ padding: "9px 11px", margin: 0 }}><span className="pack-l"><span className="pic"><svg><use href="#i-route" /></svg></span><b style={{ fontSize: 12.5 }}>Deviation investigation</b></span><span className="tag tag--blue">Skill</span></span>
                   <span className="pack" style={{ padding: "9px 11px", margin: 0 }}><span className="pack-l"><span className="pic"><svg><use href="#i-doc" /></svg></span><b style={{ fontSize: 12.5 }}>Stability report</b></span><span className="tag tag--blue">Skill</span></span>
                 </div>
               </div>
@@ -904,10 +1060,10 @@ export default function App() {
               <div className="card-pad">
                 <div className="cap-ic"><svg><use href="#i-grid" /></svg></div>
                 <div className="cap-title">Resource Packs</div>
-                <div className="cap-desc">Plug-in intelligence per instrument or system. Toggle access on or off.</div>
+                <div className="cap-desc">Package the systems, procedures, and permissions an operational workflow needs.</div>
                 <div style={{ marginTop: 15 }}>
-                  <div className="pack"><span className="pack-l"><span className="pic"><svg><use href="#i-micro" /></svg></span><span><b>Mass Spec</b><small>API · SOPs</small></span></span><span className="sw" /></div>
-                  <div className="pack" style={{ marginBottom: 0 }}><span className="pack-l"><span className="pic"><svg><use href="#i-book" /></svg></span><span><b>PubMed</b><small>literature</small></span></span><span className="sw off" /></div>
+                  <div className="pack"><span className="pack-l"><span className="pic"><svg><use href="#i-db" /></svg></span><span><b>System pack</b><small>records · files · APIs</small></span></span><span className="sw" /></div>
+                  <div className="pack" style={{ marginBottom: 0 }}><span className="pack-l"><span className="pic"><svg><use href="#i-route" /></svg></span><span><b>Workflow pack</b><small>procedures · review gates</small></span></span><span className="sw" /></div>
                 </div>
               </div>
             </div>
@@ -921,18 +1077,18 @@ export default function App() {
                 <div className="log" style={{ marginTop: 14 }}>
                   <div className="log-scroll">
                     {[
-                      ["09:42:01","bl","QUERY","assay LOD lookup"],
-                      ["09:42:02","ok","SOURCE","Q-TOF manual v3.2"],
-                      ["09:42:03","ok","CITE","p.118 · §4.2"],
-                      ["09:42:05","bl","STEP","cross-ref validation"],
-                      ["09:42:06","ok","APPROVE","R. Mehta"],
-                      ["09:42:08","ok","EXPORT","audit-CR-20381"],
-                      ["09:42:01","bl","QUERY","assay LOD lookup"],
-                      ["09:42:02","ok","SOURCE","Q-TOF manual v3.2"],
-                      ["09:42:03","ok","CITE","p.118 · §4.2"],
-                      ["09:42:05","bl","STEP","cross-ref validation"],
-                      ["09:42:06","ok","APPROVE","R. Mehta"],
-                      ["09:42:08","ok","EXPORT","audit-CR-20381"],
+                      ["09:42:01","bl","QUERY","release Batch B-24017"],
+                      ["09:42:02","ok","SOURCE","LIMS · QC results"],
+                      ["09:42:03","ok","SOURCE","Deviation Log · 0 open"],
+                      ["09:42:05","ok","SOURCE","SOP-QC-104 v7"],
+                      ["09:42:06","ok","APPROVE","QA reviewer"],
+                      ["09:42:08","ok","EXPORT","evidence-B-24017"],
+                      ["09:42:01","bl","QUERY","release Batch B-24017"],
+                      ["09:42:02","ok","SOURCE","LIMS · QC results"],
+                      ["09:42:03","ok","SOURCE","Deviation Log · 0 open"],
+                      ["09:42:05","ok","SOURCE","SOP-QC-104 v7"],
+                      ["09:42:06","ok","APPROVE","QA reviewer"],
+                      ["09:42:08","ok","EXPORT","evidence-B-24017"],
                     ].map(([ts, cls, label, text], i) => (
                       <div key={i} className="log-line"><span className="ts">{ts}</span><span className={cls}>{label}</span> {text}</div>
                     ))}
@@ -941,12 +1097,12 @@ export default function App() {
               </div>
             </div>
 
-            {/* Operational dashboard */}
+            {/* Operational work queue */}
             <div className="card sp2 reveal">
               <div className="card-pad">
                 <div className="cap-ic"><svg><use href="#i-bell" /></svg></div>
-                <div className="cap-title">Operational dashboard</div>
-                <div className="cap-desc">Everything waiting on you — grouped and prioritized.</div>
+                <div className="cap-title">Operational work queue</div>
+                <div className="cap-desc">Work requiring action, review, or a decision, grouped and prioritized.</div>
                 <div className="ny" style={{ marginTop: 14 }}>
                   <div className="ny-card"><div className="ny-top"><b>QA approval gate</b><span className="ago">18m</span></div><small>Change Control · v1.4.0</small><div className="ny-bot"><span className="tag tag--green">Approval</span><span className="ny-act blue">Approve <svg><use href="#i-arrow" /></svg></span></div></div>
                   <div className="ny-card"><div className="ny-top"><b>Branch needs a choice</b><span className="ago">40m</span></div><small>run-7851 · Deviation</small><div className="ny-bot"><span className="tag" style={{ color: "var(--violet)", background: "var(--violet-bg)" }}>Decision</span><span className="ny-act">Choose <svg><use href="#i-arrow" /></svg></span></div></div>
@@ -954,28 +1110,28 @@ export default function App() {
               </div>
             </div>
 
-            {/* Report generation */}
+            {/* Regulatory drafting */}
             <div className="card sp2 reveal d1">
               <div className="card-pad">
                 <div className="cap-ic"><svg><use href="#i-doc" /></svg></div>
-                <div className="cap-title">Report generation</div>
-                <div className="cap-desc">Regulatory and internal reports from your templates — pushed to your document systems.</div>
+                <div className="cap-title">Regulatory drafting</div>
+                <div className="cap-desc">Create controlled drafts from verified sources and templates, then route them through SME review before publication.</div>
                 <div className="report-vis">
-                  <div className="doc-card"><div className="doc-badge">FDA-ready</div><div className="dh" /><div className="dl m" /><div className="dl s" /><div className="dl m" /><div className="dl s" /></div>
-                  <div className="doc-flow">Generated <svg><use href="#i-arrow" /></svg> Veeva Vault</div>
+                  <div className="doc-card"><div className="doc-badge">Review-ready</div><div className="dh" /><div className="dl m" /><div className="dl s" /><div className="dl m" /><div className="dl s" /></div>
+                  <div className="doc-flow">Controlled draft <svg><use href="#i-arrow" /></svg> SME review</div>
                 </div>
               </div>
             </div>
 
-            {/* Proactive intelligence */}
+            {/* Proactive operations */}
             <div className="card sp2 reveal d2">
               <div className="card-pad">
                 <div className="cap-ic"><svg><use href="#i-pulse" /></svg></div>
-                <div className="cap-title">Proactive intelligence</div>
-                <div className="cap-desc">Flags issues from historical patterns before they bite.</div>
+                <div className="cap-title">Proactive operations</div>
+                <div className="cap-desc">Surface downstream operational impact and the next action before delays compound.</div>
                 <div className="alert-card" style={{ marginTop: 15 }}>
                   <div className="ai"><svg><use href="#i-bell" /></svg></div>
-                  <div><b>Reagent delay predicted</b><small>Vendor slipped 3 weeks → impacts 2 stability timelines. Re-plan suggested.</small></div>
+                  <div><b>Reagent delay predicted</b><small>Vendor slipped 3 weeks → impacts 2 stability workflows. Re-plan 3 dependent steps.</small></div>
                 </div>
               </div>
             </div>
@@ -988,28 +1144,28 @@ export default function App() {
         <div className="wrap">
           <div className="sec-head reveal">
             <div className="eyebrow">Why Linkton</div>
-            <h2 className="h2">Built for regulated work general AI can&apos;t safely handle.</h2>
-            <p className="lede">General models can answer questions. Linkton works inside your real operating context, with the controls needed to make answers usable in regulated science.</p>
+            <h2 className="h2">Built to operate, not just answer questions.</h2>
+            <p className="lede">Linkton works inside the customer&apos;s operational context, coordinating evidence, procedures, systems, and people to move work forward.</p>
           </div>
           <div className="vs-grid">
             <div className="vs-card reveal d1">
               <div className="vs-eyebrow">Beyond general AI</div>
-              <h3>General models don&apos;t know your operation.</h3>
+              <h3>Operational context changes the answer.</h3>
               <ul className="vs-list">
-                <li><span className="vs-check"><svg><use href="#i-check" /></svg></span><span><b>Deploys where your data is controlled.</b> <span>Supports customer-hosted, on-prem, and air-gapped-capable environments.</span></span></li>
-                <li><span className="vs-check"><svg><use href="#i-check" /></svg></span><span><b>Grounds answers in your sources.</b> <span>Connects SOPs, records, files, instruments, and governed workspace data.</span></span></li>
-                <li><span className="vs-check"><svg><use href="#i-check" /></svg></span><span><b>Finds the right context at runtime.</b> <span>Pulls relevant evidence from connected sources instead of relying on one prompt window.</span></span></li>
-                <li><span className="vs-check"><svg><use href="#i-check" /></svg></span><span><b>Shows its work.</b> <span>Answers can include citations, provenance, and visible uncertainty when evidence is missing.</span></span></li>
+                <li><span className="vs-check"><svg><use href="#i-check" /></svg></span><span><b>Works inside the operation.</b> <span>Uses the systems, records, procedures, and operating state relevant to the task.</span></span></li>
+                <li><span className="vs-check"><svg><use href="#i-check" /></svg></span><span><b>Uses connected evidence.</b> <span>Grounds each action in the sources and approved procedures already in place.</span></span></li>
+                <li><span className="vs-check"><svg><use href="#i-check" /></svg></span><span><b>Runs the work.</b> <span>Moves from recommendations into reusable, trackable operational workflows.</span></span></li>
+                <li><span className="vs-check"><svg><use href="#i-check" /></svg></span><span><b>Keeps experts in control.</b> <span>Places human review at consequential decisions, exceptions, and approvals.</span></span></li>
               </ul>
             </div>
             <div className="vs-card reveal d2">
-              <div className="vs-eyebrow">Beyond data platforms</div>
-              <h3>It coordinates your stack instead of replacing it.</h3>
+              <div className="vs-eyebrow">Beyond point solutions</div>
+              <h3>Coordinate the stack instead of replacing it.</h3>
               <ul className="vs-list">
-                <li><span className="vs-check"><svg><use href="#i-check" /></svg></span><span><b>Works above existing systems.</b> <span>Connects to platforms like Benchling, Databricks, LIMS, QMS, and internal tools.</span></span></li>
-                <li><span className="vs-check"><svg><use href="#i-check" /></svg></span><span><b>Bridges modern and legacy workflows.</b> <span>Uses governed connectors and edge gateways for local files, instruments, and segmented networks.</span></span></li>
-                <li><span className="vs-check"><svg><use href="#i-check" /></svg></span><span><b>Turns expertise into reusable procedures.</b> <span>Captures repeatable work as controlled skills and workflows.</span></span></li>
-                <li><span className="vs-check"><svg><use href="#i-check" /></svg></span><span><b>Built for regulated operations.</b> <span>Identity, audit trails, approvals, citations, and evidence checks are part of the core system.</span></span></li>
+                <li><span className="vs-check"><svg><use href="#i-check" /></svg></span><span><b>Works above existing systems.</b> <span>Keeps established systems of record in place while coordinating work across them.</span></span></li>
+                <li><span className="vs-check"><svg><use href="#i-check" /></svg></span><span><b>Bridges modern and legacy operations.</b> <span>Connects platforms, local files, segmented environments, and operational spreadsheets.</span></span></li>
+                <li><span className="vs-check"><svg><use href="#i-check" /></svg></span><span><b>Turns know-how into Skills.</b> <span>Captures repeatable procedures as reusable operational workflows.</span></span></li>
+                <li><span className="vs-check"><svg><use href="#i-check" /></svg></span><span><b>Produces reviewable outputs.</b> <span>Each run carries the evidence, approvals, and trace needed for regulated work.</span></span></li>
               </ul>
             </div>
           </div>
@@ -1022,8 +1178,8 @@ export default function App() {
         <div className="wrap">
           <div className="sec-head reveal" style={{ maxWidth: 680 }}>
             <div className="eyebrow">Trust &amp; compliance</div>
-            <h2 className="h2">Engineered for regulated science.</h2>
-            <p className="lede" style={{ color: "#9fb0cc" }}>Your data never leaves your environment. Every decision is provable. Compliance is the default, not an add-on.</p>
+            <h2 className="h2">Infrastructure for regulated environments.</h2>
+            <p className="lede" style={{ color: "#9fb0cc" }}>Customer-controlled deployment, human review, source traceability, and exportable evidence make operational AI usable in regulated work.</p>
           </div>
           <div className="trust-grid">
             <div className="trust-card reveal d1"><div className="trust-ic"><svg><use href="#i-lock" /></svg></div><h4>Customer-controlled</h4><p>Designed for customer-hosted, on-prem, and air-gapped-capable environments. Data stays under your governance.</p></div>
@@ -1032,50 +1188,6 @@ export default function App() {
             <div className="trust-card reveal d1"><div className="trust-ic"><svg><use href="#i-eye" /></svg></div><h4>Full audit trail</h4><p>Every AI decision, source, and approval chain is logged and exportable for agency review.</p></div>
             <div className="trust-card reveal d2"><div className="trust-ic"><svg><use href="#i-chip" /></svg></div><h4>Encrypted &amp; signed</h4><p>Signed container images with decrypt-in-memory model protection. Security-scan compatible.</p></div>
             <div className="trust-card reveal d3"><div className="trust-ic"><svg><use href="#i-users" /></svg></div><h4>WCAG 2.2</h4><p>Accessible by design across the interface, so every operator can work without barriers.</p></div>
-          </div>
-        </div>
-      </section>
-
-      {/* USE CASES */}
-      <section className="section" id="use-cases">
-        <div className="wrap">
-          <div className="sec-head reveal">
-            <div className="eyebrow">Who it&apos;s for</div>
-            <h2 className="h2">Two product lines. One platform.</h2>
-            <p className="lede">The same intelligence layer, shaped for how you work.</p>
-          </div>
-          <div className="lines">
-            <div className="line-card reveal d1">
-              <div className="line-glow" />
-              <div className="line-ic"><svg><use href="#i-flask" /></svg></div>
-              <h3>For pharma &amp; biotech</h3>
-              <p>Workflow-centric — orchestrate many instruments and systems across assays, QC, regulatory, and clinical-trial planning.</p>
-              <div className="line-chips">
-                <span className="line-chip">Assays &amp; QC</span><span className="line-chip">Regulatory reports</span><span className="line-chip">Clinical-trial planning</span><span className="line-chip">Deviation &amp; CAPA</span>
-              </div>
-            </div>
-            <div className="line-card reveal d2">
-              <div className="line-glow" />
-              <div className="line-ic"><svg><use href="#i-micro" /></svg></div>
-              <h3>For instrument makers</h3>
-              <p>An instrument-specific learning brain plus customer-support intelligence — embedded on the device, right to the edge.</p>
-              <div className="line-chips">
-                <span className="line-chip">On-instrument agent</span><span className="line-chip">Consumables &amp; PM</span><span className="line-chip">Reach-back chemist</span><span className="line-chip">Field support</span>
-              </div>
-            </div>
-          </div>
-
-          <div style={{ textAlign: "center", marginTop: 46 }}>
-            <div className="eyebrow eyebrow--center reveal" style={{ justifyContent: "center", marginBottom: 22 }}>In production today</div>
-            <div className="uc-strip">
-              <span className="uc reveal"><svg><use href="#i-db" /></svg>Sample lineage &amp; audit</span>
-              <span className="uc reveal d1"><svg><use href="#i-chat" /></svg>Conversational analytics over 20,000+ samples</span>
-              <span className="uc reveal d2"><svg><use href="#i-doc" /></svg>Regulatory report generation</span>
-              <span className="uc reveal"><svg><use href="#i-micro" /></svg>On-instrument help agent</span>
-              <span className="uc reveal d1"><svg><use href="#i-pulse" /></svg>Reach-back chemist</span>
-              <span className="uc reveal d2"><svg><use href="#i-route" /></svg>Internal troubleshooting</span>
-              <span className="uc reveal d1"><svg><use href="#i-vial" /></svg>Drug-provenance analysis</span>
-            </div>
           </div>
         </div>
       </section>
@@ -1096,8 +1208,8 @@ export default function App() {
             </div>
             <div className="tech-side reveal d1">
               <div className="eyebrow">Technology</div>
-              <h3 style={{ marginTop: 18 }}>Private intelligence, deployed where your data lives.</h3>
-              <p>Link is designed for customer-controlled environments, including on-prem, VPC, and air-gapped-capable deployments. Models can reason over governed organizational context without making your regulated data dependent on a public chatbot workflow.</p>
+              <h3 style={{ marginTop: 18 }}>Private intelligence, deployed where operations run.</h3>
+              <p>Linkton is designed for customer-controlled environments, including on-prem, VPC, and air-gapped-capable deployments. Models can reason over operational context without making regulated work dependent on a public chatbot workflow.</p>
               <p>Because context is separated from intelligence, teams can upgrade models, change hosting modes, or tune cost and latency without rebuilding the knowledge layer.</p>
               <div className="affil">
                 <span className="affil-chip"><span className="ac-ic" style={{ background: "linear-gradient(150deg,#76d275,#3a9e3a)" }}><svg><use href="#i-cpu" /></svg></span>NVIDIA Inception</span>
@@ -1115,13 +1227,13 @@ export default function App() {
         <div className="cta-glow" />
         <div className="wrap">
           <div className="cta-inner reveal">
-            <h2>See Linkton <span className="em">on your data.</span></h2>
-            <p>Deployed securely in customer-controlled environments, including on-prem and air-gapped-capable setups. Bring your hardest workflow and we&apos;ll show you the trace.</p>
+            <h2>Bring us one workflow <span className="em">that crosses too many systems.</span></h2>
+            <p>We&apos;ll show how Linkton connects the evidence, places experts at the right decision points, and runs the work inside your environment.</p>
             <div className="cta-cta">
-              <a href="https://mail.google.com/mail/?view=cm&to=info@braingnosis.ai&su=Demo%20Request" target="_blank" rel="noopener noreferrer" className="btn btn-blue btn-lg">Request a demo <svg className="ic"><use href="#i-arrow" /></svg></a>
+              <button type="button" className="btn btn-blue btn-lg" onClick={openContact}>Get in touch <svg className="ic" aria-hidden="true"><use href="#i-mail" /></svg></button>
               <a href="#platform" className="btn btn-light btn-lg">Explore the platform</a>
             </div>
-            <div className="cta-note">Customer-controlled · Air-gapped-capable · Top-10 pharma</div>
+            <div className="cta-note">Operational AI · Customer-controlled · Human-reviewed</div>
           </div>
         </div>
       </section>
@@ -1135,26 +1247,26 @@ export default function App() {
                 <LinktonLogo />
                 <span className="brand-name">Linkton</span>
               </div>
-              <p className="foot-tag">An intelligence platform for drug development — connecting instruments, records, and documents across assays, regulatory compliance, and clinical trials.</p>
+              <p className="foot-tag">Operational AI infrastructure for pharma, regulatory, and clinical-operations environments.</p>
             </div>
             <div className="foot-col">
               <h5>Platform</h5>
-              <a href="#platform">Conversational control</a>
-              <a href="#platform">Methods &amp; workflows</a>
+              <a href="#platform">Conversational operations</a>
+              <a href="#platform">AI-enabled workflows</a>
               <a href="#platform">Skills &amp; Resource Packs</a>
               <a href="#trust">Trust &amp; compliance</a>
               <a href="#tech">Technology</a>
             </div>
             <div className="foot-col">
-              <h5>Company</h5>
-              <a href="#use-cases">Use cases</a>
-              <a href="#">About</a>
-              <a href="https://www.linkedin.com/company/braingnosis-inc/">Careers</a>
+              <h5>Ecosystems</h5>
+              <a href="#ecosystems">Pharma &amp; biotech</a>
+              <a href="#ecosystems">Regulatory</a>
+              <a href="#ecosystems">Clinical operations &amp; CROs</a>
               <a href="mailto:info@braingnosis.ai">Contact</a>
             </div>
             <div className="foot-col">
               <h5>Get started</h5>
-              <a href="https://mail.google.com/mail/?view=cm&to=info@braingnosis.ai&su=Demo%20Request" target="_blank" rel="noopener noreferrer">Request a demo</a>
+              <button type="button" className="foot-contact-button" onClick={openContact}>Get in touch</button>
             </div>
           </div>
           <div className="foot-bot">
