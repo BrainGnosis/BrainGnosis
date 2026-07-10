@@ -204,6 +204,27 @@ p{margin:0}
 .op-principles{display:flex;justify-content:center;gap:24px 34px;margin-top:26px;flex-wrap:wrap}
 .op-principle{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:var(--tx-2)}
 .op-principle svg{width:14px;height:14px;stroke:var(--green);stroke-width:2.2}
+.kg{display:grid;grid-template-columns:1fr auto 1fr;gap:0;align-items:center;background:linear-gradient(180deg,#fff,#fafcff);border:1px solid var(--line);border-radius:var(--r-xl);padding:34px 26px;box-shadow:var(--sh-md);position:relative;overflow:hidden}
+.kg-grid{position:absolute;inset:0;background-image:radial-gradient(circle at 1px 1px,rgba(17,136,205,.07) 1px,transparent 0);background-size:24px 24px;opacity:.5}
+.kg-side{text-align:center;position:relative;z-index:2}
+.kg-ic{width:72px;height:72px;border-radius:18px;margin:0 auto 14px;display:grid;place-items:center;box-shadow:var(--sh-sm)}
+.kg-ic.reason{background:linear-gradient(150deg,#34AADF,#1188CD 60%,#0A5A8E)}
+.kg-ic.reason svg{stroke:#fff;width:30px;height:30px}
+.kg-ic.know{background:#fff;border:1px solid var(--line)}
+.kg-title{font-family:var(--serif);font-weight:600;font-size:18px;color:var(--tx);margin:0}
+.kg-desc{font-size:12.5px;color:var(--slate);margin-top:4px;font-family:var(--mono);letter-spacing:.02em}
+.kg-link{width:120px;height:90px;position:relative;z-index:2}
+.kg-node{fill:var(--blue)}
+.kg-edge{stroke:var(--blue-300);stroke-width:1.4;fill:none}
+.kg-badges{display:flex;justify-content:center;gap:12px;margin-top:30px;flex-wrap:wrap}
+.kg-badge{display:inline-flex;align-items:center;gap:9px;font-family:var(--sans);font-weight:600;font-size:14px;color:var(--tx);background:#fff;border:1px solid var(--line-2);border-radius:999px;padding:9px 18px;box-shadow:var(--sh-xs)}
+.kg-badge svg{width:16px;height:16px;stroke:var(--green)}
+.cluster{width:56px;height:50px}
+.cluster .nd{fill:#fff;stroke:var(--blue);stroke-width:1.6}
+.cluster .nd.c{fill:var(--blue);stroke:none}
+.cluster .ed{stroke:var(--blue-300);stroke-width:1.3}
+.cluster .nd.p{animation:nodepulse 3s ease-in-out infinite}
+@keyframes nodepulse{0%,100%{r:3.6}50%{r:4.8}}
 .bento{display:grid; grid-template-columns:repeat(6,1fr); gap:18px; margin-top:48px}
 .card{background:#fff; border:1px solid var(--line); border-radius:var(--r-lg); box-shadow:var(--sh-sm); overflow:hidden; position:relative; transition:transform .25s cubic-bezier(.2,.7,.3,1), box-shadow .25s, border-color .25s}
 .card:hover{transform:translateY(-5px); box-shadow:var(--sh-md); border-color:var(--line-2)}
@@ -387,6 +408,8 @@ p{margin:0}
   .foot-grid{grid-template-columns:1fr 1fr; gap:32px}
   .op-flow{grid-template-columns:1fr;gap:28px;padding:28px 22px 30px}
   .op-step{padding:0}
+  .kg{grid-template-columns:1fr;gap:22px;text-align:center}
+  .kg-link{transform:rotate(90deg);margin:0 auto}
 }
 @media (max-width:560px){
   body{font-size:15.5px}
@@ -419,6 +442,7 @@ p{margin:0}
   .problem-card,.line-card{padding:24px}
   .op-flow{padding:24px 20px 26px}
   .op-principles{justify-content:flex-start;gap:12px 22px}
+  .kg{padding:28px 20px}
   .contact-overlay{padding:10px;align-items:end}
   .contact-modal{max-height:calc(100vh - 20px);border-radius:22px 22px 14px 14px;padding:30px 22px 24px}
   .contact-row{grid-template-columns:1fr}
@@ -429,6 +453,7 @@ p{margin:0}
   *{animation-duration:.001s!important; animation-iteration-count:1!important}
   .reveal{opacity:1; transform:none}
   .app-window,.float-chip{animation:none}
+  .kg-packet{display:none}
 }
 `;
 
@@ -1000,6 +1025,59 @@ export default function App() {
               <span className="op-principle"><svg aria-hidden="true"><use href="#i-check" /></svg>Works with your current systems</span>
               <span className="op-principle"><svg aria-hidden="true"><use href="#i-check" /></svg>Experts approve key decisions</span>
               <span className="op-principle"><svg aria-hidden="true"><use href="#i-check" /></svg>Every result stays traceable</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ARCHITECTURE */}
+      <section className="section section--tight" id="architecture" style={{ background: "var(--mist)", borderBottom: "1px solid var(--line)" }}>
+        <div className="wrap">
+          <div className="sec-head center reveal" style={{ marginBottom: 42 }}>
+            <div className="eyebrow eyebrow--center">Architecture</div>
+            <h2 className="h2">Inference and context stay separate.</h2>
+            <p className="lede">Linkton separates the intelligence that reasons over a task from the customer-controlled context that grounds it. Models can change without rebuilding the operational knowledge, procedures, and evidence behind every workflow.</p>
+          </div>
+          <div className="reveal d2">
+            <div className="kg">
+              <div className="kg-grid" />
+              <div className="kg-side">
+                <div className="kg-ic reason"><svg aria-hidden="true" viewBox="0 0 24 24"><use href="#i-cpu" /></svg></div>
+                <h3 className="kg-title">Inference layer</h3>
+                <div className="kg-desc">model-flexible · task-aware</div>
+              </div>
+              <svg className="kg-link" viewBox="0 0 120 90" aria-hidden="true">
+                <path className="kg-edge" d="M10 45 H110" />
+                <circle className="kg-node" cx="10" cy="45" r="4" />
+                <circle className="kg-node" cx="110" cy="45" r="4" />
+                <circle className="kg-packet" cx="46" cy="45" r="3.2" fill="#1188CD">
+                  <animate attributeName="cx" values="14;106;14" dur="3.2s" repeatCount="indefinite" />
+                  <animate attributeName="opacity" values="0;1;1;0" dur="3.2s" repeatCount="indefinite" />
+                </circle>
+                <circle className="kg-packet" cx="74" cy="45" r="3.2" fill="#7CC5E8">
+                  <animate attributeName="cx" values="106;14;106" dur="3.2s" repeatCount="indefinite" />
+                  <animate attributeName="opacity" values="0;1;1;0" dur="3.2s" repeatCount="indefinite" />
+                </circle>
+              </svg>
+              <div className="kg-side">
+                <div className="kg-ic know">
+                  <svg className="cluster" viewBox="0 0 72 64" aria-hidden="true">
+                    <line className="ed" x1="36" y1="32" x2="16" y2="14" /><line className="ed" x1="36" y1="32" x2="56" y2="16" />
+                    <line className="ed" x1="36" y1="32" x2="13" y2="50" /><line className="ed" x1="36" y1="32" x2="59" y2="49" />
+                    <line className="ed" x1="16" y1="14" x2="56" y2="16" /><line className="ed" x1="13" y1="50" x2="59" y2="49" />
+                    <circle className="nd p" cx="16" cy="14" r="3.6" /><circle className="nd p" cx="56" cy="16" r="3.6" />
+                    <circle className="nd p" cx="13" cy="50" r="3.6" /><circle className="nd p" cx="59" cy="49" r="3.6" />
+                    <circle className="nd c" cx="36" cy="32" r="5" />
+                  </svg>
+                </div>
+                <h3 className="kg-title">Operational context</h3>
+                <div className="kg-desc">systems · procedures · evidence</div>
+              </div>
+            </div>
+            <div className="kg-badges">
+              <span className="kg-badge"><svg aria-hidden="true"><use href="#i-check" /></svg>Model-flexible</span>
+              <span className="kg-badge"><svg aria-hidden="true"><use href="#i-check" /></svg>Context stays in place</span>
+              <span className="kg-badge"><svg aria-hidden="true"><use href="#i-check" /></svg>Evidence stays traceable</span>
             </div>
           </div>
         </div>
