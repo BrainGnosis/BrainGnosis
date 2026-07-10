@@ -298,8 +298,9 @@ p{margin:0}
 .trust-card p{color:#9fb0cc; font-size:13.5px; line-height:1.5}
 .trust-card .badge{font-family:var(--mono); font-size:10px; letter-spacing:.08em; color:#86abff; margin-top:13px; display:inline-block; border:1px solid rgba(134,171,255,.25); padding:3px 8px; border-radius:6px}
 .lines{display:grid; grid-template-columns:repeat(3,1fr); gap:18px; margin-top:46px}
-.line-card{background:linear-gradient(155deg,#fff 58%,#f6fbfe); border:0; border-radius:var(--r-xl); padding:28px; box-shadow:0 18px 44px -32px rgba(14,30,78,.35),0 2px 8px rgba(14,30,78,.06); transition:.25s; position:relative; overflow:hidden; display:flex; flex-direction:column}
+.line-card{background:linear-gradient(155deg,#fff 58%,#f6fbfe); border:0; border-radius:var(--r-xl); padding:28px; box-shadow:0 18px 44px -32px rgba(14,30,78,.35),0 2px 8px rgba(14,30,78,.06); transition:.25s; position:relative; overflow:hidden; display:flex; flex-direction:column; scroll-margin-top:96px}
 .line-card:hover{box-shadow:0 24px 54px -34px rgba(14,30,78,.42),0 4px 12px rgba(14,30,78,.08); transform:translateY(-3px)}
+.line-card:target{outline:2px solid rgba(17,136,205,.38);outline-offset:4px}
 .line-glow{position:absolute; width:200px; height:200px; border-radius:50%; right:-60px; top:-60px; background:radial-gradient(circle,rgba(52,170,223,.12),transparent 70%)}
 .line-ic{width:52px; height:52px; border-radius:14px; background:linear-gradient(150deg,#34AADF,#1188CD 60%,#0A5A8E); display:grid; place-items:center; margin-bottom:20px; box-shadow:0 10px 22px -10px rgba(17,136,205,.6)}
 .line-ic svg{width:26px; height:26px; stroke:#fff}
@@ -359,6 +360,10 @@ p{margin:0}
 .reveal{opacity:0; transform:translateY(26px); transition:opacity .7s cubic-bezier(.2,.7,.3,1), transform .7s cubic-bezier(.2,.7,.3,1)}
 .reveal.in{opacity:1; transform:none}
 .reveal.d1{transition-delay:.08s}.reveal.d2{transition-delay:.16s}.reveal.d3{transition-delay:.24s}.reveal.d4{transition-delay:.32s}.reveal.d5{transition-delay:.40s}
+@media (min-width:1081px){
+  .hero-grid{gap:72px}
+  .hero-visual{transform:translateX(18px)}
+}
 @media (max-width:1080px){
   .bento{grid-template-columns:repeat(4,1fr)}
   .sp3{grid-column:span 4}.sp2{grid-column:span 2}.sp4{grid-column:span 4}
@@ -478,6 +483,7 @@ const executionProblems = [
 
 const ecosystems = [
   {
+    id: "pharma-biotech",
     title: "Pharma and biotech",
     icon: "#i-flask",
     workflows: ["Batch release", "Deviations & CAPA", "Stability & regulatory reporting"],
@@ -485,6 +491,7 @@ const ecosystems = [
     output: "Evidence-backed quality decisions with a complete, reviewable trail."
   },
   {
+    id: "regulatory-ecosystem",
     title: "Regulatory ecosystem",
     icon: "#i-doc",
     workflows: ["Evidence assembly", "Cross-document verification", "Response drafting & source-history review"],
@@ -492,6 +499,7 @@ const ecosystems = [
     output: "Review-ready evidence packages with expert approval and traceability."
   },
   {
+    id: "clinical-operations-cros",
     title: "Clinical operations and CROs",
     icon: "#i-route",
     workflows: ["Site & recruitment reconciliation", "Operational reporting", "Sponsor deliverables"],
@@ -747,9 +755,9 @@ export default function App() {
             <span className="brand-name">Linkton</span>
           </a>
           <div className="nav-links">
-            <a href="#platform">Platform</a>
-            <a href="#how">How it works</a>
             <a href="#ecosystems">Ecosystems</a>
+            <a href="#how">How it works</a>
+            <a href="#platform">Platform</a>
             <a href="#trust">Trust</a>
             <a href="#tech">Technology</a>
           </div>
@@ -929,13 +937,13 @@ export default function App() {
       <section className="section" id="ecosystems">
         <div className="wrap">
           <div className="sec-head reveal">
-            <div className="eyebrow">Where Linkton operates</div>
+            <div className="eyebrow">Ecosystems</div>
             <h2 className="h2">One infrastructure. Three operational ecosystems.</h2>
             <p className="lede">Linkton adapts to the systems, workflows, and expert decisions unique to each operating environment.</p>
           </div>
           <div className="lines">
             {ecosystems.map((ecosystem, i) => (
-              <article key={ecosystem.title} className={`line-card reveal d${i + 1}`}>
+              <article id={ecosystem.id} key={ecosystem.title} className={`line-card reveal d${i + 1}`}>
                 <div className="line-glow" />
                 <div className="eco-head">
                   <div className="line-ic"><svg><use href={ecosystem.icon} /></svg></div>
@@ -1259,9 +1267,9 @@ export default function App() {
             </div>
             <div className="foot-col">
               <h5>Ecosystems</h5>
-              <a href="#ecosystems">Pharma &amp; biotech</a>
-              <a href="#ecosystems">Regulatory</a>
-              <a href="#ecosystems">Clinical operations &amp; CROs</a>
+              <a href="#pharma-biotech">Pharma and biotech</a>
+              <a href="#regulatory-ecosystem">Regulatory ecosystem</a>
+              <a href="#clinical-operations-cros">Clinical operations and CROs</a>
               <a href="mailto:info@braingnosis.ai">Contact</a>
             </div>
             <div className="foot-col">
@@ -1272,7 +1280,7 @@ export default function App() {
           <div className="foot-bot">
             <span className="cp">© 2026 BrainGnosis Inc. · Built for regulated science.</span>
             <div className="soc">
-              <a href="https://www.linkedin.com/" aria-label="LinkedIn"><svg className="ic"><use href="#i-in" /></svg></a>
+              <a href="https://www.linkedin.com/company/braingnosis-inc" aria-label="LinkedIn"><svg className="ic"><use href="#i-in" /></svg></a>
               <a href="mailto:info@braingnosis.ai" aria-label="Email"><svg className="ic"><use href="#i-mail" /></svg></a>
             </div>
           </div>
